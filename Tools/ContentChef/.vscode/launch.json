@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:ContentChef}",
+            "name": "Debug ContentChef",
+            "program": "${workspaceFolder:ContentChef}/${workspaceFolder}/DerivedData/debug/ContentChef",
+            "preLaunchTask": "swift: Build Debug ContentChef"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:ContentChef}",
+            "name": "Release ContentChef",
+            "program": "${workspaceFolder:ContentChef}/${workspaceFolder}/DerivedData/release/ContentChef",
+            "preLaunchTask": "swift: Build Release ContentChef"
+        }
+    ]
+}
