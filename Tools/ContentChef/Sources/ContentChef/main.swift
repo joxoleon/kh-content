@@ -80,7 +80,7 @@ struct ContentChef: ParsableCommand {
         // MARK: - Content Metadata
 
         // Create content metadata struct and save to JSON
-        let contentMetadata = Parsing.ContentMetadata(lastUpdatedTimestamp: Date().timeIntervalSince1970)
+        let contentMetadata = ContentMetadata(lastUpdatedTimestamp: Date().timeIntervalSince1970)
         let contentMetadataPath = contentDirectory.appendingPathComponent("content_metadata.json")
         createFileIfNotExists(atPath: contentMetadataPath.path)
         let contentMetadataData = try JSONEncoder().encode(contentMetadata)
