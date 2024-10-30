@@ -11,8 +11,7 @@ protocol ContentFetcherProtocol {
 // MARK: - GitHubContentFetcher
 
 class GitHubContentFetcher: ContentFetcherProtocol {
-    private let baseURL =
-        "https://raw.githubusercontent.com/jovan.radivojsa/kh-content/main/Content/Output/iOS/"
+    private let baseURL = "https://raw.githubusercontent.com/joxoleon/kh-content/main/Content/Output/iOS/"
 
     func fetchContentMetadata(completion: @escaping (Result<ContentMetadata, Error>) -> Void) {
         let url = URL(string: "\(baseURL)content_metadata.json")!
@@ -25,7 +24,7 @@ class GitHubContentFetcher: ContentFetcherProtocol {
     }
 
     func fetchModules(completion: @escaping (Result<[LearningModule], Error>) -> Void) {
-        let url = URL(string: "\(baseURL)modules.json")!
+        let url = URL(string: "\(baseURL)all_modules.json")!
         fetchJSON(from: url, completion: completion)
     }
 
