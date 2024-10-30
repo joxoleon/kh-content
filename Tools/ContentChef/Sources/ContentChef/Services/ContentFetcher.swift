@@ -11,24 +11,29 @@ protocol ContentFetcherProtocol {
 // MARK: - GitHubContentFetcher
 
 class GitHubContentFetcher: ContentFetcherProtocol {
-    private let baseURL = "https://raw.githubusercontent.com/jovanradivojsa/kh-content/main/"
+    private let baseURL =
+        "https://raw.githubusercontent.com/jovan.radivojsa/kh-content/main/Content/Output/iOS/"
 
     func fetchContentMetadata(completion: @escaping (Result<ContentMetadata, Error>) -> Void) {
         let url = URL(string: "\(baseURL)content_metadata.json")!
         fetchJSON(from: url, completion: completion)
     }
-    
+
     func fetchLessons(completion: @escaping (Result<[Lesson], Error>) -> Void) {
-        let url = URL(string: "\(baseURL)lessons.json")!
+        let url = URL(string: "\(baseURL)all_lessons.json")!
         fetchJSON(from: url, completion: completion)
     }
-    
+
     func fetchModules(completion: @escaping (Result<[LearningModule], Error>) -> Void) {
         let url = URL(string: "\(baseURL)modules.json")!
         fetchJSON(from: url, completion: completion)
     }
-    
-    private func fetchJSON<T: Decodable>(from url: URL, completion: @escaping (Result<T, Error>) -> Void) {
+
+    private func fetchJSON<T: Decodable>(
+        from url: URL, 
+        completion: @escaping (Result<T, Error>) -> Void
+    ) {
+        print("Fetching JSON from: \(url)")
         URLSession.shared.dataTask(with: url) { data, _, error in
             if let error = error {
                 completion(.failure(error))
@@ -42,8 +47,13 @@ class GitHubContentFetcher: ContentFetcherProtocol {
                 let decoded = try JSONDecoder().decode(T.self, from: data)
                 completion(.success(decoded))
             } catch {
+                print("Failed to decode JSON: \(error)")
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print("Raw response data: \(jsonString)")  // Print raw response for debugging
+                }
                 completion(.failure(error))
             }
         }.resume()
     }
+
 }

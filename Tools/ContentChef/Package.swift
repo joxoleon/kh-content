@@ -23,7 +23,8 @@ let package = Package(
         ),
         .testTarget(
             name: "ContentChefTests",
-            dependencies: ["ContentChef"]
+            dependencies: ["ContentChef"],
+            path: "Tests/ContentChefTests" // Explicitly specify the path to the test target
         ),
     ]
 )

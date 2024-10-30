@@ -37,13 +37,13 @@ struct ContentChef: ParsableCommand {
         let prettyJsonData = try serializeToPrettyJSON(jsonData)
         try writeJSONData(prettyJsonData, to: outputURL)
 
-        // Save metadata array to JSON
-        let metadataOutputURL = outputDirectory.appendingPathComponent("all_lesson_metadata.json")
-        createFileIfNotExists(atPath: metadataOutputURL.path)
-        let metadata = lessons.map { $0.metadata }
-        let metadataJSONData = try JSONEncoder().encode(metadata)
-        let prettyMetadataJSONData = try serializeToPrettyJSON(metadataJSONData)
-        try writeJSONData(prettyMetadataJSONData, to: metadataOutputURL)
+        // Save lesson metadata array to JSON
+        let lessonMetadataOutputURL = outputDirectory.appendingPathComponent("all_lesson_metadata.json")
+        createFileIfNotExists(atPath: lessonMetadataOutputURL.path)
+        let lessonMetadata = lessons.map { $0.metadata }
+        let lessonMetadataJSONData = try JSONEncoder().encode(lessonMetadata)
+        let prettyLessonMetadataJSONData = try serializeToPrettyJSON(lessonMetadataJSONData)
+        try writeJSONData(prettyLessonMetadataJSONData, to: lessonMetadataOutputURL)
 
         // Save single lesson files to JSON
         for lesson in lessons {
@@ -81,11 +81,11 @@ struct ContentChef: ParsableCommand {
 
         // Create content metadata struct and save to JSON
         let contentMetadata = ContentMetadata(lastUpdatedTimestamp: Date().timeIntervalSince1970)
-        let contentMetadataPath = contentDirectory.appendingPathComponent("content_metadata.json")
-        createFileIfNotExists(atPath: contentMetadataPath.path)
-        let contentMetadataData = try JSONEncoder().encode(contentMetadata)
-        let prettyContentMetadataData = try serializeToPrettyJSON(contentMetadataData)
-        try writeJSONData(prettyContentMetadataData, to: contentMetadataPath)
+        let metadataOutputURL = outputDirectory.appendingPathComponent("content_metadata.json")
+        createFileIfNotExists(atPath: metadataOutputURL.path)
+        let metadataJSONData = try JSONEncoder().encode(contentMetadata)
+        let prettyMetadataJSONData = try serializeToPrettyJSON(metadataJSONData)
+        try writeJSONData(prettyMetadataJSONData, to: metadataOutputURL)
 
         print("Lessons, Modules, and Metadata parsed successfully and stored in \(outputDirectory.path)")
     }
