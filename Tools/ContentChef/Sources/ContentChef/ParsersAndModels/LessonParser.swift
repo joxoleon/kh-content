@@ -1,35 +1,5 @@
 import Foundation
 
-// MARK: - Lesson Data Models
-
-public struct LessonMetadata: Codable {
-    let id: String
-    let title: String
-    let description: String
-    let tags: [String]
-}
-
-public struct Lesson: Codable {
-    let metadata: LessonMetadata
-    let sections: [LessionContentSection]
-    let questions: [Question]
-}
-
-public struct LessionContentSection: Codable {
-    let title: String
-    let content: String
-}
-
-public struct Question: Codable {
-    let id: String
-    let type: String
-    let proficiency: String
-    let question: String
-    let answers: [String]
-    let correctAnswerIndex: Int
-    let explanation: String
-}
-
 // MARK: - Lesson Parsing Errors
 
 enum LessonParsingError: Error {
@@ -52,13 +22,13 @@ class LessonParser {
     
     // MARK: - Parse Single Lesson
     
-    func parseLesson(from fileURL: URL) throws -> Lesson {
+    func parseLesson(from fileURL: URL) throws -> Parsing.Lesson {
         let content = try String(contentsOf: fileURL)
         let lessonMetadata = try parseMetadata(in: content)
         let sections = parseSections(in: content)
         let questions = try parseQuestions(from: content)
         
-        return Lesson(
+        return Parsing.Lesson(
             metadata: lessonMetadata,
             sections: sections,
             questions: questions
@@ -67,15 +37,12 @@ class LessonParser {
     
     // MARK: - Parse All Lessons in Directory
     
-    func parseLessons(in directory: URL) throws -> [Lesson] {
-        print("Parsing lesson files from input directory \(directory.path)")
+    func parseLessons(in directory: URL) throws -> [Parsing.Lesson] {
         let fileManager = FileManager.default
         let lessonFiles = try fileManager.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
             .filter { $0.pathExtension == "md" }
-        print("Found \(lessonFiles.count) lesson files")
-        print("Lesson files: \(lessonFiles.map { $0.lastPathComponent })")
 
-        var lessons: [Lesson] = []
+        var lessons: [Parsing.Lesson] = []
         for file in lessonFiles {
             let lesson = try parseLesson(from: file)
             lessons.append(lesson)
@@ -85,7 +52,7 @@ class LessonParser {
     
     // MARK: - Metadata Parsing
     
-    private func parseMetadata(in content: String) throws -> LessonMetadata {
+    private func parseMetadata(in content: String) throws -> Parsing.LessonMetadata {
         guard let metadataContent = extractContent(from: content, startDelimiter: metadataStartDelimiter, endDelimiter: metadataEndDelimiter) else {
             throw LessonParsingError.metadataParsingFailed
         }
@@ -94,15 +61,15 @@ class LessonParser {
             throw LessonParsingError.metadataParsingFailed
         }
         
-        return try JSONDecoder().decode(LessonMetadata.self, from: data)
+        return try JSONDecoder().decode(Parsing.LessonMetadata.self, from: data)
     }
     
     // MARK: - Section Parsing
     
-    private func parseSections(in content: String) -> [LessionContentSection] {
+    private func parseSections(in content: String) -> [Parsing.LessionContentSection] {
         let regex = try? NSRegularExpression(pattern: sectionRegexPattern, options: .dotMatchesLineSeparators)
         let nsContent = content as NSString
-        var sections: [LessionContentSection] = []
+        var sections: [Parsing.LessionContentSection] = []
         
         regex?.enumerateMatches(in: content, options: [], range: NSRange(location: 0, length: nsContent.length)) { match, _, _ in
             if let match = match,
@@ -111,7 +78,7 @@ class LessonParser {
                 
                 let title = String(content[titleRange])
                 let sectionContent = String(content[contentRange]).trimmingCharacters(in: .whitespacesAndNewlines)
-                sections.append(LessionContentSection(title: title, content: sectionContent))
+                sections.append(Parsing.LessionContentSection(title: title, content: sectionContent))
             }
         }
         return sections
@@ -119,7 +86,7 @@ class LessonParser {
     
     // MARK: - Questions Parsing
     
-    private func parseQuestions(from content: String) throws -> [Question] {
+    private func parseQuestions(from content: String) throws -> [Parsing.Question] {
         guard let questionsData = extractContent(from: content, startDelimiter: questionsStartDelimiter, endDelimiter: questionsEndDelimiter) else {
             throw LessonParsingError.questionsParsingFailed
         }
@@ -128,7 +95,7 @@ class LessonParser {
             throw LessonParsingError.questionsParsingFailed
         }
         
-        return try JSONDecoder().decode([Question].self, from: data)
+        return try JSONDecoder().decode([Parsing.Question].self, from: data)
     }
     
     // MARK: - Helper Methods

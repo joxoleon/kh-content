@@ -21,7 +21,7 @@ struct ContentChef: ParsableCommand {
     // MARK: - Parsing
 
     func parse(from contentDirectory: URL, to outputDirectory: URL) throws {
-        print("Parsing lesson files from input directory \(contentDirectory.path)")
+        print("Parsing files from input directory \(contentDirectory.path)")
 
         // MARK: - Lessons
 
@@ -77,7 +77,17 @@ struct ContentChef: ParsableCommand {
             try writeJSONData(prettyModuleData, to: moduleOutputURL)
         }
 
-        print("Lessons and metadata parsed and saved successfully.")
+        // MARK: - Content Metadata
+
+        // Create content metadata struct and save to JSON
+        let contentMetadata = Parsing.ContentMetadata(lastUpdatedTimestamp: Date().timeIntervalSince1970)
+        let contentMetadataPath = contentDirectory.appendingPathComponent("content_metadata.json")
+        createFileIfNotExists(atPath: contentMetadataPath.path)
+        let contentMetadataData = try JSONEncoder().encode(contentMetadata)
+        let prettyContentMetadataData = try serializeToPrettyJSON(contentMetadataData)
+        try writeJSONData(prettyContentMetadataData, to: contentMetadataPath)
+
+        print("Lessons, Modules, and Metadata parsed successfully and stored in \(outputDirectory.path)")
     }
 
     // MARK: - Utility Functions
