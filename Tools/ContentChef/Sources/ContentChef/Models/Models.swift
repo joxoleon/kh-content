@@ -43,6 +43,19 @@ public struct LearningModule: Codable {
         case title, description, subModules, lessons
     }
 
+    public init(
+        title: String,
+        description: String,
+        subModules: [LearningModule] = [],
+        lessons: [String] = []
+    ) {
+        self.id = title.replacingOccurrences(of: " ", with: "_").lowercased()
+        self.title = title
+        self.description = description
+        self.subModules = subModules
+        self.lessons = lessons
+    }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         title = try container.decode(String.self, forKey: .title)

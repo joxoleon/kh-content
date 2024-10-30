@@ -6,7 +6,7 @@ protocol ContentStorageProtocol {
     func saveLessons(_ lessons: [Lesson])
     func saveModules(_ modules: [LearningModule])
     func saveMetadata(_ metadata: ContentMetadata)
-    
+
     func loadLessons() -> [Lesson]?
     func loadModules() -> [LearningModule]?
     func loadMetadata() -> ContentMetadata?
@@ -19,45 +19,46 @@ class FileContentStorage: ContentStorageProtocol {
     private let lessonsFileURL: URL
     private let modulesFileURL: URL
     private let metadataFileURL: URL
-    
-    init() {
-        // Setup paths in the documents directory
-        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        lessonsFileURL = documentsDirectory.appendingPathComponent("lessons.json")
-        modulesFileURL = documentsDirectory.appendingPathComponent("modules.json")
-        metadataFileURL = documentsDirectory.appendingPathComponent("content_metadata.json")
+
+    init(
+        baseDirectory: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            .first!
+    ) {
+        lessonsFileURL = baseDirectory.appendingPathComponent("lessons.json")
+        modulesFileURL = baseDirectory.appendingPathComponent("modules.json")
+        metadataFileURL = baseDirectory.appendingPathComponent("content_metadata.json")
     }
-    
+
     // MARK: - Save Methods
-    
+
     func saveLessons(_ lessons: [Lesson]) {
         saveData(lessons, to: lessonsFileURL)
     }
-    
+
     func saveModules(_ modules: [LearningModule]) {
         saveData(modules, to: modulesFileURL)
     }
-    
+
     func saveMetadata(_ metadata: ContentMetadata) {
         saveData(metadata, to: metadataFileURL)
     }
-    
+
     // MARK: - Load Methods
-    
+
     func loadLessons() -> [Lesson]? {
         return loadData(from: lessonsFileURL)
     }
-    
+
     func loadModules() -> [LearningModule]? {
         return loadData(from: modulesFileURL)
     }
-    
+
     func loadMetadata() -> ContentMetadata? {
         return loadData(from: metadataFileURL)
     }
-    
+
     // MARK: - Helper Methods
-    
+
     private func saveData<T: Encodable>(_ data: T, to url: URL) {
         do {
             let encodedData = try JSONEncoder().encode(data)
@@ -71,7 +72,7 @@ class FileContentStorage: ContentStorageProtocol {
             print("Failed to save data to \(url.lastPathComponent): \(error)")
         }
     }
-    
+
     private func loadData<T: Decodable>(from url: URL) -> T? {
         do {
             guard fileManager.fileExists(atPath: url.path) else {
