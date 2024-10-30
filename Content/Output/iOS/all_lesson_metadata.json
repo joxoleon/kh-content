@@ -1,0 +1,29 @@
+[
+  {
+    "id" : "solid_principles",
+    "title" : "SOLID Principles for iOS Development",
+    "tags" : [
+      "solid",
+      "solid principles",
+      "clean",
+      "clean architecture",
+      "software architecture",
+      "architecture",
+      "software design"
+    ],
+    "description" : "An in-depth lesson on the SOLID principles and their implementation in iOS development to enhance code modularity, maintainability, and scalability."
+  },
+  {
+    "id" : "mvvm_architecture_ios",
+    "title" : "MVVM Architecture for iOS Development using SwiftUI",
+    "tags" : [
+      "mvvm",
+      "model-view-viewmodel",
+      "mvvm architecture",
+      "mvvm design pattern",
+      "design pattern",
+      "ios architectures"
+    ],
+    "description" : "An introductory lesson on MVVM architecture and how to implement it in iOS development with SwiftUI, covering key components, benefits, and implementation examples."
+  }
+]
