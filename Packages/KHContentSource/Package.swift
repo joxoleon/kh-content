@@ -4,10 +4,13 @@ import PackageDescription
 let package = Package(
     name: "KHContentSource",
     platforms: [
-        .macOS(.v10_15), .iOS(.v13),
+        .macOS(.v10_15), 
+        .iOS(.v15),
     ],
     products: [
-        .library(name: "KHContentSource", targets: ["KHContentSource"]),
+        .library(
+            name: "KHContentSource", 
+            targets: ["KHContentSource"]),
     ],
     dependencies: [
         .package(url: "https://github.com/jpsim/Yams.git", from: "4.0.0")
