@@ -58,7 +58,6 @@ class MockContentStorage: ContentStorageProtocol {
 // MARK: - ContentRepository Tests
 
 final class ContentRepositoryTests: XCTestCase {
-    var repository: ContentRepository!
     var fetcher: MockContentFetcher!
     var storage: MockContentStorage!
     
@@ -66,11 +65,9 @@ final class ContentRepositoryTests: XCTestCase {
         super.setUp()
         fetcher = MockContentFetcher()
         storage = MockContentStorage()
-        repository = ContentRepository(fetcher: fetcher, storage: storage)
     }
     
     override func tearDown() {
-        repository = nil
         fetcher = nil
         storage = nil
         super.tearDown()
@@ -79,32 +76,41 @@ final class ContentRepositoryTests: XCTestCase {
     // MARK: - Test Methods
     
     func testFetchLessonById() {
-        let lesson = Lesson(metadata: LessonMetadata(id: "lesson1", title: "Sample Lesson", description: "Description", tags: ["swift"]),
+        let lesson = Lesson(metadata: LessonMetadata(id: "sample_lesson", title: "Sample Lesson", description: "Description", tags: ["swift"]),
                             sections: [], questions: [])
         storage.saveLessons([lesson])
         
-        XCTAssertEqual(repository.fetchLesson(by: "lesson1")?.metadata.id, "lesson1")
+        // Initialize repository after setting up storage
+        let repository = ContentRepository(fetcher: fetcher, storage: storage)
+        
+        XCTAssertEqual(repository.fetchLesson(by: "sample_lesson")?.metadata.id, "sample_lesson")
     }
     
     func testFetchModuleById() {
         let module = LearningModule(title: "Sample Module", description: "Description", subModules: [], lessons: [])
         storage.saveModules([module])
         
-        XCTAssertEqual(repository.fetchModule(by: "module1")?.id, "module1")
+        // Initialize repository after setting up storage
+        let repository = ContentRepository(fetcher: fetcher, storage: storage)
+        
+        XCTAssertEqual(repository.fetchModule(by: "sample_module")?.id, "sample_module")
     }
     
     func testUpdateDataIfNeededWithStaleData() {
         // Set stale metadata in storage and newer metadata in fetcher
         storage.saveMetadata(ContentMetadata(lastUpdatedTimestamp: 1000))
         fetcher.mockMetadata = ContentMetadata(lastUpdatedTimestamp: 2000)
-        fetcher.mockLessons = [Lesson(metadata: LessonMetadata(id: "lesson1", title: "New Lesson", description: "New Description", tags: ["swift"]), sections: [], questions: [])]
+        fetcher.mockLessons = [Lesson(metadata: LessonMetadata(id: "new_lesson", title: "New Lesson", description: "New Description", tags: ["swift"]), sections: [], questions: [])]
         fetcher.mockModules = [LearningModule(title: "New Module", description: "New Description", subModules: [], lessons: [])]
+        
+        // Initialize repository after setting up storage and fetcher
+        let repository = ContentRepository(fetcher: fetcher, storage: storage)
         
         let expectation = XCTestExpectation(description: "Data should be updated")
         repository.updateDataIfNeeded { updated in
             XCTAssertTrue(updated, "Expected data to be updated")
-            XCTAssertEqual(self.storage.loadLessons()?.first?.metadata.id, "lesson1")
-            XCTAssertEqual(self.storage.loadModules()?.first?.id, "module1")
+            XCTAssertEqual(self.storage.loadLessons()?.first?.metadata.id, "new_lesson")
+            XCTAssertEqual(self.storage.loadModules()?.first?.id, "new_module")
             expectation.fulfill()
         }
         
@@ -117,6 +123,9 @@ final class ContentRepositoryTests: XCTestCase {
         storage.saveMetadata(metadata)
         fetcher.mockMetadata = metadata
         
+        // Initialize repository after setting up storage and fetcher
+        let repository = ContentRepository(fetcher: fetcher, storage: storage)
+        
         let expectation = XCTestExpectation(description: "Data should not be updated")
         repository.updateDataIfNeeded { updated in
             XCTAssertFalse(updated, "Expected data not to be updated")
@@ -126,3 +135,4 @@ final class ContentRepositoryTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 }
+
