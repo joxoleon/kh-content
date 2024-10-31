@@ -35,7 +35,7 @@ final class FileContentStorageTests: XCTestCase {
     // MARK: - Lesson Tests
 
     func testSaveAndLoadLessons() {
-        let sampleLesson = Lesson(metadata: LessonMetadata(id: "lesson1", title: "Sample Lesson", description: "Test Description", tags: ["swift", "ios"]),
+        let sampleLesson = Lesson(metadata: LessonMetadata(title: "Sample Lesson", description: "Test Description", tags: ["swift", "ios"]),
                                   sections: [LessionContentSection(title: "Section 1", content: "Content")],
                                   questions: [Question(id: "q1", type: "MCQ", proficiency: "beginner", question: "Test question?", answers: ["A", "B", "C"], correctAnswerIndex: 0, explanation: "Explanation")])
         

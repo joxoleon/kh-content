@@ -76,7 +76,7 @@ final class ContentRepositoryTests: XCTestCase {
     // MARK: - Test Methods
     
     func testFetchLessonById() {
-        let lesson = Lesson(metadata: LessonMetadata(id: "sample_lesson", title: "Sample Lesson", description: "Description", tags: ["swift"]),
+        let lesson = Lesson(metadata: LessonMetadata(title: "Sample Lesson", description: "Description", tags: ["swift"]),
                             sections: [], questions: [])
         storage.saveLessons([lesson])
         
@@ -100,7 +100,7 @@ final class ContentRepositoryTests: XCTestCase {
         // Set stale metadata in storage and newer metadata in fetcher
         storage.saveMetadata(ContentMetadata(lastUpdatedTimestamp: 1000))
         fetcher.mockMetadata = ContentMetadata(lastUpdatedTimestamp: 2000)
-        fetcher.mockLessons = [Lesson(metadata: LessonMetadata(id: "new_lesson", title: "New Lesson", description: "New Description", tags: ["swift"]), sections: [], questions: [])]
+        fetcher.mockLessons = [Lesson(metadata: LessonMetadata(title: "New Lesson", description: "New Description", tags: ["swift"]), sections: [], questions: [])]
         fetcher.mockModules = [LearningModule(title: "New Module", description: "New Description", subModules: [], lessons: [])]
         
         // Initialize repository after setting up storage and fetcher
