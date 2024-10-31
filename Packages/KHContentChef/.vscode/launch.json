@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:KHContentChef}",
+            "name": "Debug KHContentChef",
+            "program": "${workspaceFolder:KHContentChef}/${workspaceFolder}/.build/debug/KHContentChef",
+            "preLaunchTask": "swift: Build Debug KHContentChef"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:KHContentChef}",
+            "name": "Release KHContentChef",
+            "program": "${workspaceFolder:KHContentChef}/${workspaceFolder}/.build/release/KHContentChef",
+            "preLaunchTask": "swift: Build Release KHContentChef"
+        }
+    ]
+}
