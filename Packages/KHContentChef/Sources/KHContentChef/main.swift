@@ -1,5 +1,6 @@
 import ArgumentParser
 import Foundation
+import KHContentSource
 
 struct ContentChef: ParsableCommand {
     @Argument(help: "The root path of the content directory.")

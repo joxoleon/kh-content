@@ -1,5 +1,6 @@
 import Foundation
 import Yams
+import KHContentSource
 
 // MARK: - Module Parsing Errors
 

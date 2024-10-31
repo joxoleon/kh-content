@@ -1,43 +1,91 @@
 import Foundation
 
 public struct ContentMetadata: Codable {
-    let lastUpdatedTimestamp: TimeInterval
+    public let lastUpdatedTimestamp: TimeInterval
+
+    public init(lastUpdatedTimestamp: TimeInterval) {
+        self.lastUpdatedTimestamp = lastUpdatedTimestamp
+    }
 }
 
 public struct LessonMetadata: Codable {
-    let id: String
-    let title: String
-    let description: String
-    let tags: [String]
+    public let id: String
+    public let title: String
+    public let description: String
+    public let tags: [String]
+
+    public init(
+        title: String,
+        description: String,
+        tags: [String]
+    ) {
+        self.id = title.replacingOccurrences(of: " ", with: "_").lowercased()
+        self.title = title
+        self.description = description
+        self.tags = tags
+    }
 }
 
 public struct Lesson: Codable {
-    let metadata: LessonMetadata
-    let sections: [LessionContentSection]
-    let questions: [Question]
+    public let metadata: LessonMetadata
+    public let sections: [LessionContentSection]
+    public let questions: [Question]
+
+    public init(
+        metadata: LessonMetadata,
+        sections: [LessionContentSection],
+        questions: [Question]
+    ) {
+        self.metadata = metadata
+        self.sections = sections
+        self.questions = questions
+    }
 }
 
 public struct LessionContentSection: Codable {
-    let title: String
-    let content: String
+    public let title: String
+    public let content: String
+
+    public init(title: String, content: String) {
+        self.title = title
+        self.content = content
+    }
 }
 
 public struct Question: Codable {
-    let id: String
-    let type: String
-    let proficiency: String
-    let question: String
-    let answers: [String]
-    let correctAnswerIndex: Int
-    let explanation: String
+    public let id: String
+    public let type: String
+    public let proficiency: String
+    public let question: String
+    public let answers: [String]
+    public let correctAnswerIndex: Int
+    public let explanation: String
+
+    public init(
+        id: String,
+        type: String,
+        proficiency: String,
+        question: String,
+        answers: [String],
+        correctAnswerIndex: Int,
+        explanation: String
+    ) {
+        self.id = id
+        self.type = type
+        self.proficiency = proficiency
+        self.question = question
+        self.answers = answers
+        self.correctAnswerIndex = correctAnswerIndex
+        self.explanation = explanation
+    }
 }
 
 public struct LearningModule: Codable {
-    let id: String
-    let title: String
-    let description: String
-    let subModules: [LearningModule]
-    let lessons: [String]
+    public let id: String
+    public let title: String
+    public let description: String
+    public let subModules: [LearningModule]
+    public let lessons: [String]
 
     enum CodingKeys: String, CodingKey {
         case title, description, subModules, lessons
