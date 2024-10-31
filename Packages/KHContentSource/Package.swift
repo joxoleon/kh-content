@@ -2,29 +2,29 @@
 import PackageDescription
 
 let package = Package(
-    name: "ContentChef",
+    name: "KHContentSource",
     platforms: [
-        .macOS(.v10_15),
+        .macOS(.v10_15), .iOS(.v13),
     ],
     products: [
-        .executable(name: "ContentChef", targets: ["ContentChef"]),
+        .library(name: "KHContentSource", targets: ["KHContentSource"]),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.0.0"),
         .package(url: "https://github.com/jpsim/Yams.git", from: "4.0.0")
     ],
     targets: [
-        .executableTarget(
-            name: "ContentChef",
+        .target(
+            name: "KHContentSource",
             dependencies: [
+                "Yams",
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
-                "Yams"
             ]
         ),
         .testTarget(
-            name: "ContentChefTests",
-            dependencies: ["ContentChef"],
-            path: "Tests/ContentChefTests" // Explicitly specify the path to the test target
+            name: "KHContentSourceTests",
+            dependencies: ["KHContentSource"],
+            path: "Tests/KHContentSourceTests"
         ),
     ]
 )

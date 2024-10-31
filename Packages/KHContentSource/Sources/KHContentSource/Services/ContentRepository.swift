@@ -1,14 +1,10 @@
 import Foundation
 
-// MARK: - ContentChefNetworking Protocol
-
 protocol ContentRepositoryProtocol {
     func fetchLesson(by id: String) -> Lesson?
     func fetchModule(by id: String) -> LearningModule?
     func updateDataIfNeeded(completion: @escaping (Bool) -> Void)
 }
-
-// MARK: - ContentChefNetworking
 
 class ContentRepository: ContentRepositoryProtocol {
     private var lessonsCache: [String: Lesson] = [:]
