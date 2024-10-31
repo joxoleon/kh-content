@@ -1,5 +1,5 @@
 import XCTest
-@testable import ContentChef
+@testable import KHContentSource
 
 // MARK: - Mocks for Testing
 

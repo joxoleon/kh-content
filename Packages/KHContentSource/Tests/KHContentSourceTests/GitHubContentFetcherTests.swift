@@ -1,5 +1,5 @@
 import XCTest
-@testable import ContentChef // Replace with the correct module name if different
+@testable import KHContentSource
 
 class GitHubContentFetcherTests: XCTestCase {
     

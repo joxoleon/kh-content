@@ -1,5 +1,5 @@
 import XCTest
-@testable import ContentChef
+@testable import KHContentSource
 
 final class FileContentStorageTests: XCTestCase {
     
