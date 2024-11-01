@@ -2,9 +2,9 @@
 
 ## Lesson Prompts
     Update lesson prompts to contain the following:
-        [] Estimated reading time
-        [] Estimated difficulty level
-        [] Update the id system, so that it uses the lowercased snakecase title as the id
+        [x] Estimated reading time - WILL DO WITH CONTENT programatically!
+        [x] Estimated difficulty level
+        [x] Update the id system, so that it uses the lowercased snakecase title as the id
         [] [difficult] Add potential links to other lessons, maybe with lesson id's but this is something that might have to be done manually
 
 ## Module Prompts
