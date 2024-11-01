@@ -62,7 +62,7 @@ public class ContentRepository: ContentRepositoryProtocol {
         
         do {
             let remoteMetadata = try await fetcher.fetchContentMetadata()
-            if remoteMetadata.lastUpdatedTimestamp > localMetadata.lastUpdatedTimestamp - 1.0 { // 1 second buffer
+            if remoteMetadata.lastUpdatedTimestamp > localMetadata.lastUpdatedTimestamp + 0.1 { // Add a small buffer for floating point comparison
                 return try await fetchAndUpdateData()
             } else {
                 return false

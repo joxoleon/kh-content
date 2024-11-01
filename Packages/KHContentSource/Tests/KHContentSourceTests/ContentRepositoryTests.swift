@@ -8,20 +8,20 @@ class MockContentFetcher: ContentFetcherProtocol {
     var mockLessons: [Lesson] = []
     var mockModules: [LearningModule] = []
     
-    func fetchContentMetadata(completion: @escaping (Result<ContentMetadata, Error>) -> Void) {
+    func fetchContentMetadata() async throws -> ContentMetadata {
         if let metadata = mockMetadata {
-            completion(.success(metadata))
+            return metadata
         } else {
-            completion(.failure(NSError(domain: "Test", code: -1, userInfo: nil)))
+            throw NSError(domain: "Test", code: -1, userInfo: nil)
         }
     }
     
-    func fetchLessons(completion: @escaping (Result<[Lesson], Error>) -> Void) {
-        completion(.success(mockLessons))
+    func fetchLessons() async throws -> [Lesson] {
+        return mockLessons
     }
     
-    func fetchModules(completion: @escaping (Result<[LearningModule], Error>) -> Void) {
-        completion(.success(mockModules))
+    func fetchModules() async throws -> [LearningModule] {
+        return mockModules
     }
 }
 
@@ -96,7 +96,7 @@ final class ContentRepositoryTests: XCTestCase {
         XCTAssertEqual(repository.fetchModule(by: "sample_module")?.id, "sample_module")
     }
     
-    func testUpdateDataIfNeededWithStaleData() {
+    func testUpdateDataIfNeededWithStaleData() async {
         // Set stale metadata in storage and newer metadata in fetcher
         storage.saveMetadata(ContentMetadata(lastUpdatedTimestamp: 1000))
         fetcher.mockMetadata = ContentMetadata(lastUpdatedTimestamp: 2000)
@@ -106,18 +106,17 @@ final class ContentRepositoryTests: XCTestCase {
         // Initialize repository after setting up storage and fetcher
         let repository = ContentRepository(fetcher: fetcher, storage: storage)
         
-        let expectation = XCTestExpectation(description: "Data should be updated")
-        repository.updateDataIfNeeded { updated in
+        do {
+            let updated = try await repository.updateDataIfNeeded()
             XCTAssertTrue(updated, "Expected data to be updated")
             XCTAssertEqual(self.storage.loadLessons()?.first?.metadata.id, "new_lesson")
             XCTAssertEqual(self.storage.loadModules()?.first?.id, "new_module")
-            expectation.fulfill()
+        } catch {
+            XCTFail("Update data failed with error: \(error)")
         }
-        
-        wait(for: [expectation], timeout: 1.0)
     }
     
-    func testUpdateDataIfNeededWithCurrentData() {
+    func testUpdateDataIfNeededWithCurrentData() async {
         // Set current metadata in storage and fetcher
         let metadata = ContentMetadata(lastUpdatedTimestamp: 2000)
         storage.saveMetadata(metadata)
@@ -126,13 +125,12 @@ final class ContentRepositoryTests: XCTestCase {
         // Initialize repository after setting up storage and fetcher
         let repository = ContentRepository(fetcher: fetcher, storage: storage)
         
-        let expectation = XCTestExpectation(description: "Data should not be updated")
-        repository.updateDataIfNeeded { updated in
+        do {
+            let updated = try await repository.updateDataIfNeeded()
             XCTAssertFalse(updated, "Expected data not to be updated")
-            expectation.fulfill()
+        } catch {
+            XCTFail("Update data failed with error: \(error)")
         }
-        
-        wait(for: [expectation], timeout: 1.0)
     }
 }
 
