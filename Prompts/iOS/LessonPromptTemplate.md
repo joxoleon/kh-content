@@ -2,7 +2,7 @@
 *MVVM Architecture for iOS Development using SwiftUI*
 
 ### Focus:
-*Introduce the MVVM Architecture and explain how it can be implemented in iOS development using Swift/SwiftUI with examples.”*
+*Introduce the MVVM Architecture and explain how it can be implemented in iOS development using Swift/SwiftUI with examples.*
 
 ---
 
@@ -23,17 +23,17 @@ You are creating a structured lesson on software engineering concepts for a lear
    - **Metadata Section**:
      - Begin the lesson with metadata in JSON-like format.
      - Include:
-        - `id`: A unique identifier in lowercase, underscore-separated format (e.g., `"solid_principles"`).
-        - `title`: The lesson title.
-        - `description`: A brief description of the lesson’s purpose.
-        - `tags:`: An array of keywords/tags related to the lessions topic (e.g., ["solid", "solid principles", "clean", "clean architecture", "software architecture", "architecture", "software design"])
+       - `title`: The lesson title.
+       - `description`: A brief description of the lesson’s purpose.
+       - `proficiency`: An estimated proficiency level of the lesson (e.g., `"basic"`, `"intermediate"`, or `"advanced"`). Only use one of these choices.
+       - `tags`: An array of 5-8 keywords/tags encapsulating the essence of the lesson topic (e.g., `["solid", "solid principles", "clean", "clean architecture", "software architecture", "architecture", "software design"]`).
      - **Wrap the metadata** with delimiters:
        ```
        {| metadata |}
        {
-           "id": "example_lesson",
            "title": "Example Lesson",
            "description": "A brief description of the lesson.",
+           "proficiency": "basic",
            "tags": ["solid", "solid principles", "clean", "clean architecture", "software architecture", "architecture", "software design"]
        }
        {| endmetadata |}
@@ -42,19 +42,21 @@ You are creating a structured lesson on software engineering concepts for a lear
    - **Sections**:
      - **Definition and Introduction**: 
        - Use the delimiter `=== Section: [Title] Introduction ===` to start this section (replace `[Title]` with the lesson title).
-       - Start with a clear, descriptive heading for the introduction.
+       - Begin with a clear, descriptive heading for the introduction.
        - Provide a concise definition and introduction, focusing on the topic’s purpose and significance.
        - Emphasize key definitions or principles with quotation blocks (e.g., `> Dependency Injection is...`).
        - Use **bold** formatting to highlight important acronyms, terms, or phrases that should be easily memorable.
+       - Ensure each section begins with an introductory sentence to set context for the reader.
        - End this section with the delimiter `=== EndSection: [Title] Introduction ===`.
        
      - **Full Lesson**: 
        - Use the delimiter `=== Section: [Title] ===` to begin the main content section.
-       - Start with a heading that describes the section appropriately.
+       - Start with a heading that appropriately describes the section.
        - Provide a thorough, structured explanation of the topic. Include all necessary details, examples, best practices, and relevant code snippets.
        - **Do not be stingy with examples**: Whenever a concept would benefit from one, provide a clear, relevant example, whether it be a code snippet or an illustrative scenario. Use sensible formatting and indentation for code examples.
        - Avoid using "```" for code blocks; instead, indent code with spaces to ensure smooth text flow.
-       - **Subsections**: If the lesson covers multiple concepts, split the Full Lesson into up to 5-6 subsections only if needed for distinct topics. 
+       - **Examples should be practical and based on real-world scenarios**, not purely theoretical code.
+       - **Subsections**: If the lesson covers multiple concepts, split the Full Lesson into up to 5-6 subsections only if needed for distinct topics.
        - End this section with the delimiter `=== EndSection: [Title] ===`.
        
      - **Discussion**: 
@@ -65,6 +67,7 @@ You are creating a structured lesson on software engineering concepts for a lear
      - **Key Takeaways**: 
        - Use the delimiter `=== Section: Key Takeaways ===`.
        - Summarize the lesson with concise, flashcard-friendly points.
+       - Focus on “bite-sized” statements that serve as memory aids.
        - End this section with the delimiter `=== EndSection: Key Takeaways ===`.
 
 3. **Questions Section**:
@@ -91,11 +94,11 @@ You are creating a structured lesson on software engineering concepts for a lear
        ]
        {| endquestions |}
    - **Each question should include**:
-     - `id`: A unique identifier based on the lesson ID and question number (e.g., `"solid_principles_q1"`).
+     - `id`: A unique identifier based on the lesson title and question number (e.g., `"solid_principles_q1"`).
      - `type`: `"multiple_choice"`.
      - `proficiency`: The difficulty level (e.g., `"basic"`, `"intermediate"`, or `"advanced"`).
      - `question`: The question text, formatted as a markdown string.
-     - **Complexity and Variability**: While questions can be short, they may also be complex when beneficial for comprehension. For example, questions can include indented code blocks or diagrams for reference.
+     - **Complexity and Variability**: Include questions with varied difficulty and some that involve code snippets or practical scenarios.
      - `answers`: An array of answer choices.
      - `correctAnswerIndex`: Index of the correct answer within the `answers` array.
      - `explanation`: A markdown-formatted explanation that clarifies why the correct answer is right and why other options are incorrect.
@@ -128,9 +131,9 @@ Generate a markdown lesson with the following structure:
     ``` 
     {| metadata |}
     { 
-        "id": "dependency_injection", 
         "title": "Dependency Injection in iOS", 
         "description": "An introductory lesson on Dependency Injection and its benefits in iOS applications.",
+        "proficiency": "basic",
         "tags": ["dependency injection", "di", "software architecture", "design pattern", "dependency", "dependencies"]
     }
     {| endmetadata |}
