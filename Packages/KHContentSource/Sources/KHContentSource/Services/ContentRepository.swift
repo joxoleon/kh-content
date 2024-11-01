@@ -1,13 +1,17 @@
 import Foundation
 
+public enum ContentRepositoryError: Error {
+    case metadataFetchFailed
+    case contentFetchFailed
+}
+
 public protocol ContentRepositoryProtocol {
     func fetchLesson(by id: String) -> Lesson?
     func fetchLessons(by ids: [String]) -> [Lesson]
-
     func fetchAllModuleIds() -> [String]
     func fetchModule(by id: String) -> LearningModule?
     
-    func updateDataIfNeeded(completion: @escaping (Bool) -> Void)
+    func updateDataIfNeeded() async throws -> Bool
 }
 
 public class ContentRepository: ContentRepositoryProtocol {
@@ -51,54 +55,44 @@ public class ContentRepository: ContentRepositoryProtocol {
         }
     }
     
-    public func updateDataIfNeeded(completion: @escaping (Bool) -> Void) {
+    public func updateDataIfNeeded() async throws -> Bool {
         guard let localMetadata = storage.loadMetadata() else {
-            fetchAndUpdateData(completion: completion)
-            return
+            return try await fetchAndUpdateData()
         }
         
-        fetcher.fetchContentMetadata { [weak self] result in
-            switch result {
-            case .success(let remoteMetadata):
-                if remoteMetadata.lastUpdatedTimestamp > localMetadata.lastUpdatedTimestamp {
-                    self?.fetchAndUpdateData(completion: completion)
-                } else {
-                    completion(false)
-                }
-            case .failure:
-                // TODO: Handle error (optional: keep using local data)       
-                completion(false)
+        do {
+            let remoteMetadata = try await fetcher.fetchContentMetadata()
+            if remoteMetadata.lastUpdatedTimestamp > localMetadata.lastUpdatedTimestamp - 1.0 { // 1 second buffer
+                return try await fetchAndUpdateData()
+            } else {
+                return false
             }
+        } catch {
+            throw ContentRepositoryError.metadataFetchFailed
         }
     }
     
-    private func fetchAndUpdateData(completion: @escaping (Bool) -> Void) {
-        let group = DispatchGroup()
+    private func fetchAndUpdateData() async throws -> Bool {
+        async let lessonsResult = fetcher.fetchLessons()
+        async let modulesResult = fetcher.fetchModules()
         
-        group.enter()
-        fetcher.fetchLessons { [weak self] result in
-            if case .success(let lessons) = result {
-                self?.storage.saveLessons(lessons)
-                for lesson in lessons {
-                    self?.lessonsCache[lesson.metadata.id] = lesson
-                }
+        do {
+            let lessons = try await lessonsResult
+            storage.saveLessons(lessons)
+            for lesson in lessons {
+                lessonsCache[lesson.metadata.id] = lesson
             }
-            group.leave()
-        }
-        
-        group.enter()
-        fetcher.fetchModules { [weak self] result in
-            if case .success(let modules) = result {
-                self?.storage.saveModules(modules)
-                for module in modules {
-                    self?.modulesCache[module.id] = module
-                }
+            
+            let modules = try await modulesResult
+            storage.saveModules(modules)
+            for module in modules {
+                modulesCache[module.id] = module
             }
-            group.leave()
-        }
-        
-        group.notify(queue: .main) {
-            completion(true)
+            
+            return true
+        } catch {
+            print("Error fetching content: \(error)")
+            throw ContentRepositoryError.contentFetchFailed
         }
     }
 }

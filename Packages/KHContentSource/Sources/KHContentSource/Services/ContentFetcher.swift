@@ -3,9 +3,9 @@ import Foundation
 // MARK: - ContentFetcherProtocol
 
 public protocol ContentFetcherProtocol {
-    func fetchContentMetadata(completion: @escaping (Result<ContentMetadata, Error>) -> Void)
-    func fetchLessons(completion: @escaping (Result<[Lesson], Error>) -> Void)
-    func fetchModules(completion: @escaping (Result<[LearningModule], Error>) -> Void)
+    func fetchContentMetadata() async throws -> ContentMetadata
+    func fetchLessons() async throws -> [Lesson]
+    func fetchModules() async throws -> [LearningModule]
 }
 
 // MARK: - GitHubContentFetcher
@@ -26,46 +26,34 @@ public class GitHubContentFetcher: ContentFetcherProtocol {
 
     // MARK: - Methods
 
-    public func fetchContentMetadata(completion: @escaping (Result<ContentMetadata, Error>) -> Void) {
+    public func fetchContentMetadata() async throws -> ContentMetadata {
         let url = URL(string: "\(baseURL)content_metadata.json")!
-        fetchJSON(from: url, completion: completion)
+        return try await fetchJSON(from: url)
     }
 
-    public func fetchLessons(completion: @escaping (Result<[Lesson], Error>) -> Void) {
+    public func fetchLessons() async throws -> [Lesson] {
         let url = URL(string: "\(baseURL)all_lessons.json")!
-        fetchJSON(from: url, completion: completion)
+        return try await fetchJSON(from: url)
     }
 
-    public func fetchModules(completion: @escaping (Result<[LearningModule], Error>) -> Void) {
+    public func fetchModules() async throws -> [LearningModule] {
         let url = URL(string: "\(baseURL)all_modules.json")!
-        fetchJSON(from: url, completion: completion)
+        return try await fetchJSON(from: url)
     }
 
-    private func fetchJSON<T: Decodable>(
-        from url: URL, 
-        completion: @escaping (Result<T, Error>) -> Void
-    ) {
+    private func fetchJSON<T: Decodable>(from url: URL) async throws -> T {
         print("Fetching JSON from: \(url)")
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            if let error = error {
-                completion(.failure(error))
-                return
+        let (data, _) = try await URLSession.shared.data(from: url)
+        do {
+            let decoded = try JSONDecoder().decode(T.self, from: data)
+            return decoded
+        } catch {
+            print("Failed to decode JSON: \(error)")
+            if let jsonString = String(data: data, encoding: .utf8) {
+                print("Raw response data: \(jsonString)")  // Print raw response for debugging
             }
-            guard let data = data else {
-                completion(.failure(NSError(domain: "DataError", code: -1, userInfo: nil)))
-                return
-            }
-            do {
-                let decoded = try JSONDecoder().decode(T.self, from: data)
-                completion(.success(decoded))
-            } catch {
-                print("Failed to decode JSON: \(error)")
-                if let jsonString = String(data: data, encoding: .utf8) {
-                    print("Raw response data: \(jsonString)")  // Print raw response for debugging
-                }
-                completion(.failure(error))
-            }
-        }.resume()
+            throw error
+        }
     }
 
 }
