@@ -1,6 +1,5 @@
 [
   {
-    "id" : "solid_principles",
     "title" : "SOLID Principles for iOS Development",
     "tags" : [
       "solid",
@@ -14,6 +13,7 @@
     "description" : "An in-depth lesson on the SOLID principles and their implementation in iOS development to enhance code modularity, maintainability, and scalability."
   },
   {
+    "title" : "MVVM Architecture for iOS Development using SwiftUI",
     "tags" : [
       "mvvm",
       "model-view-viewmodel",
@@ -22,8 +22,19 @@
       "design pattern",
       "ios architectures"
     ],
-    "title" : "MVVM Architecture for iOS Development using SwiftUI",
-    "id" : "mvvm_architecture_ios",
     "description" : "An introductory lesson on MVVM architecture and how to implement it in iOS development with SwiftUI, covering key components, benefits, and implementation examples."
+  },
+  {
+    "title" : "Variables and Constants in Swift",
+    "tags" : [
+      "swift",
+      "variables",
+      "constants",
+      "let",
+      "var",
+      "iOS development",
+      "programming basics"
+    ],
+    "description" : "A lesson on the use of variables and constants in Swift, explaining the differences between 'let' and 'var' and guiding when to use each."
   }
 ]
