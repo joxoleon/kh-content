@@ -9,7 +9,9 @@ public struct ContentMetadata: Codable {
 }
 
 public struct LessonMetadata: Codable {
-    public let id: String
+    public var id: String {
+        return title.replacingOccurrences(of: " ", with: "_").lowercased()
+    }
     public let title: String
     public let description: String
     public let tags: [String]
@@ -19,7 +21,6 @@ public struct LessonMetadata: Codable {
         description: String,
         tags: [String]
     ) {
-        self.id = title.replacingOccurrences(of: " ", with: "_").lowercased()
         self.title = title
         self.description = description
         self.tags = tags
@@ -27,7 +28,7 @@ public struct LessonMetadata: Codable {
 }
 
 public struct Lesson: Codable {
-    public let metadata: LessonMetadata
+    public var metadata: LessonMetadata
     public let sections: [LessionContentSection]
     public let questions: [Question]
 
@@ -81,7 +82,9 @@ public struct Question: Codable {
 }
 
 public struct LearningModule: Codable {
-    public let id: String
+    public var id: String {
+        return title.replacingOccurrences(of: " ", with: "_").lowercased()
+    }
     public let title: String
     public let description: String
     public let subModules: [LearningModule]
@@ -97,7 +100,6 @@ public struct LearningModule: Codable {
         subModules: [LearningModule] = [],
         lessons: [String] = []
     ) {
-        self.id = title.replacingOccurrences(of: " ", with: "_").lowercased()
         self.title = title
         self.description = description
         self.subModules = subModules
@@ -107,7 +109,6 @@ public struct LearningModule: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         title = try container.decode(String.self, forKey: .title)
-        id = title.replacingOccurrences(of: " ", with: "_").lowercased()
         description = try container.decode(String.self, forKey: .description)
         subModules =
             try container.decodeIfPresent([LearningModule].self, forKey: .subModules) ?? []
