@@ -6,10 +6,13 @@ public enum ContentRepositoryError: Error {
 }
 
 public protocol ContentRepositoryProtocol {
+    func fetchLessonIdCatalog() -> [String]
     func fetchLesson(by id: String) -> Lesson?
     func fetchLessons(by ids: [String]) -> [Lesson]
-    func fetchAllModuleIds() -> [String]
+    
+    func fetchModuleIdCatalog() -> [String]
     func fetchModule(by id: String) -> LearningModule?
+    func fetchModules(by ids: [String]) -> [LearningModule]
     
     func updateDataIfNeeded() async throws -> Bool
 }
@@ -26,6 +29,10 @@ public class ContentRepository: ContentRepositoryProtocol {
         loadCachedData()
     }
 
+    public func fetchLessonIdCatalog() -> [String] {
+        return Array(lessonsCache.keys)
+    }
+
     public func fetchLesson(by id: String) -> Lesson? {
         return lessonsCache[id]
     }
@@ -34,12 +41,16 @@ public class ContentRepository: ContentRepositoryProtocol {
         return ids.compactMap { lessonsCache[$0] }
     }
 
+    public func fetchModuleIdCatalog() -> [String] {
+        return Array(modulesCache.keys)
+    }
+
     public func fetchModule(by id: String) -> LearningModule? {
         return modulesCache[id]
     }
 
-    public func fetchAllModuleIds() -> [String] {
-        return Array(modulesCache.keys)
+    public func fetchModules(by ids: [String]) -> [LearningModule] {
+        return ids.compactMap { modulesCache[$0] }
     }
     
     private func loadCachedData() {
