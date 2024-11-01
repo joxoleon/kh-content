@@ -17,54 +17,33 @@ class GitHubContentFetcherTests: XCTestCase {
     
     // MARK: - Tests
 
-    func testFetchLessons() {
-        let expectation = self.expectation(description: "Fetch lessons JSON from GitHub")
-        
-        contentFetcher.fetchLessons { result in
-            switch result {
-            case .success(let lessons):
-                XCTAssertFalse(lessons.isEmpty, "Expected lessons to be non-empty")
-                print("Fetched Lessons: \(lessons.count)")
-            case .failure(let error):
-                XCTFail("Failed to fetch lessons with error: \(error)")
-            }
-            expectation.fulfill()
+    func testFetchLessons() async {
+        do {
+            let lessons = try await contentFetcher.fetchLessons()
+            XCTAssertFalse(lessons.isEmpty, "Expected lessons to be non-empty")
+            print("Fetched Lessons: \(lessons.count)")
+        } catch {
+            XCTFail("Failed to fetch lessons with error: \(error)")
         }
-        
-        waitForExpectations(timeout: 5, handler: nil)
     }
     
-    func testFetchModules() {
-        let expectation = self.expectation(description: "Fetch modules JSON from GitHub")
-        
-        contentFetcher.fetchModules { result in
-            switch result {
-            case .success(let modules):
-                XCTAssertFalse(modules.isEmpty, "Expected modules to be non-empty")
-                print("Fetched Modules: \(modules.count)")
-            case .failure(let error):
-                XCTFail("Failed to fetch modules with error: \(error)")
-            }
-            expectation.fulfill()
+    func testFetchModules() async {
+        do {
+            let modules = try await contentFetcher.fetchModules()
+            XCTAssertFalse(modules.isEmpty, "Expected modules to be non-empty")
+            print("Fetched Modules: \(modules.count)")
+        } catch {
+            XCTFail("Failed to fetch modules with error: \(error)")
         }
-        
-        waitForExpectations(timeout: 5, handler: nil)
     }
     
-    func testFetchContentMetadata() {
-        let expectation = self.expectation(description: "Fetch content metadata JSON from GitHub")
-        
-        contentFetcher.fetchContentMetadata { result in
-            switch result {
-            case .success(let metadata):
-                XCTAssertGreaterThan(metadata.lastUpdatedTimestamp, 0, "Expected valid timestamp in metadata")
-                print("Fetched Metadata Timestamp: \(metadata.lastUpdatedTimestamp)")
-            case .failure(let error):
-                XCTFail("Failed to fetch content metadata with error: \(error)")
-            }
-            expectation.fulfill()
+    func testFetchContentMetadata() async {
+        do {
+            let metadata = try await contentFetcher.fetchContentMetadata()
+            XCTAssertGreaterThan(metadata.lastUpdatedTimestamp, 0, "Expected valid timestamp in metadata")
+            print("Fetched Metadata Timestamp: \(metadata.lastUpdatedTimestamp)")
+        } catch {
+            XCTFail("Failed to fetch content metadata with error: \(error)")
         }
-        
-        waitForExpectations(timeout: 5, handler: nil)
     }
 }
