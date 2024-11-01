@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - ContentStorageProtocol
 
-protocol ContentStorageProtocol {
+public protocol ContentStorageProtocol {
     func saveLessons(_ lessons: [Lesson])
     func saveModules(_ modules: [LearningModule])
     func saveMetadata(_ metadata: ContentMetadata)
@@ -14,13 +14,13 @@ protocol ContentStorageProtocol {
 
 // MARK: - FileContentStorage
 
-class FileContentStorage: ContentStorageProtocol {
+public class FileContentStorage: ContentStorageProtocol {
     private let fileManager = FileManager.default
     private let lessonsFileURL: URL
     private let modulesFileURL: URL
     private let metadataFileURL: URL
 
-    init(
+    public init(
         baseDirectory: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             .first!
     ) {
@@ -31,29 +31,29 @@ class FileContentStorage: ContentStorageProtocol {
 
     // MARK: - Save Methods
 
-    func saveLessons(_ lessons: [Lesson]) {
+    public func saveLessons(_ lessons: [Lesson]) {
         saveData(lessons, to: lessonsFileURL)
     }
 
-    func saveModules(_ modules: [LearningModule]) {
+    public func saveModules(_ modules: [LearningModule]) {
         saveData(modules, to: modulesFileURL)
     }
 
-    func saveMetadata(_ metadata: ContentMetadata) {
+    public func saveMetadata(_ metadata: ContentMetadata) {
         saveData(metadata, to: metadataFileURL)
     }
 
     // MARK: - Load Methods
 
-    func loadLessons() -> [Lesson]? {
+    public func loadLessons() -> [Lesson]? {
         return loadData(from: lessonsFileURL)
     }
 
-    func loadModules() -> [LearningModule]? {
+    public func loadModules() -> [LearningModule]? {
         return loadData(from: modulesFileURL)
     }
 
-    func loadMetadata() -> ContentMetadata? {
+    public func loadMetadata() -> ContentMetadata? {
         return loadData(from: metadataFileURL)
     }
 

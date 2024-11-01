@@ -16,7 +16,7 @@ public class ContentRepository: ContentRepositoryProtocol {
     private let fetcher: ContentFetcherProtocol
     private let storage: ContentStorageProtocol
     
-    init(fetcher: ContentFetcherProtocol, storage: ContentStorageProtocol) {
+    public init(fetcher: ContentFetcherProtocol, storage: ContentStorageProtocol) {
         self.fetcher = fetcher
         self.storage = storage
         loadCachedData()

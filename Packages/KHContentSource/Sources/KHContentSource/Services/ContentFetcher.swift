@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - ContentFetcherProtocol
 
-protocol ContentFetcherProtocol {
+public protocol ContentFetcherProtocol {
     func fetchContentMetadata(completion: @escaping (Result<ContentMetadata, Error>) -> Void)
     func fetchLessons(completion: @escaping (Result<[Lesson], Error>) -> Void)
     func fetchModules(completion: @escaping (Result<[LearningModule], Error>) -> Void)
@@ -10,20 +10,33 @@ protocol ContentFetcherProtocol {
 
 // MARK: - GitHubContentFetcher
 
-class GitHubContentFetcher: ContentFetcherProtocol {
-    private let baseURL = "https://raw.githubusercontent.com/joxoleon/kh-content/main/Content/Output/iOS/"
+public class GitHubContentFetcher: ContentFetcherProtocol {
+    
+    // MARK: - Properties
 
-    func fetchContentMetadata(completion: @escaping (Result<ContentMetadata, Error>) -> Void) {
+    private var baseURL = "https://raw.githubusercontent.com/joxoleon/kh-content/main/Content/Output/iOS/"
+
+    // MARK: - Initialization
+
+    public init(baseUrl: String? = nil) {
+        if let baseUrl = baseUrl {
+            self.baseURL = baseUrl
+        }
+    }
+
+    // MARK: - Methods
+
+    public func fetchContentMetadata(completion: @escaping (Result<ContentMetadata, Error>) -> Void) {
         let url = URL(string: "\(baseURL)content_metadata.json")!
         fetchJSON(from: url, completion: completion)
     }
 
-    func fetchLessons(completion: @escaping (Result<[Lesson], Error>) -> Void) {
+    public func fetchLessons(completion: @escaping (Result<[Lesson], Error>) -> Void) {
         let url = URL(string: "\(baseURL)all_lessons.json")!
         fetchJSON(from: url, completion: completion)
     }
 
-    func fetchModules(completion: @escaping (Result<[LearningModule], Error>) -> Void) {
+    public func fetchModules(completion: @escaping (Result<[LearningModule], Error>) -> Void) {
         let url = URL(string: "\(baseURL)all_modules.json")!
         fetchJSON(from: url, completion: completion)
     }
