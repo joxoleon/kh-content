@@ -1,12 +1,16 @@
 import Foundation
 
-protocol ContentRepositoryProtocol {
+public protocol ContentRepositoryProtocol {
     func fetchLesson(by id: String) -> Lesson?
+    func fetchLessons(by ids: [String]) -> [Lesson]
+
+    func fetchAllModuleIds() -> [String]
     func fetchModule(by id: String) -> LearningModule?
+    
     func updateDataIfNeeded(completion: @escaping (Bool) -> Void)
 }
 
-class ContentRepository: ContentRepositoryProtocol {
+public class ContentRepository: ContentRepositoryProtocol {
     private var lessonsCache: [String: Lesson] = [:]
     private var modulesCache: [String: LearningModule] = [:]
     private let fetcher: ContentFetcherProtocol
@@ -17,13 +21,21 @@ class ContentRepository: ContentRepositoryProtocol {
         self.storage = storage
         loadCachedData()
     }
-    
-    func fetchLesson(by id: String) -> Lesson? {
+
+    public func fetchLesson(by id: String) -> Lesson? {
         return lessonsCache[id]
     }
-    
-    func fetchModule(by id: String) -> LearningModule? {
+
+    public func fetchLessons(by ids: [String]) -> [Lesson] {
+        return ids.compactMap { lessonsCache[$0] }
+    }
+
+    public func fetchModule(by id: String) -> LearningModule? {
         return modulesCache[id]
+    }
+
+    public func fetchAllModuleIds() -> [String] {
+        return Array(modulesCache.keys)
     }
     
     private func loadCachedData() {
@@ -39,7 +51,7 @@ class ContentRepository: ContentRepositoryProtocol {
         }
     }
     
-    func updateDataIfNeeded(completion: @escaping (Bool) -> Void) {
+    public func updateDataIfNeeded(completion: @escaping (Bool) -> Void) {
         guard let localMetadata = storage.loadMetadata() else {
             fetchAndUpdateData(completion: completion)
             return
@@ -51,10 +63,11 @@ class ContentRepository: ContentRepositoryProtocol {
                 if remoteMetadata.lastUpdatedTimestamp > localMetadata.lastUpdatedTimestamp {
                     self?.fetchAndUpdateData(completion: completion)
                 } else {
-                    completion(false) // Data is current
+                    completion(false)
                 }
             case .failure:
-                completion(false) // Handle error (optional: keep local data as fallback)
+                // TODO: Handle error (optional: keep using local data)       
+                completion(false)
             }
         }
     }
