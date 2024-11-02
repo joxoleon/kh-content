@@ -53,31 +53,37 @@ subModules:
    - **Generate the output as a single YAML file**.
    - Present the output in a code block so it’s ready to copy and use directly in a YAML-compatible editor.
 
-2. **Structure and Organization**:
+2. **Lesson Identification and Structure**:
+   - When listing lessons within the YAML structure, they must be **listed by their unique ID** as provided in the lesson metadata list. This ID will be the only way to retrieve each lesson.
+   - Use only the lessons provided in the metadata list; do not generate any additional lessons, IDs, or metadata.
+
+3. **Structure and Organization**:
    - Think of this as a well-cataloged course outline with carefully grouped lessons.
    - **"Leaf" modules** (modules containing lessons without further submodules) should include **no more than 1-7 lessons**. If a topic requires more lessons, consider creating multiple modules in a logical, organized way.
    - **Depth of Modules**: Avoid deep nesting wherever possible. The maximum depth of modules should be 6 to maintain clarity and readability. 
 
-3. **Considerations for Content Grouping**:
+4. **Considerations for Content Grouping**:
    - Carefully analyze each lesson’s **title** and **description** to determine the most suitable groupings.
    - If a module has too many lessons, look for opportunities to split it sensibly based on topic areas or levels of proficiency (e.g., Fundamental, Intermediate, Advanced).
    - Aim to maintain a logical flow from basic concepts to advanced topics wherever possible.
 
-4. **Consistency in Module and Lesson Titles**:
+5. **Consistency in Module and Lesson Titles**:
    - Use clear and professional titles for both modules and lessons.
    - Ensure module titles accurately reflect the content scope, e.g., use terms like "Fundamentals" or "Advanced" if they help convey the learning path.
    
-5. **Suggested Grouping Logic**:
+6. **Suggested Grouping Logic**:
    - Group lessons into modules based on their logical connections or complementary focus areas.
    - Place more advanced topics under higher-level modules (e.g., "Advanced Swift" or "Architectural Patterns").
    - Avoid creating single-lesson modules unless absolutely necessary.
 
-6. **Learning Goals**:
+7. **Learning Goals**:
    - Consider the main goal: interview preparation for iOS developers. Group the lessons in a way that makes it easy to follow a progression from foundational knowledge to advanced techniques.
 
 ### Input Format
 
 Here’s an example list of lesson metadata that you will be provided to organize within the modules. Focus on the **title** and **description** fields for this task.
+
+Here's the lesson metadata list:
 
 ```json
 [
