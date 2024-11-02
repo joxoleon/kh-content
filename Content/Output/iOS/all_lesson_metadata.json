@@ -25,6 +25,20 @@
     "description" : "An introductory lesson on MVVM architecture and how to implement it in iOS development with SwiftUI, covering key components, benefits, and implementation examples."
   },
   {
+    "title" : "Optionals and Unwrapping in Swift",
+    "tags" : [
+      "swift",
+      "optionals",
+      "unwrapping",
+      "optional chaining",
+      "guard let",
+      "if let",
+      "nil coalescing",
+      "swift programming"
+    ],
+    "description" : "A comprehensive lesson on the use of optionals in Swift, including unwrapping techniques and underlying implementation details."
+  },
+  {
     "title" : "Variables and Constants in Swift",
     "tags" : [
       "swift",
