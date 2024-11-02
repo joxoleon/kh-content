@@ -1,5 +1,18 @@
 [
   {
+    "title" : "Swift Concurrency with Async-Await and Structured Concurrency",
+    "tags" : [
+      "concurrency",
+      "async\/await",
+      "structured concurrency",
+      "actors",
+      "Swift",
+      "asynchronous programming",
+      "Swift concurrency"
+    ],
+    "description" : "A detailed exploration of Swift’s concurrency model, covering async\/await, structured concurrency, and actors for efficient asynchronous programming."
+  },
+  {
     "title" : "SOLID Principles for iOS Development",
     "tags" : [
       "solid",
@@ -50,5 +63,18 @@
       "programming basics"
     ],
     "description" : "A lesson on the use of variables and constants in Swift, explaining the differences between 'let' and 'var' and guiding when to use each."
+  },
+  {
+    "title" : "Memory Management in Swift",
+    "tags" : [
+      "memory management",
+      "ARC",
+      "automatic reference counting",
+      "retain cycles",
+      "weak references",
+      "strong references",
+      "unowned references"
+    ],
+    "description" : "A comprehensive lesson on memory management concepts in Swift, covering ARC, strong, weak, and unowned references, retain cycles, and best practices for avoiding memory leaks in complex applications."
   }
 ]

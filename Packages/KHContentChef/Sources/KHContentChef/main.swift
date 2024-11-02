@@ -37,6 +37,7 @@ struct ContentChef: ParsableCommand {
         let jsonData = try JSONEncoder().encode(lessons)
         let prettyJsonData = try serializeToPrettyJSON(jsonData)
         try writeJSONData(prettyJsonData, to: outputURL)
+        print("Lessons parsed successfully and stored in \(outputDirectory.path)")
 
         // Save lesson metadata array to JSON
         let lessonMetadataOutputURL = outputDirectory.appendingPathComponent("all_lesson_metadata.json")
@@ -45,6 +46,7 @@ struct ContentChef: ParsableCommand {
         let lessonMetadataJSONData = try JSONEncoder().encode(lessonMetadata)
         let prettyLessonMetadataJSONData = try serializeToPrettyJSON(lessonMetadataJSONData)
         try writeJSONData(prettyLessonMetadataJSONData, to: lessonMetadataOutputURL)
+        print("Lesson metadata parsed successfully and stored in \(outputDirectory.path)")
 
         // Save single lesson files to JSON
         for lesson in lessons {
@@ -54,6 +56,7 @@ struct ContentChef: ParsableCommand {
             let prettyLessonData = try serializeToPrettyJSON(lessonData)
             try writeJSONData(prettyLessonData, to: lessonOutputURL)
         }
+        print("Single lesson files stored in \(outputDirectory.path)")
 
         // MARK: - Modules
 
@@ -61,6 +64,7 @@ struct ContentChef: ParsableCommand {
         let modulePath = contentDirectory.appendingPathComponent("Modules")
         let moduleParser = LearningModuleParser()
         let modules = try moduleParser.parseModules(in: modulePath)
+        print("Modules parsed successfully")
 
         // Save module array to JSON
         let moduleOutputURL = outputDirectory.appendingPathComponent("all_modules.json")
@@ -68,6 +72,7 @@ struct ContentChef: ParsableCommand {
         let moduleJSONData = try JSONEncoder().encode(modules)
         let prettyModuleJSONData = try serializeToPrettyJSON(moduleJSONData)
         try writeJSONData(prettyModuleJSONData, to: moduleOutputURL)
+        print("Modules parsed successfully and stored in \(outputDirectory.path)")
 
         // Save single module files to JSON
         for module in modules {
@@ -77,6 +82,7 @@ struct ContentChef: ParsableCommand {
             let prettyModuleData = try serializeToPrettyJSON(moduleData)
             try writeJSONData(prettyModuleData, to: moduleOutputURL)
         }
+        print("Single module files stored in \(outputDirectory.path)")
 
         // MARK: - Content Metadata
 
@@ -87,6 +93,7 @@ struct ContentChef: ParsableCommand {
         let metadataJSONData = try JSONEncoder().encode(contentMetadata)
         let prettyMetadataJSONData = try serializeToPrettyJSON(metadataJSONData)
         try writeJSONData(prettyMetadataJSONData, to: metadataOutputURL)
+        print("Content metadata parsed successfully and stored in \(outputDirectory.path)")
 
         print("Lessons, Modules, and Metadata parsed successfully and stored in \(outputDirectory.path)")
     }

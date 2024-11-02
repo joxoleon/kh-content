@@ -1,16 +1,16 @@
 {
   "sections" : [
     {
-      "title" : "MVVM Architecture for iOS Development using SwiftUI Introduction",
-      "content" : "## Introduction to MVVM Architecture\n\nThe **Model-View-ViewModel (MVVM)** architecture is a design pattern widely used in software development, particularly for building clean and maintainable user interfaces in iOS development. MVVM aims to separate the user interface (UI) from business logic, making code more modular, testable, and scalable.\n\n> In the MVVM pattern, the **Model** represents the data and business logic, the **View** represents the UI elements, and the **ViewModel** acts as a bridge that connects the Model and View, managing data flow and user interactions.\n\nThis architecture is highly compatible with **SwiftUI** due to SwiftUI's declarative nature, which encourages building UIs with data bindings. SwiftUI automatically updates views when the data changes, making MVVM an ideal choice for structuring code and handling UI updates efficiently.\n\n### Why Use MVVM in SwiftUI?\n- **Separation of Concerns**: By dividing responsibilities between Model, View, and ViewModel, MVVM promotes code organization and reusability.\n- **Data Binding**: SwiftUI’s built-in support for data binding allows the ViewModel to update the UI seamlessly whenever data changes.\n- **Improved Testability**: Logic is extracted into the ViewModel, making it easier to test business logic independently of the UI.\n\nIn this lesson, we’ll explore the MVVM pattern, its components, and how to implement it in iOS using SwiftUI."
+      "content" : "## Introduction to MVVM Architecture\n\nThe **Model-View-ViewModel (MVVM)** architecture is a design pattern widely used in software development, particularly for building clean and maintainable user interfaces in iOS development. MVVM aims to separate the user interface (UI) from business logic, making code more modular, testable, and scalable.\n\n> In the MVVM pattern, the **Model** represents the data and business logic, the **View** represents the UI elements, and the **ViewModel** acts as a bridge that connects the Model and View, managing data flow and user interactions.\n\nThis architecture is highly compatible with **SwiftUI** due to SwiftUI's declarative nature, which encourages building UIs with data bindings. SwiftUI automatically updates views when the data changes, making MVVM an ideal choice for structuring code and handling UI updates efficiently.\n\n### Why Use MVVM in SwiftUI?\n- **Separation of Concerns**: By dividing responsibilities between Model, View, and ViewModel, MVVM promotes code organization and reusability.\n- **Data Binding**: SwiftUI’s built-in support for data binding allows the ViewModel to update the UI seamlessly whenever data changes.\n- **Improved Testability**: Logic is extracted into the ViewModel, making it easier to test business logic independently of the UI.\n\nIn this lesson, we’ll explore the MVVM pattern, its components, and how to implement it in iOS using SwiftUI.",
+      "title" : "MVVM Architecture for iOS Development using SwiftUI Introduction"
     },
     {
-      "title" : "MVVM Architecture for iOS Development using SwiftUI",
-      "content" : "## Implementing MVVM in SwiftUI\n\nIn the MVVM architecture, each component has a specific role:\n\n### 1. Model\nThe **Model** represents the data and core business logic. It can contain plain data types, structs, or classes that hold the app’s data or represent domain objects. Models are often designed to be independent of the UI.\n\n#### Example:\nIn a simple to-do app, a Model might look like this:\n\n    struct Task: Identifiable {\n        let id: UUID\n        var title: String\n        var isCompleted: Bool\n    }\n\n### 2. ViewModel\nThe **ViewModel** sits between the Model and the View. It handles business logic, data transformations, and any complex interactions needed by the UI. The ViewModel exposes the data and actions the View needs through published properties and methods, which SwiftUI can observe.\n\nViewModels typically use `@Published` properties to notify the View when data changes.\n\n#### Example:\nTo manage a list of tasks, a ViewModel might be implemented like this:\n\n    import Foundation\n    import Combine\n\n    class TaskViewModel: ObservableObject {\n        @Published var tasks: [Task] = []\n        \n        func addTask(title: String) {\n            let newTask = Task(id: UUID(), title: title, isCompleted: false)\n            tasks.append(newTask)\n        }\n        \n        func toggleTaskCompletion(for task: Task) {\n            if let index = tasks.firstIndex(where: { $0.id == task.id }) {\n                tasks[index].isCompleted.toggle()\n            }\n        }\n    }\n\nIn this example:\n- `@Published var tasks` is an array of `Task` objects, updated whenever a task is added or modified.\n- The `addTask` function creates a new task, while `toggleTaskCompletion` toggles a task’s completion status.\n\n### 3. View\nThe **View** is responsible for displaying data on the screen. In MVVM, the View listens to changes from the ViewModel and updates the UI automatically.\n\nViews in SwiftUI are often connected to the ViewModel via the `@ObservedObject` or `@StateObject` property wrapper, which observes changes and updates the UI as necessary.\n\n#### Example:\nHere’s a SwiftUI View that displays the list of tasks:\n\n    import SwiftUI\n\n    struct TaskListView: View {\n        @StateObject var viewModel = TaskViewModel()\n\n        var body: some View {\n            List {\n                ForEach(viewModel.tasks) { task in\n                    HStack {\n                        Text(task.title)\n                            .strikethrough(task.isCompleted)\n                        Spacer()\n                        Button(action: {\n                            viewModel.toggleTaskCompletion(for: task)\n                        }) {\n                            Image(systemName: task.isCompleted ? \"checkmark.circle.fill\" : \"circle\")\n                        }\n                    }\n                }\n            }\n            .navigationTitle(\"Tasks\")\n            .toolbar {\n                Button(\"Add Task\") {\n                    viewModel.addTask(title: \"New Task\")\n                }\n            }\n        }\n    }\n\nIn this example:\n- The `TaskListView` observes the `TaskViewModel` using `@StateObject`, which ensures the view updates when data changes.\n- Each task displays a title and a button to mark it as complete or incomplete.\n\n### Data Binding and Reactive Updates in SwiftUI\nThe integration between **SwiftUI’s data-binding** and MVVM architecture is seamless. SwiftUI observes published changes in the ViewModel, automatically updating the view without manual intervention, which reduces boilerplate code and enhances readability.\n\n### Best Practices for MVVM with SwiftUI\n- **One ViewModel per View**: To keep code organized, assign a unique ViewModel to each View.\n- **Minimize Logic in Views**: Keep the View as “dumb” as possible, leaving all logic to the ViewModel.\n- **Encapsulate Logic in ViewModel**: Place business logic, data formatting, and state management in the ViewModel."
+      "content" : "## Implementing MVVM in SwiftUI\n\nIn the MVVM architecture, each component has a specific role:\n\n### 1. Model\nThe **Model** represents the data and core business logic. It can contain plain data types, structs, or classes that hold the app’s data or represent domain objects. Models are often designed to be independent of the UI.\n\n#### Example:\nIn a simple to-do app, a Model might look like this:\n\n    struct Task: Identifiable {\n        let id: UUID\n        var title: String\n        var isCompleted: Bool\n    }\n\n### 2. ViewModel\nThe **ViewModel** sits between the Model and the View. It handles business logic, data transformations, and any complex interactions needed by the UI. The ViewModel exposes the data and actions the View needs through published properties and methods, which SwiftUI can observe.\n\nViewModels typically use `@Published` properties to notify the View when data changes.\n\n#### Example:\nTo manage a list of tasks, a ViewModel might be implemented like this:\n\n    import Foundation\n    import Combine\n\n    class TaskViewModel: ObservableObject {\n        @Published var tasks: [Task] = []\n        \n        func addTask(title: String) {\n            let newTask = Task(id: UUID(), title: title, isCompleted: false)\n            tasks.append(newTask)\n        }\n        \n        func toggleTaskCompletion(for task: Task) {\n            if let index = tasks.firstIndex(where: { $0.id == task.id }) {\n                tasks[index].isCompleted.toggle()\n            }\n        }\n    }\n\nIn this example:\n- `@Published var tasks` is an array of `Task` objects, updated whenever a task is added or modified.\n- The `addTask` function creates a new task, while `toggleTaskCompletion` toggles a task’s completion status.\n\n### 3. View\nThe **View** is responsible for displaying data on the screen. In MVVM, the View listens to changes from the ViewModel and updates the UI automatically.\n\nViews in SwiftUI are often connected to the ViewModel via the `@ObservedObject` or `@StateObject` property wrapper, which observes changes and updates the UI as necessary.\n\n#### Example:\nHere’s a SwiftUI View that displays the list of tasks:\n\n    import SwiftUI\n\n    struct TaskListView: View {\n        @StateObject var viewModel = TaskViewModel()\n\n        var body: some View {\n            List {\n                ForEach(viewModel.tasks) { task in\n                    HStack {\n                        Text(task.title)\n                            .strikethrough(task.isCompleted)\n                        Spacer()\n                        Button(action: {\n                            viewModel.toggleTaskCompletion(for: task)\n                        }) {\n                            Image(systemName: task.isCompleted ? \"checkmark.circle.fill\" : \"circle\")\n                        }\n                    }\n                }\n            }\n            .navigationTitle(\"Tasks\")\n            .toolbar {\n                Button(\"Add Task\") {\n                    viewModel.addTask(title: \"New Task\")\n                }\n            }\n        }\n    }\n\nIn this example:\n- The `TaskListView` observes the `TaskViewModel` using `@StateObject`, which ensures the view updates when data changes.\n- Each task displays a title and a button to mark it as complete or incomplete.\n\n### Data Binding and Reactive Updates in SwiftUI\nThe integration between **SwiftUI’s data-binding** and MVVM architecture is seamless. SwiftUI observes published changes in the ViewModel, automatically updating the view without manual intervention, which reduces boilerplate code and enhances readability.\n\n### Best Practices for MVVM with SwiftUI\n- **One ViewModel per View**: To keep code organized, assign a unique ViewModel to each View.\n- **Minimize Logic in Views**: Keep the View as “dumb” as possible, leaving all logic to the ViewModel.\n- **Encapsulate Logic in ViewModel**: Place business logic, data formatting, and state management in the ViewModel.",
+      "title" : "MVVM Architecture for iOS Development using SwiftUI"
     },
     {
-      "content" : "## Pros and Cons of MVVM in SwiftUI\n\n### Pros\n- **Enhanced Testability**: The ViewModel’s separation of concerns makes it easier to test the app’s business logic independently of the UI.\n- **Declarative and Reactive**: SwiftUI’s declarative syntax aligns well with MVVM, automatically updating the UI when the ViewModel’s state changes.\n- **Better Organization**: Splitting data, logic, and UI enhances code modularity and readability.\n\n### Cons\n- **Initial Learning Curve**: MVVM can be challenging for beginners due to the separation of roles and reactive programming.\n- **Complexity**: For smaller apps, MVVM might add unnecessary complexity. The benefits are more apparent in larger applications where modularity is essential.\n- **Increased Files and Code Overhead**: Following MVVM strictly can lead to more files and code, as each View may require its own ViewModel.\n\n### Common Use Cases\n- **Dynamic UI Updates**: MVVM is well-suited for applications with frequent UI updates based on state changes, such as real-time data feeds or user interactions.\n- **Separation of Logic**: MVVM is ideal for apps with complex logic and data processing needs, where keeping logic out of the UI is critical.\n\n### Comparison with Other Patterns\n- **MVC (Model-View-Controller)**: While MVC combines data and logic in the Controller, MVVM separates them, leading to better testability.\n- **VIPER**: MVVM is simpler than VIPER and more suited for declarative UI frameworks like SwiftUI, while VIPER is beneficial for large-scale, complex applications.",
-      "title" : "Discussion"
+      "title" : "Discussion",
+      "content" : "## Pros and Cons of MVVM in SwiftUI\n\n### Pros\n- **Enhanced Testability**: The ViewModel’s separation of concerns makes it easier to test the app’s business logic independently of the UI.\n- **Declarative and Reactive**: SwiftUI’s declarative syntax aligns well with MVVM, automatically updating the UI when the ViewModel’s state changes.\n- **Better Organization**: Splitting data, logic, and UI enhances code modularity and readability.\n\n### Cons\n- **Initial Learning Curve**: MVVM can be challenging for beginners due to the separation of roles and reactive programming.\n- **Complexity**: For smaller apps, MVVM might add unnecessary complexity. The benefits are more apparent in larger applications where modularity is essential.\n- **Increased Files and Code Overhead**: Following MVVM strictly can lead to more files and code, as each View may require its own ViewModel.\n\n### Common Use Cases\n- **Dynamic UI Updates**: MVVM is well-suited for applications with frequent UI updates based on state changes, such as real-time data feeds or user interactions.\n- **Separation of Logic**: MVVM is ideal for apps with complex logic and data processing needs, where keeping logic out of the UI is critical.\n\n### Comparison with Other Patterns\n- **MVC (Model-View-Controller)**: While MVC combines data and logic in the Controller, MVVM separates them, leading to better testability.\n- **VIPER**: MVVM is simpler than VIPER and more suited for declarative UI frameworks like SwiftUI, while VIPER is beneficial for large-scale, complex applications."
     },
     {
       "title" : "Key Takeaways",
@@ -22,27 +22,27 @@
       "id" : "mvvm_architecture_ios_q1",
       "question" : "In the MVVM pattern, which component is responsible for managing business logic?",
       "correctAnswerIndex" : 1,
-      "explanation" : "The ViewModel holds business logic, keeping the View focused solely on UI presentation.",
-      "type" : "multiple_choice",
       "answers" : [
         "View",
         "ViewModel",
         "Model",
         "Controller"
       ],
+      "explanation" : "The ViewModel holds business logic, keeping the View focused solely on UI presentation.",
+      "type" : "multiple_choice",
       "proficiency" : "basic"
     },
     {
       "id" : "mvvm_architecture_ios_q2",
       "question" : "Which property wrapper in SwiftUI helps observe changes in the ViewModel?",
       "correctAnswerIndex" : 0,
+      "explanation" : "The @StateObject property wrapper creates and owns an instance of the ViewModel, observing changes for reactive UI updates.",
       "answers" : [
         "@StateObject",
         "@EnvironmentObject",
         "@Binding",
         "@Published"
       ],
-      "explanation" : "The @StateObject property wrapper creates and owns an instance of the ViewModel, observing changes for reactive UI updates.",
       "type" : "multiple_choice",
       "proficiency" : "intermediate"
     },
@@ -50,43 +50,43 @@
       "id" : "mvvm_architecture_ios_q3",
       "question" : "What is a potential disadvantage of MVVM in iOS development?",
       "correctAnswerIndex" : 1,
-      "explanation" : "MVVM has an initial learning curve, especially for beginners, but is generally compatible with SwiftUI and enhances testability.",
-      "proficiency" : "advanced",
-      "type" : "multiple_choice",
       "answers" : [
         "It makes testing more difficult.",
         "It adds initial complexity for beginners.",
         "It combines UI and business logic.",
         "It has limited compatibility with SwiftUI."
-      ]
+      ],
+      "explanation" : "MVVM has an initial learning curve, especially for beginners, but is generally compatible with SwiftUI and enhances testability.",
+      "proficiency" : "advanced",
+      "type" : "multiple_choice"
     },
     {
       "id" : "mvvm_architecture_ios_q4",
       "question" : "What does the Model component represent in MVVM?",
       "correctAnswerIndex" : 1,
+      "explanation" : "The Model in MVVM encapsulates the app’s data and core business logic, separate from the UI.",
+      "proficiency" : "intermediate",
+      "type" : "multiple_choice",
       "answers" : [
         "The application's UI elements",
         "The data and business logic",
         "The connection between Model and View",
         "The observable data-binding"
-      ],
-      "proficiency" : "intermediate",
-      "type" : "multiple_choice",
-      "explanation" : "The Model in MVVM encapsulates the app’s data and core business logic, separate from the UI."
+      ]
     },
     {
       "id" : "mvvm_architecture_ios_q5",
       "question" : "Which SwiftUI property wrapper would you use to share a single ViewModel across multiple Views?",
       "correctAnswerIndex" : 1,
+      "explanation" : "Using @EnvironmentObject allows a single ViewModel instance to be shared across multiple Views, enabling global data management.",
+      "proficiency" : "advanced",
       "answers" : [
         "@StateObject",
         "@EnvironmentObject",
         "@Binding",
         "@Published"
       ],
-      "proficiency" : "advanced",
-      "type" : "multiple_choice",
-      "explanation" : "Using @EnvironmentObject allows a single ViewModel instance to be shared across multiple Views, enabling global data management."
+      "type" : "multiple_choice"
     }
   ],
   "metadata" : {

@@ -4,86 +4,73 @@
       "id" : "solid_principles_q1",
       "question" : "What does the Single Responsibility Principle (SRP) state?",
       "correctAnswerIndex" : 0,
+      "explanation" : "SRP specifies that a class should have only one responsibility, which simplifies testing and maintenance.",
+      "proficiency" : "basic",
       "answers" : [
         "A class should do only one thing.",
         "A class can have multiple responsibilities.",
         "A class should be closed for modification.",
         "A class should implement all methods of an interface."
       ],
-      "proficiency" : "basic",
-      "type" : "multiple_choice",
-      "explanation" : "SRP specifies that a class should have only one responsibility, which simplifies testing and maintenance."
+      "type" : "multiple_choice"
     },
     {
       "id" : "solid_principles_q2",
       "question" : "Which SOLID principle helps in extending code without modifying it?",
       "correctAnswerIndex" : 1,
+      "explanation" : "OCP allows code to be extended by creating new classes or methods rather than altering existing ones.",
+      "type" : "multiple_choice",
+      "proficiency" : "intermediate",
       "answers" : [
         "Single Responsibility Principle",
         "Open-Closed Principle",
         "Liskov Substitution Principle",
         "Dependency Inversion Principle"
-      ],
-      "explanation" : "OCP allows code to be extended by creating new classes or methods rather than altering existing ones.",
-      "proficiency" : "intermediate",
-      "type" : "multiple_choice"
+      ]
     },
     {
       "id" : "solid_principles_q3",
       "question" : "Why is the Dependency Inversion Principle important?",
       "correctAnswerIndex" : 1,
       "explanation" : "DIP enables high-level modules to rely on abstractions, promoting flexible and decoupled code.",
-      "proficiency" : "advanced",
       "type" : "multiple_choice",
       "answers" : [
         "It encourages low-level modules to depend on high-level modules.",
         "It enables high-level modules to rely on abstractions rather than concrete classes.",
         "It requires all modules to depend on one main module.",
         "It discourages modularity."
-      ]
+      ],
+      "proficiency" : "advanced"
     },
     {
       "id" : "solid_principles_q4",
       "question" : "Which principle encourages creating smaller, more specific interfaces?",
       "correctAnswerIndex" : 1,
-      "explanation" : "ISP encourages smaller, specific interfaces that prevent clients from being forced to depend on methods they do not use.",
-      "proficiency" : "intermediate",
       "answers" : [
         "Single Responsibility Principle",
         "Interface Segregation Principle",
         "Liskov Substitution Principle",
         "Open-Closed Principle"
       ],
+      "explanation" : "ISP encourages smaller, specific interfaces that prevent clients from being forced to depend on methods they do not use.",
+      "proficiency" : "intermediate",
       "type" : "multiple_choice"
     },
     {
       "id" : "solid_principles_q5",
       "question" : "How does the Liskov Substitution Principle affect subclasses?",
       "correctAnswerIndex" : 1,
+      "explanation" : "LSP ensures that subclasses can replace a superclass without breaking functionality, maintaining program correctness.",
+      "proficiency" : "basic",
       "answers" : [
         "Subclasses can implement only half of a superclass's functionality.",
         "Subclasses should be able to replace the superclass without altering the program's correctness.",
         "Subclasses can replace any class in the hierarchy.",
         "Subclasses should depend on low-level modules."
       ],
-      "type" : "multiple_choice",
-      "proficiency" : "basic",
-      "explanation" : "LSP ensures that subclasses can replace a superclass without breaking functionality, maintaining program correctness."
+      "type" : "multiple_choice"
     }
   ],
-  "metadata" : {
-    "title" : "SOLID Principles for iOS Development",
-    "tags" : [
-      "solid",
-      "solid principles",
-      "clean",
-      "clean architecture",
-      "software architecture",
-      "architecture",
-      "software design"
-    ],
-    "description" : "An in-depth lesson on the SOLID principles and their implementation in iOS development to enhance code modularity, maintainability, and scalability."
-  },
   "sections" : [
     {
       "title" : "SOLID Principles Introduction",
@@ -98,8 +85,21 @@
       "content" : "The **SOLID principles** collectively help maintain clean and modular code architecture. However, there can be trade-offs:\n- Over-segmenting interfaces (ISP) may lead to an excessive number of protocols.\n- Following SRP strictly might result in too many classes, which could complicate the codebase.\n- LSP requires careful subclassing to avoid unintended behavior changes.\n\nUltimately, SOLID principles should be applied pragmatically, balancing code clarity with simplicity."
     },
     {
-      "title" : "Key Takeaways",
-      "content" : "- **SOLID principles** help build **modular, maintainable, and testable** code.\n- **SRP** ensures each class has one responsibility.\n- **OCP** encourages extending, not modifying, existing code.\n- **LSP** ensures subclasses can replace superclasses without issues.\n- **ISP** advocates for small, specific interfaces.\n- **DIP** favors dependency on abstractions, not concrete classes."
+      "content" : "- **SOLID principles** help build **modular, maintainable, and testable** code.\n- **SRP** ensures each class has one responsibility.\n- **OCP** encourages extending, not modifying, existing code.\n- **LSP** ensures subclasses can replace superclasses without issues.\n- **ISP** advocates for small, specific interfaces.\n- **DIP** favors dependency on abstractions, not concrete classes.",
+      "title" : "Key Takeaways"
     }
-  ]
+  ],
+  "metadata" : {
+    "title" : "SOLID Principles for iOS Development",
+    "tags" : [
+      "solid",
+      "solid principles",
+      "clean",
+      "clean architecture",
+      "software architecture",
+      "architecture",
+      "software design"
+    ],
+    "description" : "An in-depth lesson on the SOLID principles and their implementation in iOS development to enhance code modularity, maintainability, and scalability."
+  }
 }
