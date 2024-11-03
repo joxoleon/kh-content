@@ -84,10 +84,14 @@ public class ContentRepository: ContentRepositoryProtocol {
     }
     
     private func fetchAndUpdateData() async throws -> Bool {
+        async let metadataResult = fetcher.fetchContentMetadata()
         async let lessonsResult = fetcher.fetchLessons()
         async let modulesResult = fetcher.fetchModules()
         
         do {
+            let metadata = try await metadataResult
+            storage.saveMetadata(metadata)
+
             let lessons = try await lessonsResult
             storage.saveLessons(lessons)
             for lesson in lessons {
