@@ -2,8 +2,8 @@
   {
     "sections" : [
       {
-        "content" : "### Introduction to Swift Concurrency\n\nWith Swift 5.5, Apple introduced a new concurrency model that makes asynchronous programming more intuitive and efficient. The **async\/await** syntax allows developers to write asynchronous code that looks and behaves more like synchronous code, enhancing readability and reducing error-prone callback structures. Coupled with **structured concurrency** and **actors**, Swift's concurrency model is designed to handle concurrent tasks safely and efficiently.\n\n> **Async\/await** in Swift simplifies asynchronous calls by enabling a linear code flow while handling concurrency in the background.\n\nIn this lesson, we’ll cover how async\/await works, what structured concurrency offers, and how to manage asynchronous tasks safely with **actors**.",
-        "title" : "Swift Concurrency with Async\/Await and Structured Concurrency Introduction"
+        "title" : "Swift Concurrency with Async\/Await and Structured Concurrency Introduction",
+        "content" : "### Introduction to Swift Concurrency\n\nWith Swift 5.5, Apple introduced a new concurrency model that makes asynchronous programming more intuitive and efficient. The **async\/await** syntax allows developers to write asynchronous code that looks and behaves more like synchronous code, enhancing readability and reducing error-prone callback structures. Coupled with **structured concurrency** and **actors**, Swift's concurrency model is designed to handle concurrent tasks safely and efficiently.\n\n> **Async\/await** in Swift simplifies asynchronous calls by enabling a linear code flow while handling concurrency in the background.\n\nIn this lesson, we’ll cover how async\/await works, what structured concurrency offers, and how to manage asynchronous tasks safely with **actors**."
       },
       {
         "title" : "Swift Concurrency with Async\/Await and Structured Concurrency",
@@ -18,6 +18,78 @@
         "title" : "Key Takeaways"
       }
     ],
+    "questions" : [
+      {
+        "id" : "swift_concurrency_q1",
+        "question" : "What does async\/await in Swift aim to improve?",
+        "correctAnswerIndex" : 0,
+        "answers" : [
+          "Code readability by enabling sequential async operations",
+          "Code optimization by removing all asynchronous calls",
+          "File management and memory allocation",
+          "Looping operations in synchronous code"
+        ],
+        "type" : "multiple_choice",
+        "explanation" : "Async\/await improves code readability by allowing asynchronous operations to be written in a sequential, synchronous-like manner.",
+        "proficiency" : "advanced"
+      },
+      {
+        "id" : "swift_concurrency_q2",
+        "question" : "How does structured concurrency help in Swift?",
+        "correctAnswerIndex" : 1,
+        "answers" : [
+          "By allowing parallel tasks to be started without any control",
+          "By organizing tasks into a predictable and hierarchical structure",
+          "By removing the need for error handling in async code",
+          "By isolating tasks from each other to prevent shared resource access"
+        ],
+        "type" : "multiple_choice",
+        "proficiency" : "advanced",
+        "explanation" : "Structured concurrency organizes tasks into a hierarchy, ensuring predictable and controlled completion."
+      },
+      {
+        "id" : "swift_concurrency_q3",
+        "question" : "What is a primary purpose of using actors in Swift?",
+        "correctAnswerIndex" : 1,
+        "answers" : [
+          "To allow tasks to run in parallel without supervision",
+          "To protect mutable state from concurrent access",
+          "To remove the need for await in async functions",
+          "To ensure all async functions are non-throwing"
+        ],
+        "type" : "multiple_choice",
+        "proficiency" : "advanced",
+        "explanation" : "Actors provide data isolation by allowing only one task to access mutable state at a time, preventing data races."
+      },
+      {
+        "id" : "swift_concurrency_q4",
+        "question" : "What is the role of Task.isCancelled in Swift?",
+        "correctAnswerIndex" : 0,
+        "explanation" : "Task.isCancelled checks if a task has been cancelled, allowing long-running tasks to terminate early if needed.",
+        "type" : "multiple_choice",
+        "answers" : [
+          "To check if a task has been cancelled",
+          "To determine if a function is asynchronous",
+          "To enable isolated tasks to be run",
+          "To reset task properties to defaults"
+        ],
+        "proficiency" : "advanced"
+      },
+      {
+        "id" : "swift_concurrency_q5",
+        "question" : "What is a potential risk of using Task.detached?",
+        "correctAnswerIndex" : 1,
+        "explanation" : "Task.detached operates outside structured concurrency, which can lead to unstructured async behavior and potential bugs.",
+        "proficiency" : "advanced",
+        "type" : "multiple_choice",
+        "answers" : [
+          "It removes all concurrency from the program",
+          "It bypasses structured concurrency, possibly leading to unstructured async behavior",
+          "It stops async\/await syntax from working",
+          "It cancels all ongoing async tasks"
+        ]
+      }
+    ],
     "metadata" : {
       "title" : "Swift Concurrency with Async-Await and Structured Concurrency",
       "tags" : [
@@ -30,79 +102,7 @@
         "Swift concurrency"
       ],
       "description" : "A detailed exploration of Swift’s concurrency model, covering async\/await, structured concurrency, and actors for efficient asynchronous programming."
-    },
-    "questions" : [
-      {
-        "id" : "swift_concurrency_q1",
-        "question" : "What does async\/await in Swift aim to improve?",
-        "correctAnswerIndex" : 0,
-        "explanation" : "Async\/await improves code readability by allowing asynchronous operations to be written in a sequential, synchronous-like manner.",
-        "proficiency" : "advanced",
-        "type" : "multiple_choice",
-        "answers" : [
-          "Code readability by enabling sequential async operations",
-          "Code optimization by removing all asynchronous calls",
-          "File management and memory allocation",
-          "Looping operations in synchronous code"
-        ]
-      },
-      {
-        "id" : "swift_concurrency_q2",
-        "question" : "How does structured concurrency help in Swift?",
-        "correctAnswerIndex" : 1,
-        "explanation" : "Structured concurrency organizes tasks into a hierarchy, ensuring predictable and controlled completion.",
-        "proficiency" : "advanced",
-        "type" : "multiple_choice",
-        "answers" : [
-          "By allowing parallel tasks to be started without any control",
-          "By organizing tasks into a predictable and hierarchical structure",
-          "By removing the need for error handling in async code",
-          "By isolating tasks from each other to prevent shared resource access"
-        ]
-      },
-      {
-        "id" : "swift_concurrency_q3",
-        "question" : "What is a primary purpose of using actors in Swift?",
-        "correctAnswerIndex" : 1,
-        "explanation" : "Actors provide data isolation by allowing only one task to access mutable state at a time, preventing data races.",
-        "proficiency" : "advanced",
-        "type" : "multiple_choice",
-        "answers" : [
-          "To allow tasks to run in parallel without supervision",
-          "To protect mutable state from concurrent access",
-          "To remove the need for await in async functions",
-          "To ensure all async functions are non-throwing"
-        ]
-      },
-      {
-        "id" : "swift_concurrency_q4",
-        "question" : "What is the role of Task.isCancelled in Swift?",
-        "correctAnswerIndex" : 0,
-        "answers" : [
-          "To check if a task has been cancelled",
-          "To determine if a function is asynchronous",
-          "To enable isolated tasks to be run",
-          "To reset task properties to defaults"
-        ],
-        "type" : "multiple_choice",
-        "proficiency" : "advanced",
-        "explanation" : "Task.isCancelled checks if a task has been cancelled, allowing long-running tasks to terminate early if needed."
-      },
-      {
-        "id" : "swift_concurrency_q5",
-        "question" : "What is a potential risk of using Task.detached?",
-        "correctAnswerIndex" : 1,
-        "answers" : [
-          "It removes all concurrency from the program",
-          "It bypasses structured concurrency, possibly leading to unstructured async behavior",
-          "It stops async\/await syntax from working",
-          "It cancels all ongoing async tasks"
-        ],
-        "type" : "multiple_choice",
-        "explanation" : "Task.detached operates outside structured concurrency, which can lead to unstructured async behavior and potential bugs.",
-        "proficiency" : "advanced"
-      }
-    ]
+    }
   },
   {
     "questions" : [
@@ -117,36 +117,36 @@
           "A class should implement all methods of an interface."
         ],
         "type" : "multiple_choice",
-        "proficiency" : "basic",
-        "explanation" : "SRP specifies that a class should have only one responsibility, which simplifies testing and maintenance."
+        "explanation" : "SRP specifies that a class should have only one responsibility, which simplifies testing and maintenance.",
+        "proficiency" : "basic"
       },
       {
         "id" : "solid_principles_q2",
         "question" : "Which SOLID principle helps in extending code without modifying it?",
         "correctAnswerIndex" : 1,
-        "explanation" : "OCP allows code to be extended by creating new classes or methods rather than altering existing ones.",
-        "proficiency" : "intermediate",
         "answers" : [
           "Single Responsibility Principle",
           "Open-Closed Principle",
           "Liskov Substitution Principle",
           "Dependency Inversion Principle"
         ],
-        "type" : "multiple_choice"
+        "explanation" : "OCP allows code to be extended by creating new classes or methods rather than altering existing ones.",
+        "type" : "multiple_choice",
+        "proficiency" : "intermediate"
       },
       {
         "id" : "solid_principles_q3",
         "question" : "Why is the Dependency Inversion Principle important?",
         "correctAnswerIndex" : 1,
         "explanation" : "DIP enables high-level modules to rely on abstractions, promoting flexible and decoupled code.",
-        "type" : "multiple_choice",
-        "proficiency" : "advanced",
         "answers" : [
           "It encourages low-level modules to depend on high-level modules.",
           "It enables high-level modules to rely on abstractions rather than concrete classes.",
           "It requires all modules to depend on one main module.",
           "It discourages modularity."
-        ]
+        ],
+        "proficiency" : "advanced",
+        "type" : "multiple_choice"
       },
       {
         "id" : "solid_principles_q4",
@@ -158,8 +158,8 @@
           "Liskov Substitution Principle",
           "Open-Closed Principle"
         ],
-        "proficiency" : "intermediate",
         "type" : "multiple_choice",
+        "proficiency" : "intermediate",
         "explanation" : "ISP encourages smaller, specific interfaces that prevent clients from being forced to depend on methods they do not use."
       },
       {
@@ -187,12 +187,12 @@
         "title" : "SOLID Principles"
       },
       {
-        "content" : "The **SOLID principles** collectively help maintain clean and modular code architecture. However, there can be trade-offs:\n- Over-segmenting interfaces (ISP) may lead to an excessive number of protocols.\n- Following SRP strictly might result in too many classes, which could complicate the codebase.\n- LSP requires careful subclassing to avoid unintended behavior changes.\n\nUltimately, SOLID principles should be applied pragmatically, balancing code clarity with simplicity.",
-        "title" : "Discussion"
+        "title" : "Discussion",
+        "content" : "The **SOLID principles** collectively help maintain clean and modular code architecture. However, there can be trade-offs:\n- Over-segmenting interfaces (ISP) may lead to an excessive number of protocols.\n- Following SRP strictly might result in too many classes, which could complicate the codebase.\n- LSP requires careful subclassing to avoid unintended behavior changes.\n\nUltimately, SOLID principles should be applied pragmatically, balancing code clarity with simplicity."
       },
       {
-        "content" : "- **SOLID principles** help build **modular, maintainable, and testable** code.\n- **SRP** ensures each class has one responsibility.\n- **OCP** encourages extending, not modifying, existing code.\n- **LSP** ensures subclasses can replace superclasses without issues.\n- **ISP** advocates for small, specific interfaces.\n- **DIP** favors dependency on abstractions, not concrete classes.",
-        "title" : "Key Takeaways"
+        "title" : "Key Takeaways",
+        "content" : "- **SOLID principles** help build **modular, maintainable, and testable** code.\n- **SRP** ensures each class has one responsibility.\n- **OCP** encourages extending, not modifying, existing code.\n- **LSP** ensures subclasses can replace superclasses without issues.\n- **ISP** advocates for small, specific interfaces.\n- **DIP** favors dependency on abstractions, not concrete classes."
       }
     ],
     "metadata" : {
@@ -210,18 +210,24 @@
     }
   },
   {
-    "metadata" : {
-      "title" : "MVVM Architecture for iOS Development using SwiftUI",
-      "tags" : [
-        "mvvm",
-        "model-view-viewmodel",
-        "mvvm architecture",
-        "mvvm design pattern",
-        "design pattern",
-        "ios architectures"
-      ],
-      "description" : "An introductory lesson on MVVM architecture and how to implement it in iOS development with SwiftUI, covering key components, benefits, and implementation examples."
-    },
+    "sections" : [
+      {
+        "title" : "MVVM Architecture for iOS Development using SwiftUI Introduction",
+        "content" : "## Introduction to MVVM Architecture\n\nThe **Model-View-ViewModel (MVVM)** architecture is a design pattern widely used in software development, particularly for building clean and maintainable user interfaces in iOS development. MVVM aims to separate the user interface (UI) from business logic, making code more modular, testable, and scalable.\n\n> In the MVVM pattern, the **Model** represents the data and business logic, the **View** represents the UI elements, and the **ViewModel** acts as a bridge that connects the Model and View, managing data flow and user interactions.\n\nThis architecture is highly compatible with **SwiftUI** due to SwiftUI's declarative nature, which encourages building UIs with data bindings. SwiftUI automatically updates views when the data changes, making MVVM an ideal choice for structuring code and handling UI updates efficiently.\n\n### Why Use MVVM in SwiftUI?\n- **Separation of Concerns**: By dividing responsibilities between Model, View, and ViewModel, MVVM promotes code organization and reusability.\n- **Data Binding**: SwiftUI’s built-in support for data binding allows the ViewModel to update the UI seamlessly whenever data changes.\n- **Improved Testability**: Logic is extracted into the ViewModel, making it easier to test business logic independently of the UI.\n\nIn this lesson, we’ll explore the MVVM pattern, its components, and how to implement it in iOS using SwiftUI."
+      },
+      {
+        "title" : "MVVM Architecture for iOS Development using SwiftUI",
+        "content" : "## Implementing MVVM in SwiftUI\n\nIn the MVVM architecture, each component has a specific role:\n\n### 1. Model\nThe **Model** represents the data and core business logic. It can contain plain data types, structs, or classes that hold the app’s data or represent domain objects. Models are often designed to be independent of the UI.\n\n#### Example:\nIn a simple to-do app, a Model might look like this:\n\n    struct Task: Identifiable {\n        let id: UUID\n        var title: String\n        var isCompleted: Bool\n    }\n\n### 2. ViewModel\nThe **ViewModel** sits between the Model and the View. It handles business logic, data transformations, and any complex interactions needed by the UI. The ViewModel exposes the data and actions the View needs through published properties and methods, which SwiftUI can observe.\n\nViewModels typically use `@Published` properties to notify the View when data changes.\n\n#### Example:\nTo manage a list of tasks, a ViewModel might be implemented like this:\n\n    import Foundation\n    import Combine\n\n    class TaskViewModel: ObservableObject {\n        @Published var tasks: [Task] = []\n        \n        func addTask(title: String) {\n            let newTask = Task(id: UUID(), title: title, isCompleted: false)\n            tasks.append(newTask)\n        }\n        \n        func toggleTaskCompletion(for task: Task) {\n            if let index = tasks.firstIndex(where: { $0.id == task.id }) {\n                tasks[index].isCompleted.toggle()\n            }\n        }\n    }\n\nIn this example:\n- `@Published var tasks` is an array of `Task` objects, updated whenever a task is added or modified.\n- The `addTask` function creates a new task, while `toggleTaskCompletion` toggles a task’s completion status.\n\n### 3. View\nThe **View** is responsible for displaying data on the screen. In MVVM, the View listens to changes from the ViewModel and updates the UI automatically.\n\nViews in SwiftUI are often connected to the ViewModel via the `@ObservedObject` or `@StateObject` property wrapper, which observes changes and updates the UI as necessary.\n\n#### Example:\nHere’s a SwiftUI View that displays the list of tasks:\n\n    import SwiftUI\n\n    struct TaskListView: View {\n        @StateObject var viewModel = TaskViewModel()\n\n        var body: some View {\n            List {\n                ForEach(viewModel.tasks) { task in\n                    HStack {\n                        Text(task.title)\n                            .strikethrough(task.isCompleted)\n                        Spacer()\n                        Button(action: {\n                            viewModel.toggleTaskCompletion(for: task)\n                        }) {\n                            Image(systemName: task.isCompleted ? \"checkmark.circle.fill\" : \"circle\")\n                        }\n                    }\n                }\n            }\n            .navigationTitle(\"Tasks\")\n            .toolbar {\n                Button(\"Add Task\") {\n                    viewModel.addTask(title: \"New Task\")\n                }\n            }\n        }\n    }\n\nIn this example:\n- The `TaskListView` observes the `TaskViewModel` using `@StateObject`, which ensures the view updates when data changes.\n- Each task displays a title and a button to mark it as complete or incomplete.\n\n### Data Binding and Reactive Updates in SwiftUI\nThe integration between **SwiftUI’s data-binding** and MVVM architecture is seamless. SwiftUI observes published changes in the ViewModel, automatically updating the view without manual intervention, which reduces boilerplate code and enhances readability.\n\n### Best Practices for MVVM with SwiftUI\n- **One ViewModel per View**: To keep code organized, assign a unique ViewModel to each View.\n- **Minimize Logic in Views**: Keep the View as “dumb” as possible, leaving all logic to the ViewModel.\n- **Encapsulate Logic in ViewModel**: Place business logic, data formatting, and state management in the ViewModel."
+      },
+      {
+        "title" : "Discussion",
+        "content" : "## Pros and Cons of MVVM in SwiftUI\n\n### Pros\n- **Enhanced Testability**: The ViewModel’s separation of concerns makes it easier to test the app’s business logic independently of the UI.\n- **Declarative and Reactive**: SwiftUI’s declarative syntax aligns well with MVVM, automatically updating the UI when the ViewModel’s state changes.\n- **Better Organization**: Splitting data, logic, and UI enhances code modularity and readability.\n\n### Cons\n- **Initial Learning Curve**: MVVM can be challenging for beginners due to the separation of roles and reactive programming.\n- **Complexity**: For smaller apps, MVVM might add unnecessary complexity. The benefits are more apparent in larger applications where modularity is essential.\n- **Increased Files and Code Overhead**: Following MVVM strictly can lead to more files and code, as each View may require its own ViewModel.\n\n### Common Use Cases\n- **Dynamic UI Updates**: MVVM is well-suited for applications with frequent UI updates based on state changes, such as real-time data feeds or user interactions.\n- **Separation of Logic**: MVVM is ideal for apps with complex logic and data processing needs, where keeping logic out of the UI is critical.\n\n### Comparison with Other Patterns\n- **MVC (Model-View-Controller)**: While MVC combines data and logic in the Controller, MVVM separates them, leading to better testability.\n- **VIPER**: MVVM is simpler than VIPER and more suited for declarative UI frameworks like SwiftUI, while VIPER is beneficial for large-scale, complex applications."
+      },
+      {
+        "title" : "Key Takeaways",
+        "content" : "- **MVVM** is a design pattern that separates concerns by dividing the UI (View), business logic (Model), and data-binding logic (ViewModel).\n- **SwiftUI**'s declarative syntax and data-binding features make it highly compatible with the MVVM architecture.\n- The **ViewModel** connects the Model and View, holding business logic and state, which updates the UI reactively.\n- **Best practice**: Keep logic in the ViewModel, making Views as “dumb” as possible for cleaner, more modular code.\n- **MVVM** is ideal for applications with complex UI interactions or frequent data updates, promoting maintainability and testability."
+      }
+    ],
     "questions" : [
       {
         "id" : "mvvm_architecture_ios_q1",
@@ -233,23 +239,23 @@
           "Model",
           "Controller"
         ],
-        "explanation" : "The ViewModel holds business logic, keeping the View focused solely on UI presentation.",
+        "proficiency" : "basic",
         "type" : "multiple_choice",
-        "proficiency" : "basic"
+        "explanation" : "The ViewModel holds business logic, keeping the View focused solely on UI presentation."
       },
       {
         "id" : "mvvm_architecture_ios_q2",
         "question" : "Which property wrapper in SwiftUI helps observe changes in the ViewModel?",
         "correctAnswerIndex" : 0,
-        "explanation" : "The @StateObject property wrapper creates and owns an instance of the ViewModel, observing changes for reactive UI updates.",
-        "proficiency" : "intermediate",
-        "type" : "multiple_choice",
         "answers" : [
           "@StateObject",
           "@EnvironmentObject",
           "@Binding",
           "@Published"
-        ]
+        ],
+        "proficiency" : "intermediate",
+        "type" : "multiple_choice",
+        "explanation" : "The @StateObject property wrapper creates and owns an instance of the ViewModel, observing changes for reactive UI updates."
       },
       {
         "id" : "mvvm_architecture_ios_q3",
@@ -269,127 +275,63 @@
         "id" : "mvvm_architecture_ios_q4",
         "question" : "What does the Model component represent in MVVM?",
         "correctAnswerIndex" : 1,
-        "explanation" : "The Model in MVVM encapsulates the app’s data and core business logic, separate from the UI.",
-        "type" : "multiple_choice",
         "answers" : [
           "The application's UI elements",
           "The data and business logic",
           "The connection between Model and View",
           "The observable data-binding"
         ],
+        "explanation" : "The Model in MVVM encapsulates the app’s data and core business logic, separate from the UI.",
+        "type" : "multiple_choice",
         "proficiency" : "intermediate"
       },
       {
         "id" : "mvvm_architecture_ios_q5",
         "question" : "Which SwiftUI property wrapper would you use to share a single ViewModel across multiple Views?",
         "correctAnswerIndex" : 1,
+        "explanation" : "Using @EnvironmentObject allows a single ViewModel instance to be shared across multiple Views, enabling global data management.",
+        "proficiency" : "advanced",
+        "type" : "multiple_choice",
         "answers" : [
           "@StateObject",
           "@EnvironmentObject",
           "@Binding",
           "@Published"
-        ],
-        "type" : "multiple_choice",
-        "proficiency" : "advanced",
-        "explanation" : "Using @EnvironmentObject allows a single ViewModel instance to be shared across multiple Views, enabling global data management."
+        ]
       }
     ],
-    "sections" : [
-      {
-        "content" : "## Introduction to MVVM Architecture\n\nThe **Model-View-ViewModel (MVVM)** architecture is a design pattern widely used in software development, particularly for building clean and maintainable user interfaces in iOS development. MVVM aims to separate the user interface (UI) from business logic, making code more modular, testable, and scalable.\n\n> In the MVVM pattern, the **Model** represents the data and business logic, the **View** represents the UI elements, and the **ViewModel** acts as a bridge that connects the Model and View, managing data flow and user interactions.\n\nThis architecture is highly compatible with **SwiftUI** due to SwiftUI's declarative nature, which encourages building UIs with data bindings. SwiftUI automatically updates views when the data changes, making MVVM an ideal choice for structuring code and handling UI updates efficiently.\n\n### Why Use MVVM in SwiftUI?\n- **Separation of Concerns**: By dividing responsibilities between Model, View, and ViewModel, MVVM promotes code organization and reusability.\n- **Data Binding**: SwiftUI’s built-in support for data binding allows the ViewModel to update the UI seamlessly whenever data changes.\n- **Improved Testability**: Logic is extracted into the ViewModel, making it easier to test business logic independently of the UI.\n\nIn this lesson, we’ll explore the MVVM pattern, its components, and how to implement it in iOS using SwiftUI.",
-        "title" : "MVVM Architecture for iOS Development using SwiftUI Introduction"
-      },
-      {
-        "title" : "MVVM Architecture for iOS Development using SwiftUI",
-        "content" : "## Implementing MVVM in SwiftUI\n\nIn the MVVM architecture, each component has a specific role:\n\n### 1. Model\nThe **Model** represents the data and core business logic. It can contain plain data types, structs, or classes that hold the app’s data or represent domain objects. Models are often designed to be independent of the UI.\n\n#### Example:\nIn a simple to-do app, a Model might look like this:\n\n    struct Task: Identifiable {\n        let id: UUID\n        var title: String\n        var isCompleted: Bool\n    }\n\n### 2. ViewModel\nThe **ViewModel** sits between the Model and the View. It handles business logic, data transformations, and any complex interactions needed by the UI. The ViewModel exposes the data and actions the View needs through published properties and methods, which SwiftUI can observe.\n\nViewModels typically use `@Published` properties to notify the View when data changes.\n\n#### Example:\nTo manage a list of tasks, a ViewModel might be implemented like this:\n\n    import Foundation\n    import Combine\n\n    class TaskViewModel: ObservableObject {\n        @Published var tasks: [Task] = []\n        \n        func addTask(title: String) {\n            let newTask = Task(id: UUID(), title: title, isCompleted: false)\n            tasks.append(newTask)\n        }\n        \n        func toggleTaskCompletion(for task: Task) {\n            if let index = tasks.firstIndex(where: { $0.id == task.id }) {\n                tasks[index].isCompleted.toggle()\n            }\n        }\n    }\n\nIn this example:\n- `@Published var tasks` is an array of `Task` objects, updated whenever a task is added or modified.\n- The `addTask` function creates a new task, while `toggleTaskCompletion` toggles a task’s completion status.\n\n### 3. View\nThe **View** is responsible for displaying data on the screen. In MVVM, the View listens to changes from the ViewModel and updates the UI automatically.\n\nViews in SwiftUI are often connected to the ViewModel via the `@ObservedObject` or `@StateObject` property wrapper, which observes changes and updates the UI as necessary.\n\n#### Example:\nHere’s a SwiftUI View that displays the list of tasks:\n\n    import SwiftUI\n\n    struct TaskListView: View {\n        @StateObject var viewModel = TaskViewModel()\n\n        var body: some View {\n            List {\n                ForEach(viewModel.tasks) { task in\n                    HStack {\n                        Text(task.title)\n                            .strikethrough(task.isCompleted)\n                        Spacer()\n                        Button(action: {\n                            viewModel.toggleTaskCompletion(for: task)\n                        }) {\n                            Image(systemName: task.isCompleted ? \"checkmark.circle.fill\" : \"circle\")\n                        }\n                    }\n                }\n            }\n            .navigationTitle(\"Tasks\")\n            .toolbar {\n                Button(\"Add Task\") {\n                    viewModel.addTask(title: \"New Task\")\n                }\n            }\n        }\n    }\n\nIn this example:\n- The `TaskListView` observes the `TaskViewModel` using `@StateObject`, which ensures the view updates when data changes.\n- Each task displays a title and a button to mark it as complete or incomplete.\n\n### Data Binding and Reactive Updates in SwiftUI\nThe integration between **SwiftUI’s data-binding** and MVVM architecture is seamless. SwiftUI observes published changes in the ViewModel, automatically updating the view without manual intervention, which reduces boilerplate code and enhances readability.\n\n### Best Practices for MVVM with SwiftUI\n- **One ViewModel per View**: To keep code organized, assign a unique ViewModel to each View.\n- **Minimize Logic in Views**: Keep the View as “dumb” as possible, leaving all logic to the ViewModel.\n- **Encapsulate Logic in ViewModel**: Place business logic, data formatting, and state management in the ViewModel."
-      },
-      {
-        "content" : "## Pros and Cons of MVVM in SwiftUI\n\n### Pros\n- **Enhanced Testability**: The ViewModel’s separation of concerns makes it easier to test the app’s business logic independently of the UI.\n- **Declarative and Reactive**: SwiftUI’s declarative syntax aligns well with MVVM, automatically updating the UI when the ViewModel’s state changes.\n- **Better Organization**: Splitting data, logic, and UI enhances code modularity and readability.\n\n### Cons\n- **Initial Learning Curve**: MVVM can be challenging for beginners due to the separation of roles and reactive programming.\n- **Complexity**: For smaller apps, MVVM might add unnecessary complexity. The benefits are more apparent in larger applications where modularity is essential.\n- **Increased Files and Code Overhead**: Following MVVM strictly can lead to more files and code, as each View may require its own ViewModel.\n\n### Common Use Cases\n- **Dynamic UI Updates**: MVVM is well-suited for applications with frequent UI updates based on state changes, such as real-time data feeds or user interactions.\n- **Separation of Logic**: MVVM is ideal for apps with complex logic and data processing needs, where keeping logic out of the UI is critical.\n\n### Comparison with Other Patterns\n- **MVC (Model-View-Controller)**: While MVC combines data and logic in the Controller, MVVM separates them, leading to better testability.\n- **VIPER**: MVVM is simpler than VIPER and more suited for declarative UI frameworks like SwiftUI, while VIPER is beneficial for large-scale, complex applications.",
-        "title" : "Discussion"
-      },
-      {
-        "content" : "- **MVVM** is a design pattern that separates concerns by dividing the UI (View), business logic (Model), and data-binding logic (ViewModel).\n- **SwiftUI**'s declarative syntax and data-binding features make it highly compatible with the MVVM architecture.\n- The **ViewModel** connects the Model and View, holding business logic and state, which updates the UI reactively.\n- **Best practice**: Keep logic in the ViewModel, making Views as “dumb” as possible for cleaner, more modular code.\n- **MVVM** is ideal for applications with complex UI interactions or frequent data updates, promoting maintainability and testability.",
-        "title" : "Key Takeaways"
-      }
-    ]
+    "metadata" : {
+      "title" : "MVVM Architecture for iOS Development using SwiftUI",
+      "tags" : [
+        "mvvm",
+        "model-view-viewmodel",
+        "mvvm architecture",
+        "mvvm design pattern",
+        "design pattern",
+        "ios architectures"
+      ],
+      "description" : "An introductory lesson on MVVM architecture and how to implement it in iOS development with SwiftUI, covering key components, benefits, and implementation examples."
+    }
   },
   {
-    "questions" : [
-      {
-        "id" : "optionals_and_unwrapping_q1",
-        "question" : "Which of the following is a safe way to access an optional's value in Swift?",
-        "correctAnswerIndex" : 1,
-        "explanation" : "Using `if let` safely unwraps the optional only if it has a value, preventing potential crashes.",
-        "answers" : [
-          "Force unwrapping",
-          "Optional binding with `if let`",
-          "Direct access",
-          "Assigning it to another variable"
-        ],
-        "proficiency" : "intermediate",
-        "type" : "multiple_choice"
-      },
-      {
-        "id" : "optionals_and_unwrapping_q2",
-        "question" : "What will happen if you try to force unwrap a `nil` optional?",
-        "correctAnswerIndex" : 2,
-        "explanation" : "Force unwrapping a `nil` optional causes a runtime crash, making it an unsafe option.",
-        "type" : "multiple_choice",
-        "proficiency" : "intermediate",
-        "answers" : [
-          "The program will continue normally",
-          "A compile-time error will occur",
-          "A runtime crash will occur",
-          "The optional will be set to a default value"
-        ]
-      },
-      {
-        "id" : "optionals_and_unwrapping_q3",
-        "question" : "How does the nil-coalescing operator (`??`) work with optionals?",
-        "correctAnswerIndex" : 1,
-        "answers" : [
-          "It forces the optional to unwrap",
-          "It provides a default value if the optional is nil",
-          "It throws an error if the optional is nil",
-          "It checks for nested optionals"
-        ],
-        "proficiency" : "intermediate",
-        "type" : "multiple_choice",
-        "explanation" : "The nil-coalescing operator provides a default value when the optional is `nil`, offering a safe alternative to force unwrapping."
-      },
-      {
-        "id" : "optionals_and_unwrapping_q4",
-        "question" : "Which Swift feature allows access to multiple optional properties in a single line?",
-        "correctAnswerIndex" : 1,
-        "explanation" : "Optional chaining allows accessing multiple optional properties in a single expression, returning `nil` if any optional in the chain is `nil`.",
-        "proficiency" : "intermediate",
-        "type" : "multiple_choice",
-        "answers" : [
-          "Optional binding",
-          "Optional chaining",
-          "Nil-coalescing",
-          "Guard statements"
-        ]
-      },
-      {
-        "id" : "optionals_and_unwrapping_q5",
-        "question" : "How are optionals implemented in Swift?",
-        "correctAnswerIndex" : 2,
-        "explanation" : "Optionals are implemented as an enum with cases `.none` and `.some`, allowing values to be either present or absent in a type-safe way.",
-        "type" : "multiple_choice",
-        "proficiency" : "intermediate",
-        "answers" : [
-          "As a subclass of NSObject",
-          "As a protocol that all types conform to",
-          "As an enum with `none` and `some` cases",
-          "As a struct that wraps values"
-        ]
-      }
-    ],
+    "metadata" : {
+      "title" : "Optionals and Unwrapping in Swift",
+      "tags" : [
+        "swift",
+        "optionals",
+        "unwrapping",
+        "optional chaining",
+        "guard let",
+        "if let",
+        "nil coalescing",
+        "swift programming"
+      ],
+      "description" : "A comprehensive lesson on the use of optionals in Swift, including unwrapping techniques and underlying implementation details."
+    },
     "sections" : [
       {
-        "title" : "Optionals and Unwrapping in Swift Introduction",
-        "content" : "# Introduction to Optionals and Unwrapping in Swift\n\nIn Swift, **optionals** provide a way to handle the absence of a value. This unique feature helps prevent unexpected crashes by making developers explicitly handle scenarios where values could be missing or `nil`. By marking a variable as optional, Swift signals that the variable may or may not hold a value, reducing potential runtime errors and increasing code safety.\n\n> **Key Concept**: Optionals in Swift enable safe handling of `nil` values, prompting developers to manage cases where data may be unavailable.\n\nOptionals are an essential part of Swift programming, providing tools for dealing with `nil` values through **unwrapping** techniques like `if let`, `guard let`, **optional chaining**, and **nil coalescing**."
+        "content" : "# Introduction to Optionals and Unwrapping in Swift\n\nIn Swift, **optionals** provide a way to handle the absence of a value. This unique feature helps prevent unexpected crashes by making developers explicitly handle scenarios where values could be missing or `nil`. By marking a variable as optional, Swift signals that the variable may or may not hold a value, reducing potential runtime errors and increasing code safety.\n\n> **Key Concept**: Optionals in Swift enable safe handling of `nil` values, prompting developers to manage cases where data may be unavailable.\n\nOptionals are an essential part of Swift programming, providing tools for dealing with `nil` values through **unwrapping** techniques like `if let`, `guard let`, **optional chaining**, and **nil coalescing**.",
+        "title" : "Optionals and Unwrapping in Swift Introduction"
       },
       {
         "content" : "## Optionals and Unwrapping Techniques in Swift\n\n### 1. Understanding Optionals\nAn **optional** in Swift is a type that can hold either a value or `nil` to indicate absence of value. To declare an optional, you append a `?` to the type.\n\n#### Example:\n    var optionalName: String? = \"Alice\"\n    optionalName = nil  \/\/ optionalName can now be nil or a String value\n\n**Best Practice**: Use optionals only when a value can genuinely be absent; otherwise, stick with non-optional types for safety and simplicity.\n\n### 2. Unwrapping Optionals\nUnwrapping is the process of safely extracting the value from an optional to prevent runtime errors. Here are the main unwrapping techniques:\n\n#### a) Optional Binding with `if let`\nThe `if let` syntax unwraps an optional by assigning its value to a new constant if it’s non-nil.\n\n#### Example:\n    var age: Int? = 25\n    if let validAge = age {\n        print(\"Age is \\(validAge)\")\n    } else {\n        print(\"Age is unavailable\")\n    }\n\n**When to Use**: `if let` is useful when optional values are only needed within a local scope.\n\n#### b) Optional Binding with `guard let`\n`guard let` is similar to `if let` but is used to exit the current function, loop, or scope if the optional is `nil`.\n\n#### Example:\n    func processUser(name: String?) {\n        guard let validName = name else {\n            print(\"Name is missing\")\n            return\n        }\n        print(\"Processing \\(validName)\")\n    }\n\n**When to Use**: `guard let` is ideal when the presence of a value is essential for the remainder of the function.\n\n#### c) Optional Chaining\nOptional chaining allows safe access to properties, methods, or subscripts of an optional that might be `nil`. If any link in the chain is `nil`, the whole chain returns `nil`.\n\n#### Example:\n    struct Address {\n        var city: String\n    }\n    struct User {\n        var address: Address?\n    }\n    var user: User? = User(address: Address(city: \"New York\"))\n    let city = user?.address?.city  \/\/ city is \"New York\" or nil if any part is nil\n\n**When to Use**: Optional chaining is best when accessing nested optional properties, avoiding the need for multiple checks.\n\n#### d) Nil-Coalescing Operator (`??`)\nThe nil-coalescing operator provides a default value if an optional is `nil`.\n\n#### Example:\n    var optionalGreeting: String? = nil\n    let greeting = optionalGreeting ?? \"Hello\"\n    \/\/ greeting is \"Hello\" if optionalGreeting is nil\n\n**When to Use**: Use nil-coalescing when you need a fallback value if the optional is `nil`.\n\n### 3. Force Unwrapping\nForce unwrapping (`!`) retrieves the value of an optional without checking for `nil`. This is risky and should be avoided unless you’re certain the value exists.\n\n#### Example:\n    var name: String? = \"Bob\"\n    print(name!)  \/\/ Only safe if `name` is not nil\n\n**When to Use**: Use sparingly, as it can cause crashes if the optional is `nil`. Prefer safer unwrapping methods.\n\n### 4. Optional Implementation Under the Hood\nUnder the hood, Swift implements optionals as an **enum** with two cases: `.some` for a value and `.none` for `nil`. This provides a clean, type-safe way to handle `nil` values, as opposed to languages that treat `nil` values as untyped.\n\n#### Example (simulated):\n    enum Optional<Wrapped> {\n        case none\n        case some(Wrapped)\n    }\n\nThis approach allows Swift to provide strict, compile-time checks, ensuring safer handling of `nil` values.",
@@ -404,36 +346,125 @@
         "content" : "- **Optionals handle the absence of values safely in Swift**.\n- **Unwrapping optionals** extracts their values, with techniques like `if let`, `guard let`, and nil-coalescing.\n- **Optional chaining** allows accessing nested optional values concisely.\n- **Force unwrapping** should be avoided unless necessary, as it can lead to crashes.\n- **Under the hood**, Swift’s optionals are enums, making them type-safe and robust."
       }
     ],
-    "metadata" : {
-      "title" : "Optionals and Unwrapping in Swift",
-      "tags" : [
-        "swift",
-        "optionals",
-        "unwrapping",
-        "optional chaining",
-        "guard let",
-        "if let",
-        "nil coalescing",
-        "swift programming"
-      ],
-      "description" : "A comprehensive lesson on the use of optionals in Swift, including unwrapping techniques and underlying implementation details."
-    }
+    "questions" : [
+      {
+        "id" : "optionals_and_unwrapping_q1",
+        "question" : "Which of the following is a safe way to access an optional's value in Swift?",
+        "correctAnswerIndex" : 1,
+        "explanation" : "Using `if let` safely unwraps the optional only if it has a value, preventing potential crashes.",
+        "type" : "multiple_choice",
+        "proficiency" : "intermediate",
+        "answers" : [
+          "Force unwrapping",
+          "Optional binding with `if let`",
+          "Direct access",
+          "Assigning it to another variable"
+        ]
+      },
+      {
+        "id" : "optionals_and_unwrapping_q2",
+        "question" : "What will happen if you try to force unwrap a `nil` optional?",
+        "correctAnswerIndex" : 2,
+        "explanation" : "Force unwrapping a `nil` optional causes a runtime crash, making it an unsafe option.",
+        "proficiency" : "intermediate",
+        "answers" : [
+          "The program will continue normally",
+          "A compile-time error will occur",
+          "A runtime crash will occur",
+          "The optional will be set to a default value"
+        ],
+        "type" : "multiple_choice"
+      },
+      {
+        "id" : "optionals_and_unwrapping_q3",
+        "question" : "How does the nil-coalescing operator (`??`) work with optionals?",
+        "correctAnswerIndex" : 1,
+        "answers" : [
+          "It forces the optional to unwrap",
+          "It provides a default value if the optional is nil",
+          "It throws an error if the optional is nil",
+          "It checks for nested optionals"
+        ],
+        "explanation" : "The nil-coalescing operator provides a default value when the optional is `nil`, offering a safe alternative to force unwrapping.",
+        "type" : "multiple_choice",
+        "proficiency" : "intermediate"
+      },
+      {
+        "id" : "optionals_and_unwrapping_q4",
+        "question" : "Which Swift feature allows access to multiple optional properties in a single line?",
+        "correctAnswerIndex" : 1,
+        "answers" : [
+          "Optional binding",
+          "Optional chaining",
+          "Nil-coalescing",
+          "Guard statements"
+        ],
+        "type" : "multiple_choice",
+        "proficiency" : "intermediate",
+        "explanation" : "Optional chaining allows accessing multiple optional properties in a single expression, returning `nil` if any optional in the chain is `nil`."
+      },
+      {
+        "id" : "optionals_and_unwrapping_q5",
+        "question" : "How are optionals implemented in Swift?",
+        "correctAnswerIndex" : 2,
+        "explanation" : "Optionals are implemented as an enum with cases `.none` and `.some`, allowing values to be either present or absent in a type-safe way.",
+        "proficiency" : "intermediate",
+        "type" : "multiple_choice",
+        "answers" : [
+          "As a subclass of NSObject",
+          "As a protocol that all types conform to",
+          "As an enum with `none` and `some` cases",
+          "As a struct that wraps values"
+        ]
+      }
+    ]
   },
   {
+    "metadata" : {
+      "title" : "Variables and Constants in Swift",
+      "tags" : [
+        "swift",
+        "variables",
+        "constants",
+        "let",
+        "var",
+        "iOS development",
+        "programming basics"
+      ],
+      "description" : "A lesson on the use of variables and constants in Swift, explaining the differences between 'let' and 'var' and guiding when to use each."
+    },
+    "sections" : [
+      {
+        "content" : "# Introduction to Variables and Constants in Swift\n\nIn Swift, **variables** and **constants** are fundamental to handling data. A **variable** is a named storage that holds a value which can be changed later, while a **constant** stores a value that cannot be altered once it’s assigned. Swift provides these distinctions through the keywords `var` for variables and `let` for constants, which both make code more readable and help prevent unintended modifications.\n\n> **Key Principle**: Use `let` for values that should remain constant, and `var` for values that need flexibility to change.\n\nChoosing between variables and constants is crucial for making Swift code safer and more predictable.",
+        "title" : "Variables and Constants in Swift Introduction"
+      },
+      {
+        "title" : "Variables and Constants in Swift",
+        "content" : "## Variables and Constants in Swift\n\n### 1. Declaring Variables with `var`\nTo declare a variable in Swift, use the `var` keyword. This creates a value that can be changed later in the program.\n\n#### Syntax:\n    var variableName = initialValue\n\n#### Example:\n    var age = 25\n    age = 26  \/\/ age can be modified later in the code\n\n**Best Practice**: Use `var` for values that will change over time, like a score in a game or a user's login state.\n\n### 2. Declaring Constants with `let`\nConstants are defined with `let` and hold values that cannot be modified once set. This is useful for defining values that represent fixed data, ensuring they remain consistent.\n\n#### Syntax:\n    let constantName = initialValue\n\n#### Example:\n    let birthYear = 1998\n    \/\/ birthYear cannot be changed after assignment\n\n**Best Practice**: Use `let` for values that should remain constant, such as mathematical constants or configuration values that shouldn’t change during runtime.\n\n### 3. Type Inference in Swift\nSwift automatically infers the data type when you assign a value. However, you can also explicitly specify the type.\n\n#### Example:\n    let pi: Double = 3.14159\n    var greeting: String = \"Hello\"\n\nIn the example above, `pi` is explicitly declared as `Double`, and `greeting` as `String`. Swift’s type inference often lets you omit type declarations for conciseness.\n\n### 4. Value Immutability with `let`\nConstants enhance immutability, making it clear when a value should stay the same, which aids in debugging and prevents accidental data changes.\n\n#### Example:\n    let maximumAttempts = 5\n    var currentAttempt = 1\n\nIn this example, `maximumAttempts` remains fixed, while `currentAttempt` changes with each retry.\n\n### 5. Deciding Between `let` and `var`\nChoosing `let` over `var` whenever possible promotes stability in code by ensuring values do not accidentally change, leading to fewer bugs and more predictable behavior.\n\n> **Tip**: Always start with `let`, and only switch to `var` if you genuinely need mutability."
+      },
+      {
+        "title" : "Discussion",
+        "content" : "## Discussion: `let` vs `var`\n\nUsing `let` helps create a safer codebase by preventing unexpected changes. Constants simplify understanding as they signal that certain values will not change, whereas variables provide flexibility for values that evolve, like counters or temporary states.\n\n### Pros and Cons\n- **Using `let`**:\n  - **Pros**: Reduces bugs by enforcing immutability, improves code readability, and clarifies intent.\n  - **Cons**: Limits flexibility; unsuitable for values that must change.\n\n- **Using `var`**:\n  - **Pros**: Allows mutable values; ideal for scenarios where values change, such as loops and counters.\n  - **Cons**: Increases the risk of accidental changes, requiring caution.\n\nIn iOS development, constants (using `let`) are often used for fixed UI configurations or non-changing properties, while variables (using `var`) are reserved for data likely to evolve during the app’s lifecycle, such as a user’s score or current location."
+      },
+      {
+        "content" : "- **Use `let` for values that should remain unchanged**.\n- **Use `var` for values that need to be updated**.\n- **Starting with `let` by default improves code safety**.\n- **Constants simplify debugging by preventing unexpected modifications**.\n- **Variables provide flexibility, suitable for changing values**.",
+        "title" : "Key Takeaways"
+      }
+    ],
     "questions" : [
       {
         "id" : "variables_and_constants_q1",
         "question" : "Which keyword is used in Swift to declare a variable that can change?",
         "correctAnswerIndex" : 1,
-        "explanation" : "In Swift, 'var' is used to declare variables that can change.",
-        "type" : "multiple_choice",
-        "proficiency" : "basic",
         "answers" : [
           "let",
           "var",
           "const",
           "mutable"
-        ]
+        ],
+        "type" : "multiple_choice",
+        "proficiency" : "basic",
+        "explanation" : "In Swift, 'var' is used to declare variables that can change."
       },
       {
         "id" : "variables_and_constants_q2",
@@ -445,9 +476,9 @@
           "A compile-time error will occur",
           "The value will change, but a warning will be issued"
         ],
-        "explanation" : "Attempting to modify a 'let' constant in Swift causes a compile-time error because constants are immutable.",
+        "proficiency" : "basic",
         "type" : "multiple_choice",
-        "proficiency" : "basic"
+        "explanation" : "Attempting to modify a 'let' constant in Swift causes a compile-time error because constants are immutable."
       },
       {
         "id" : "variables_and_constants_q3",
@@ -468,59 +499,28 @@
         "question" : "How does Swift's type inference work when declaring a constant without specifying a type?",
         "correctAnswerIndex" : 1,
         "explanation" : "Swift automatically infers the type based on the assigned value, even if the type is not explicitly specified.",
-        "proficiency" : "basic",
         "type" : "multiple_choice",
         "answers" : [
           "It requires a type to be specified",
           "It automatically determines the type",
           "It assumes all constants are integers",
           "It infers the type only for variables, not constants"
-        ]
+        ],
+        "proficiency" : "basic"
       },
       {
         "id" : "variables_and_constants_q5",
         "question" : "What is a key benefit of using 'let' in Swift?",
         "correctAnswerIndex" : 1,
+        "explanation" : "Using 'let' helps prevent accidental changes by making values immutable, enhancing code safety and predictability.",
+        "proficiency" : "basic",
         "answers" : [
           "It allows for type flexibility",
           "It prevents unintended changes to values",
           "It simplifies variable declarations",
           "It requires less memory than 'var'"
         ],
-        "type" : "multiple_choice",
-        "proficiency" : "basic",
-        "explanation" : "Using 'let' helps prevent accidental changes by making values immutable, enhancing code safety and predictability."
-      }
-    ],
-    "metadata" : {
-      "title" : "Variables and Constants in Swift",
-      "tags" : [
-        "swift",
-        "variables",
-        "constants",
-        "let",
-        "var",
-        "iOS development",
-        "programming basics"
-      ],
-      "description" : "A lesson on the use of variables and constants in Swift, explaining the differences between 'let' and 'var' and guiding when to use each."
-    },
-    "sections" : [
-      {
-        "content" : "# Introduction to Variables and Constants in Swift\n\nIn Swift, **variables** and **constants** are fundamental to handling data. A **variable** is a named storage that holds a value which can be changed later, while a **constant** stores a value that cannot be altered once it’s assigned. Swift provides these distinctions through the keywords `var` for variables and `let` for constants, which both make code more readable and help prevent unintended modifications.\n\n> **Key Principle**: Use `let` for values that should remain constant, and `var` for values that need flexibility to change.\n\nChoosing between variables and constants is crucial for making Swift code safer and more predictable.",
-        "title" : "Variables and Constants in Swift Introduction"
-      },
-      {
-        "content" : "## Variables and Constants in Swift\n\n### 1. Declaring Variables with `var`\nTo declare a variable in Swift, use the `var` keyword. This creates a value that can be changed later in the program.\n\n#### Syntax:\n    var variableName = initialValue\n\n#### Example:\n    var age = 25\n    age = 26  \/\/ age can be modified later in the code\n\n**Best Practice**: Use `var` for values that will change over time, like a score in a game or a user's login state.\n\n### 2. Declaring Constants with `let`\nConstants are defined with `let` and hold values that cannot be modified once set. This is useful for defining values that represent fixed data, ensuring they remain consistent.\n\n#### Syntax:\n    let constantName = initialValue\n\n#### Example:\n    let birthYear = 1998\n    \/\/ birthYear cannot be changed after assignment\n\n**Best Practice**: Use `let` for values that should remain constant, such as mathematical constants or configuration values that shouldn’t change during runtime.\n\n### 3. Type Inference in Swift\nSwift automatically infers the data type when you assign a value. However, you can also explicitly specify the type.\n\n#### Example:\n    let pi: Double = 3.14159\n    var greeting: String = \"Hello\"\n\nIn the example above, `pi` is explicitly declared as `Double`, and `greeting` as `String`. Swift’s type inference often lets you omit type declarations for conciseness.\n\n### 4. Value Immutability with `let`\nConstants enhance immutability, making it clear when a value should stay the same, which aids in debugging and prevents accidental data changes.\n\n#### Example:\n    let maximumAttempts = 5\n    var currentAttempt = 1\n\nIn this example, `maximumAttempts` remains fixed, while `currentAttempt` changes with each retry.\n\n### 5. Deciding Between `let` and `var`\nChoosing `let` over `var` whenever possible promotes stability in code by ensuring values do not accidentally change, leading to fewer bugs and more predictable behavior.\n\n> **Tip**: Always start with `let`, and only switch to `var` if you genuinely need mutability.",
-        "title" : "Variables and Constants in Swift"
-      },
-      {
-        "title" : "Discussion",
-        "content" : "## Discussion: `let` vs `var`\n\nUsing `let` helps create a safer codebase by preventing unexpected changes. Constants simplify understanding as they signal that certain values will not change, whereas variables provide flexibility for values that evolve, like counters or temporary states.\n\n### Pros and Cons\n- **Using `let`**:\n  - **Pros**: Reduces bugs by enforcing immutability, improves code readability, and clarifies intent.\n  - **Cons**: Limits flexibility; unsuitable for values that must change.\n\n- **Using `var`**:\n  - **Pros**: Allows mutable values; ideal for scenarios where values change, such as loops and counters.\n  - **Cons**: Increases the risk of accidental changes, requiring caution.\n\nIn iOS development, constants (using `let`) are often used for fixed UI configurations or non-changing properties, while variables (using `var`) are reserved for data likely to evolve during the app’s lifecycle, such as a user’s score or current location."
-      },
-      {
-        "content" : "- **Use `let` for values that should remain unchanged**.\n- **Use `var` for values that need to be updated**.\n- **Starting with `let` by default improves code safety**.\n- **Constants simplify debugging by preventing unexpected modifications**.\n- **Variables provide flexibility, suitable for changing values**.",
-        "title" : "Key Takeaways"
+        "type" : "multiple_choice"
       }
     ]
   },
@@ -536,51 +536,51 @@
           "Automatic Resource Counting",
           "Automatic Reference Control"
         ],
-        "type" : "multiple_choice",
+        "proficiency" : "intermediate",
         "explanation" : "**ARC** stands for Automatic Reference Counting, which is used to manage memory by tracking object references.",
-        "proficiency" : "intermediate"
+        "type" : "multiple_choice"
       },
       {
         "id" : "memory_management_q2",
         "question" : "When should you use an unowned reference instead of a weak reference?",
         "correctAnswerIndex" : 0,
+        "explanation" : "An unowned reference is used when the referenced object is guaranteed to exist for the lifetime of the referencing object.",
+        "proficiency" : "intermediate",
+        "type" : "multiple_choice",
         "answers" : [
           "When the referenced object will always exist during the lifetime of the unowned reference",
           "When the referenced object might become nil",
           "When managing optional data",
           "When creating a retain cycle"
-        ],
-        "proficiency" : "intermediate",
-        "explanation" : "An unowned reference is used when the referenced object is guaranteed to exist for the lifetime of the referencing object.",
-        "type" : "multiple_choice"
+        ]
       },
       {
         "id" : "memory_management_q3",
         "question" : "How can you prevent a retain cycle in a closure?",
         "correctAnswerIndex" : 0,
+        "explanation" : "Using a **capture list** with weak or unowned references prevents retain cycles within closures.",
+        "type" : "multiple_choice",
         "answers" : [
           "Using a capture list",
           "Using only strong references",
           "Removing the closure",
           "Switching to Objective-C"
         ],
-        "explanation" : "Using a **capture list** with weak or unowned references prevents retain cycles within closures.",
-        "proficiency" : "intermediate",
-        "type" : "multiple_choice"
+        "proficiency" : "intermediate"
       },
       {
         "id" : "memory_management_q4",
         "question" : "What is the main disadvantage of using unowned references?",
         "correctAnswerIndex" : 1,
         "explanation" : "Unowned references are non-optional and can cause a crash if the referenced object is deallocated unexpectedly.",
-        "proficiency" : "intermediate",
+        "type" : "multiple_choice",
         "answers" : [
           "They are optional",
           "They can cause a crash if the referenced object is deallocated",
           "They cannot be used in closures",
           "They are difficult to use in Swift"
         ],
-        "type" : "multiple_choice"
+        "proficiency" : "intermediate"
       },
       {
         "id" : "memory_management_q5",
@@ -599,16 +599,16 @@
     ],
     "sections" : [
       {
-        "title" : "Memory Management in Swift Introduction",
-        "content" : "### Introduction to Memory Management in Swift\n\nMemory management is a crucial aspect of application development, especially in languages like Swift that utilize **Automatic Reference Counting (ARC)**. ARC helps optimize memory usage by tracking and managing an object’s lifecycle, ensuring memory is efficiently used. However, understanding the nuances of **strong**, **weak**, and **unowned references** is essential for preventing **retain cycles** and **memory leaks** in complex applications.\n\n> **Automatic Reference Counting (ARC)** is a memory management feature in Swift that automatically tracks and manages memory by counting references to each instance.\n\nIn this lesson, we will explore how to manage memory effectively in Swift and avoid common pitfalls that can lead to inefficient memory usage."
+        "content" : "### Introduction to Memory Management in Swift\n\nMemory management is a crucial aspect of application development, especially in languages like Swift that utilize **Automatic Reference Counting (ARC)**. ARC helps optimize memory usage by tracking and managing an object’s lifecycle, ensuring memory is efficiently used. However, understanding the nuances of **strong**, **weak**, and **unowned references** is essential for preventing **retain cycles** and **memory leaks** in complex applications.\n\n> **Automatic Reference Counting (ARC)** is a memory management feature in Swift that automatically tracks and manages memory by counting references to each instance.\n\nIn this lesson, we will explore how to manage memory effectively in Swift and avoid common pitfalls that can lead to inefficient memory usage.",
+        "title" : "Memory Management in Swift Introduction"
       },
       {
-        "content" : "### Understanding Automatic Reference Counting (ARC)\n\n**Automatic Reference Counting (ARC)** is Swift's memory management system that automatically tracks and releases memory used by class instances. ARC works by maintaining a count of references (or \"owners\") to each object; when no references remain, the object is deallocated.\n\n### Strong, Weak, and Unowned References\n\n#### Strong References\nA **strong reference** keeps an object in memory as long as there’s at least one strong reference to it. By default, all references are strong unless specified otherwise.\n\n#### Example:\n    class Car {\n        let model: String\n        init(model: String) {\n            self.model = model\n        }\n    }\n\n    class Person {\n        var car: Car?\n    }\n\n    let person = Person()\n    person.car = Car(model: \"Tesla Model S\")\n\nIn this example, the `person` object holds a **strong reference** to the `Car` instance. As long as this reference exists, ARC will keep the `Car` instance in memory.\n\n#### Weak References\nA **weak reference** allows an instance to refer to another without creating a strong ownership relationship. Weak references are always optional (declared with `?`), as they may be `nil` when the referenced instance is deallocated.\n\n#### Example:\n    class Owner {\n        var pet: Pet?\n    }\n\n    class Pet {\n        weak var owner: Owner?\n    }\n\n    let owner = Owner()\n    let pet = Pet()\n    owner.pet = pet\n    pet.owner = owner\n\nIn this example, `pet.owner` is a weak reference. When either `owner` or `pet` is deallocated, there won’t be a retain cycle, preventing memory leaks.\n\n#### Unowned References\nAn **unowned reference** is similar to a weak reference but is non-optional. Use unowned references when you are certain the referenced instance will not be deallocated during the lifetime of the unowned reference.\n\n#### Example:\n    class Country {\n        var capitalCity: City!\n    }\n\n    class City {\n        unowned var country: Country\n        init(country: Country) {\n            self.country = country\n        }\n    }\n\n    let usa = Country()\n    let dc = City(country: usa)\n    usa.capitalCity = dc\n\nHere, `city.country` is an unowned reference, assuming the country exists for the lifetime of the city.\n\n### Retain Cycles and How to Avoid Them\n\n#### Retain Cycles\nA **retain cycle** occurs when two objects hold strong references to each other, preventing ARC from deallocating either object. This situation leads to memory leaks because neither object is freed.\n\n#### Example of a Retain Cycle:\n    class Parent {\n        var child: Child?\n    }\n\n    class Child {\n        var parent: Parent?\n    }\n\n    let parent = Parent()\n    let child = Child()\n    parent.child = child\n    child.parent = parent\n\nIn this example, the `Parent` and `Child` instances refer to each other strongly, causing a retain cycle. To avoid retain cycles, use **weak** or **unowned** references where appropriate.\n\n#### Resolving Retain Cycles in Closures\nClosures capture variables and can create retain cycles if they strongly reference `self`. Use a **capture list** to make these references weak or unowned.\n\n#### Example:\n    class ViewController {\n        var onCompletion: (() -> Void)?\n\n        func setupCompletionHandler() {\n            onCompletion = { [weak self] in\n                guard let self = self else { return }\n                self.executeTask()\n            }\n        }\n\n        func executeTask() {\n            \/\/ Task implementation\n        }\n    }\n\nHere, `[weak self]` in the closure prevents a retain cycle by capturing a weak reference to `self`.\n\n### Best Practices for Effective Memory Management\n- **Use weak references** for delegate properties.\n- **Prefer unowned references** for references that will never become nil during the object’s lifetime.\n- **Leverage capture lists** to avoid retain cycles in closures.\n- **Utilize memory profiling tools** (e.g., Xcode's memory graph debugger) to track object references and detect potential memory leaks.",
-        "title" : "Memory Management in Swift"
+        "title" : "Memory Management in Swift",
+        "content" : "### Understanding Automatic Reference Counting (ARC)\n\n**Automatic Reference Counting (ARC)** is Swift's memory management system that automatically tracks and releases memory used by class instances. ARC works by maintaining a count of references (or \"owners\") to each object; when no references remain, the object is deallocated.\n\n### Strong, Weak, and Unowned References\n\n#### Strong References\nA **strong reference** keeps an object in memory as long as there’s at least one strong reference to it. By default, all references are strong unless specified otherwise.\n\n#### Example:\n    class Car {\n        let model: String\n        init(model: String) {\n            self.model = model\n        }\n    }\n\n    class Person {\n        var car: Car?\n    }\n\n    let person = Person()\n    person.car = Car(model: \"Tesla Model S\")\n\nIn this example, the `person` object holds a **strong reference** to the `Car` instance. As long as this reference exists, ARC will keep the `Car` instance in memory.\n\n#### Weak References\nA **weak reference** allows an instance to refer to another without creating a strong ownership relationship. Weak references are always optional (declared with `?`), as they may be `nil` when the referenced instance is deallocated.\n\n#### Example:\n    class Owner {\n        var pet: Pet?\n    }\n\n    class Pet {\n        weak var owner: Owner?\n    }\n\n    let owner = Owner()\n    let pet = Pet()\n    owner.pet = pet\n    pet.owner = owner\n\nIn this example, `pet.owner` is a weak reference. When either `owner` or `pet` is deallocated, there won’t be a retain cycle, preventing memory leaks.\n\n#### Unowned References\nAn **unowned reference** is similar to a weak reference but is non-optional. Use unowned references when you are certain the referenced instance will not be deallocated during the lifetime of the unowned reference.\n\n#### Example:\n    class Country {\n        var capitalCity: City!\n    }\n\n    class City {\n        unowned var country: Country\n        init(country: Country) {\n            self.country = country\n        }\n    }\n\n    let usa = Country()\n    let dc = City(country: usa)\n    usa.capitalCity = dc\n\nHere, `city.country` is an unowned reference, assuming the country exists for the lifetime of the city.\n\n### Retain Cycles and How to Avoid Them\n\n#### Retain Cycles\nA **retain cycle** occurs when two objects hold strong references to each other, preventing ARC from deallocating either object. This situation leads to memory leaks because neither object is freed.\n\n#### Example of a Retain Cycle:\n    class Parent {\n        var child: Child?\n    }\n\n    class Child {\n        var parent: Parent?\n    }\n\n    let parent = Parent()\n    let child = Child()\n    parent.child = child\n    child.parent = parent\n\nIn this example, the `Parent` and `Child` instances refer to each other strongly, causing a retain cycle. To avoid retain cycles, use **weak** or **unowned** references where appropriate.\n\n#### Resolving Retain Cycles in Closures\nClosures capture variables and can create retain cycles if they strongly reference `self`. Use a **capture list** to make these references weak or unowned.\n\n#### Example:\n    class ViewController {\n        var onCompletion: (() -> Void)?\n\n        func setupCompletionHandler() {\n            onCompletion = { [weak self] in\n                guard let self = self else { return }\n                self.executeTask()\n            }\n        }\n\n        func executeTask() {\n            \/\/ Task implementation\n        }\n    }\n\nHere, `[weak self]` in the closure prevents a retain cycle by capturing a weak reference to `self`.\n\n### Best Practices for Effective Memory Management\n- **Use weak references** for delegate properties.\n- **Prefer unowned references** for references that will never become nil during the object’s lifetime.\n- **Leverage capture lists** to avoid retain cycles in closures.\n- **Utilize memory profiling tools** (e.g., Xcode's memory graph debugger) to track object references and detect potential memory leaks."
       },
       {
-        "content" : "### Discussion on Memory Management Techniques\n\nEffective memory management is crucial for building robust, performant applications. Using **weak** and **unowned** references correctly ensures that memory is efficiently freed when it’s no longer needed. However, it’s essential to be mindful of potential pitfalls:\n\n**Pros**:\n- **Automatic Reference Counting (ARC)** simplifies memory management.\n- Using weak\/unowned references helps prevent **retain cycles** and memory leaks.\n\n**Cons**:\n- **Incorrect use of unowned references** can lead to runtime crashes if the referenced object is deallocated unexpectedly.\n- **Weak references** must be optional, adding complexity in optional handling.\n\nUnderstanding memory management in Swift requires careful planning, particularly when working with closures, custom classes, and complex ownership relationships. Consider using weak or unowned references wherever retain cycles might otherwise arise.",
-        "title" : "Discussion"
+        "title" : "Discussion",
+        "content" : "### Discussion on Memory Management Techniques\n\nEffective memory management is crucial for building robust, performant applications. Using **weak** and **unowned** references correctly ensures that memory is efficiently freed when it’s no longer needed. However, it’s essential to be mindful of potential pitfalls:\n\n**Pros**:\n- **Automatic Reference Counting (ARC)** simplifies memory management.\n- Using weak\/unowned references helps prevent **retain cycles** and memory leaks.\n\n**Cons**:\n- **Incorrect use of unowned references** can lead to runtime crashes if the referenced object is deallocated unexpectedly.\n- **Weak references** must be optional, adding complexity in optional handling.\n\nUnderstanding memory management in Swift requires careful planning, particularly when working with closures, custom classes, and complex ownership relationships. Consider using weak or unowned references wherever retain cycles might otherwise arise."
       },
       {
         "title" : "Key Takeaways",

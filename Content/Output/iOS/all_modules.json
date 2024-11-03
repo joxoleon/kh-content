@@ -12,9 +12,8 @@
             ],
             "description" : "Covers basic Swift language constructs and types, essential for building a solid programming foundation.",
             "lessons" : [
-              "types_overview",
-              "optionals_basics",
-              "basic_control_flow"
+              "variables_and_constants_in_swift",
+              "optionals_and_unwrapping_in_swift"
             ]
           },
           {
@@ -22,11 +21,9 @@
             "subModules" : [
 
             ],
-            "description" : "Explores intermediate features in Swift such as structures, classes, and protocols that are core to app development.",
+            "description" : "Explores intermediate Swift features such as protocols, memory management, and error handling, crucial for app development.",
             "lessons" : [
-              "classes_and_structs",
-              "protocols_and_delegation",
-              "error_handling"
+              "memory_management_in_swift"
             ]
           },
           {
@@ -34,11 +31,9 @@
             "subModules" : [
 
             ],
-            "description" : "Delves into advanced Swift language features that enable high-performance, modular code for large-scale applications.",
+            "description" : "Delves into advanced Swift language features, enabling high-performance, modular code for large-scale applications.",
             "lessons" : [
-              "generics_and_type_safety",
-              "memory_management",
-              "swift_concurrency_basics"
+              "swift_concurrency_with_async_await_and_structured_concurrency"
             ]
           }
         ],
@@ -48,41 +43,26 @@
         ]
       },
       {
-        "title" : "Software Architectures and Design Patterns for iOS",
+        "title" : "Software Architecture and Design Patterns",
         "subModules" : [
           {
-            "title" : "Model-View-Controller (MVC)",
+            "title" : "SOLID Principles",
             "subModules" : [
 
             ],
-            "description" : "Introduction to the MVC pattern, the foundation of many iOS applications, and best practices for its use.",
+            "description" : "Explains the SOLID principles and their application in iOS development for improved code modularity, maintainability, and scalability.",
             "lessons" : [
-              "mvc_overview",
-              "mvc_implementation_examples"
+              "solid_principles_for_ios_development"
             ]
           },
           {
-            "title" : "Model-View-ViewModel (MVVM)",
+            "title" : "Model-View-ViewModel (MVVM) Architecture",
             "subModules" : [
 
             ],
-            "description" : "An exploration of the MVVM pattern, commonly used for more complex iOS apps and with SwiftUI.",
+            "description" : "An exploration of MVVM architecture, commonly used for complex iOS apps, especially with SwiftUI.",
             "lessons" : [
-              "mvvm_basics",
-              "mvvm_data_binding",
-              "mvvm_advanced_usage"
-            ]
-          },
-          {
-            "title" : "Other Architectural Patterns",
-            "subModules" : [
-
-            ],
-            "description" : "A look at additional architectural patterns used in iOS, including VIPER, Redux, and Coordinator pattern.",
-            "lessons" : [
-              "viper_architecture",
-              "redux_pattern",
-              "coordinator_pattern"
+              "mvvm_architecture_for_ios_development_using_swiftui"
             ]
           }
         ],

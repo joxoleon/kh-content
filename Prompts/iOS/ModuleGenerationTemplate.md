@@ -79,13 +79,18 @@ subModules:
 7. **Learning Goals**:
    - Consider the main goal: interview preparation for iOS developers. Group the lessons in a way that makes it easy to follow a progression from foundational knowledge to advanced techniques.
 
+### Emphasis on Conciseness and Sensibility:
+
+- **Sensible Module Titles**: Each module title should concisely capture the main topic covered. Aim for 5 words or fewer for clarity and readability, unless additional words are essential to convey meaning. Since all of these items in the module are iOS, there is no need to emphasize it in submodules, avoid redundancies in naming modules.
+- **Module Creation Based on Lesson Content**: Construct modules based on themes emerging from the lesson topics. For example, if multiple lessons cover Swift basics, place them within a single "Swift Basics" module. If the number of lessons is high (e.g., over 8-10 lessons), split these into submodules to keep organization clean and coherent.
+- **Consistent Format for Questions and Examples**: Ensure code examples and questions follow Markdown indentation and omit triple backticks, as they may cause formatting issues.
+
 ### Input Format
 
 Here’s an example list of lesson metadata that you will be provided to organize within the modules. Focus on the **title** and **description** fields for this task.
 
-Here's the lesson metadata list:
+Example lesson metadata:
 
-```json
 [
   {
     "title": "Swift Concurrency with Async-Await and Structured Concurrency",
@@ -118,7 +123,6 @@ Here's the lesson metadata list:
     "description": "A comprehensive lesson on memory management concepts in Swift, covering ARC, strong, weak, and unowned references, retain cycles, and best practices for avoiding memory leaks in complex applications."
   }
 ]
-```
 
 Your task is to organize these lessons into a structured course outline using the given guidelines.
 
