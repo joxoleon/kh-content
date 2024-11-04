@@ -13,6 +13,19 @@
     "description" : "A detailed exploration of Swift’s concurrency model, covering async\/await, structured concurrency, and actors for efficient asynchronous programming."
   },
   {
+    "title" : "VIPER Architecture for iOS Development using SwiftUI",
+    "tags" : [
+      "VIPER",
+      "iOS development",
+      "SwiftUI",
+      "architecture",
+      "design pattern",
+      "software engineering",
+      "modular code"
+    ],
+    "description" : "An introductory lesson on implementing the VIPER architecture in iOS applications using Swift and SwiftUI, with examples and best practices."
+  },
+  {
     "title" : "SOLID Principles for iOS Development",
     "tags" : [
       "solid",

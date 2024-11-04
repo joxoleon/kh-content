@@ -36,29 +36,29 @@
       "id" : "optionals_and_unwrapping_q2",
       "question" : "What will happen if you try to force unwrap a `nil` optional?",
       "correctAnswerIndex" : 2,
+      "explanation" : "Force unwrapping a `nil` optional causes a runtime crash, making it an unsafe option.",
+      "proficiency" : "intermediate",
+      "type" : "multiple_choice",
       "answers" : [
         "The program will continue normally",
         "A compile-time error will occur",
         "A runtime crash will occur",
         "The optional will be set to a default value"
-      ],
-      "proficiency" : "intermediate",
-      "explanation" : "Force unwrapping a `nil` optional causes a runtime crash, making it an unsafe option.",
-      "type" : "multiple_choice"
+      ]
     },
     {
       "id" : "optionals_and_unwrapping_q3",
       "question" : "How does the nil-coalescing operator (`??`) work with optionals?",
       "correctAnswerIndex" : 1,
-      "explanation" : "The nil-coalescing operator provides a default value when the optional is `nil`, offering a safe alternative to force unwrapping.",
-      "type" : "multiple_choice",
-      "proficiency" : "intermediate",
       "answers" : [
         "It forces the optional to unwrap",
         "It provides a default value if the optional is nil",
         "It throws an error if the optional is nil",
         "It checks for nested optionals"
-      ]
+      ],
+      "type" : "multiple_choice",
+      "proficiency" : "intermediate",
+      "explanation" : "The nil-coalescing operator provides a default value when the optional is `nil`, offering a safe alternative to force unwrapping."
     },
     {
       "id" : "optionals_and_unwrapping_q4",
@@ -70,23 +70,23 @@
         "Nil-coalescing",
         "Guard statements"
       ],
+      "proficiency" : "intermediate",
       "type" : "multiple_choice",
-      "explanation" : "Optional chaining allows accessing multiple optional properties in a single expression, returning `nil` if any optional in the chain is `nil`.",
-      "proficiency" : "intermediate"
+      "explanation" : "Optional chaining allows accessing multiple optional properties in a single expression, returning `nil` if any optional in the chain is `nil`."
     },
     {
       "id" : "optionals_and_unwrapping_q5",
       "question" : "How are optionals implemented in Swift?",
       "correctAnswerIndex" : 2,
       "explanation" : "Optionals are implemented as an enum with cases `.none` and `.some`, allowing values to be either present or absent in a type-safe way.",
+      "type" : "multiple_choice",
+      "proficiency" : "intermediate",
       "answers" : [
         "As a subclass of NSObject",
         "As a protocol that all types conform to",
         "As an enum with `none` and `some` cases",
         "As a struct that wraps values"
-      ],
-      "proficiency" : "intermediate",
-      "type" : "multiple_choice"
+      ]
     }
   ],
   "metadata" : {

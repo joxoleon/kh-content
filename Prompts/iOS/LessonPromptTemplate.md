@@ -54,7 +54,7 @@ You are creating a structured lesson on software engineering concepts for a lear
        - Start with a heading that appropriately describes the section.
        - Provide a thorough, structured explanation of the topic. Include all necessary details, examples, best practices, and relevant code snippets.
        - **Do not be stingy with examples**: Whenever a concept would benefit from one, provide a clear, relevant example, whether it be a code snippet or an illustrative scenario. Use sensible formatting and indentation for code examples.
-       - Avoid using "```" for code blocks; instead, indent code with spaces to ensure smooth text flow.
+       - **Important Note**: **Do NOT use three backticks ("```") for code blocks**. Instead, format all code examples by indenting with four spaces to improve readability and maintain smooth text flow within Markdown.
        - **Examples should be practical and based on real-world scenarios**, not purely theoretical code.
        - **Subsections**: If the lesson covers multiple concepts, split the Full Lesson into up to 5-6 subsections only if needed for distinct topics.
        - End this section with the delimiter `=== EndSection: [Title] ===`.
@@ -93,6 +93,7 @@ You are creating a structured lesson on software engineering concepts for a lear
            // Additional questions following the same structure
        ]
        {| endquestions |}
+   ```
    - **Each question should include**:
      - `id`: A unique identifier based on the lesson title and question number (e.g., `"solid_principles_q1"`).
      - `type`: `"multiple_choice"`.
@@ -125,10 +126,12 @@ You are creating a structured lesson on software engineering concepts for a lear
 
 **Instructions to AI**:
 
+**Important Note**: **Do NOT use three backticks ("```") for code blocks**. Instead, format all code examples by indenting with four spaces to improve readability and maintain smooth text flow within Markdown.
+
 Generate a markdown lesson with the following structure:
 
 1. Metadata:
-    ``` 
+    ```
     {| metadata |}
     { 
         "title": "Dependency Injection in iOS", 
@@ -145,7 +148,14 @@ Generate a markdown lesson with the following structure:
       `=== EndSection: Dependency Injection Introduction ===`
 
     - `=== Section: Dependency Injection ===`
-      Provide an in-depth explanation of Dependency Injection, covering what it is, why it’s beneficial, and how it can be implemented in iOS. Include examples to show how DI can make code more modular and testable. Avoid using "```" for code blocks; indent instead to maintain text flow.
+      Provide an in-depth explanation of Dependency Injection, covering what it is, why it’s beneficial, and how it can be implemented in iOS. Include examples to show how DI can make code more modular and testable. Avoid using three backticks ("```") for code blocks; indent instead to maintain text flow. For example:
+
+          struct MyDependency {
+              func performAction() {
+                  print("Action performed.")
+              }
+          }
+
       `=== EndSection: Dependency Injection ===`
 
     - `=== Section: Discussion ===`
@@ -181,6 +191,4 @@ Generate a markdown lesson with the following structure:
       {| endquestions |}
       ```
 
----
-
-Ensure each part of the lesson is well-structured, informative, and covers the topic from multiple angles for comprehensive understanding. This template is designed to guide AI in generating high-quality, structured content suitable for software engineering and iOS interview preparation.
+**Remember**: Use **indentation with spaces** for all code blocks to avoid using three backticks ("```"). This approach enhances readability and keeps code examples compatible with simpler Markdown parsers and editors.

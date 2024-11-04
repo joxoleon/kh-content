@@ -1,94 +1,4 @@
 {
-  "questions" : [
-    {
-      "id" : "memory_management_q1",
-      "question" : "What does ARC stand for in Swift?",
-      "correctAnswerIndex" : 1,
-      "answers" : [
-        "Automatic Resource Control",
-        "Automatic Reference Counting",
-        "Automatic Resource Counting",
-        "Automatic Reference Control"
-      ],
-      "proficiency" : "intermediate",
-      "explanation" : "**ARC** stands for Automatic Reference Counting, which is used to manage memory by tracking object references.",
-      "type" : "multiple_choice"
-    },
-    {
-      "id" : "memory_management_q2",
-      "question" : "When should you use an unowned reference instead of a weak reference?",
-      "correctAnswerIndex" : 0,
-      "explanation" : "An unowned reference is used when the referenced object is guaranteed to exist for the lifetime of the referencing object.",
-      "proficiency" : "intermediate",
-      "answers" : [
-        "When the referenced object will always exist during the lifetime of the unowned reference",
-        "When the referenced object might become nil",
-        "When managing optional data",
-        "When creating a retain cycle"
-      ],
-      "type" : "multiple_choice"
-    },
-    {
-      "id" : "memory_management_q3",
-      "question" : "How can you prevent a retain cycle in a closure?",
-      "correctAnswerIndex" : 0,
-      "answers" : [
-        "Using a capture list",
-        "Using only strong references",
-        "Removing the closure",
-        "Switching to Objective-C"
-      ],
-      "proficiency" : "intermediate",
-      "explanation" : "Using a **capture list** with weak or unowned references prevents retain cycles within closures.",
-      "type" : "multiple_choice"
-    },
-    {
-      "id" : "memory_management_q4",
-      "question" : "What is the main disadvantage of using unowned references?",
-      "correctAnswerIndex" : 1,
-      "answers" : [
-        "They are optional",
-        "They can cause a crash if the referenced object is deallocated",
-        "They cannot be used in closures",
-        "They are difficult to use in Swift"
-      ],
-      "proficiency" : "intermediate",
-      "type" : "multiple_choice",
-      "explanation" : "Unowned references are non-optional and can cause a crash if the referenced object is deallocated unexpectedly."
-    },
-    {
-      "id" : "memory_management_q5",
-      "question" : "What is a retain cycle?",
-      "correctAnswerIndex" : 0,
-      "answers" : [
-        "A cycle where objects keep each other in memory through strong references",
-        "A way to keep objects in memory until they are needed",
-        "A way to remove unused objects from memory",
-        "An optimization in memory management"
-      ],
-      "proficiency" : "intermediate",
-      "explanation" : "A **retain cycle** occurs when two objects strongly reference each other, preventing deallocation and causing a memory leak.",
-      "type" : "multiple_choice"
-    }
-  ],
-  "sections" : [
-    {
-      "content" : "### Introduction to Memory Management in Swift\n\nMemory management is a crucial aspect of application development, especially in languages like Swift that utilize **Automatic Reference Counting (ARC)**. ARC helps optimize memory usage by tracking and managing an object’s lifecycle, ensuring memory is efficiently used. However, understanding the nuances of **strong**, **weak**, and **unowned references** is essential for preventing **retain cycles** and **memory leaks** in complex applications.\n\n> **Automatic Reference Counting (ARC)** is a memory management feature in Swift that automatically tracks and manages memory by counting references to each instance.\n\nIn this lesson, we will explore how to manage memory effectively in Swift and avoid common pitfalls that can lead to inefficient memory usage.",
-      "title" : "Memory Management in Swift Introduction"
-    },
-    {
-      "title" : "Memory Management in Swift",
-      "content" : "### Understanding Automatic Reference Counting (ARC)\n\n**Automatic Reference Counting (ARC)** is Swift's memory management system that automatically tracks and releases memory used by class instances. ARC works by maintaining a count of references (or \"owners\") to each object; when no references remain, the object is deallocated.\n\n### Strong, Weak, and Unowned References\n\n#### Strong References\nA **strong reference** keeps an object in memory as long as there’s at least one strong reference to it. By default, all references are strong unless specified otherwise.\n\n#### Example:\n    class Car {\n        let model: String\n        init(model: String) {\n            self.model = model\n        }\n    }\n\n    class Person {\n        var car: Car?\n    }\n\n    let person = Person()\n    person.car = Car(model: \"Tesla Model S\")\n\nIn this example, the `person` object holds a **strong reference** to the `Car` instance. As long as this reference exists, ARC will keep the `Car` instance in memory.\n\n#### Weak References\nA **weak reference** allows an instance to refer to another without creating a strong ownership relationship. Weak references are always optional (declared with `?`), as they may be `nil` when the referenced instance is deallocated.\n\n#### Example:\n    class Owner {\n        var pet: Pet?\n    }\n\n    class Pet {\n        weak var owner: Owner?\n    }\n\n    let owner = Owner()\n    let pet = Pet()\n    owner.pet = pet\n    pet.owner = owner\n\nIn this example, `pet.owner` is a weak reference. When either `owner` or `pet` is deallocated, there won’t be a retain cycle, preventing memory leaks.\n\n#### Unowned References\nAn **unowned reference** is similar to a weak reference but is non-optional. Use unowned references when you are certain the referenced instance will not be deallocated during the lifetime of the unowned reference.\n\n#### Example:\n    class Country {\n        var capitalCity: City!\n    }\n\n    class City {\n        unowned var country: Country\n        init(country: Country) {\n            self.country = country\n        }\n    }\n\n    let usa = Country()\n    let dc = City(country: usa)\n    usa.capitalCity = dc\n\nHere, `city.country` is an unowned reference, assuming the country exists for the lifetime of the city.\n\n### Retain Cycles and How to Avoid Them\n\n#### Retain Cycles\nA **retain cycle** occurs when two objects hold strong references to each other, preventing ARC from deallocating either object. This situation leads to memory leaks because neither object is freed.\n\n#### Example of a Retain Cycle:\n    class Parent {\n        var child: Child?\n    }\n\n    class Child {\n        var parent: Parent?\n    }\n\n    let parent = Parent()\n    let child = Child()\n    parent.child = child\n    child.parent = parent\n\nIn this example, the `Parent` and `Child` instances refer to each other strongly, causing a retain cycle. To avoid retain cycles, use **weak** or **unowned** references where appropriate.\n\n#### Resolving Retain Cycles in Closures\nClosures capture variables and can create retain cycles if they strongly reference `self`. Use a **capture list** to make these references weak or unowned.\n\n#### Example:\n    class ViewController {\n        var onCompletion: (() -> Void)?\n\n        func setupCompletionHandler() {\n            onCompletion = { [weak self] in\n                guard let self = self else { return }\n                self.executeTask()\n            }\n        }\n\n        func executeTask() {\n            \/\/ Task implementation\n        }\n    }\n\nHere, `[weak self]` in the closure prevents a retain cycle by capturing a weak reference to `self`.\n\n### Best Practices for Effective Memory Management\n- **Use weak references** for delegate properties.\n- **Prefer unowned references** for references that will never become nil during the object’s lifetime.\n- **Leverage capture lists** to avoid retain cycles in closures.\n- **Utilize memory profiling tools** (e.g., Xcode's memory graph debugger) to track object references and detect potential memory leaks."
-    },
-    {
-      "content" : "### Discussion on Memory Management Techniques\n\nEffective memory management is crucial for building robust, performant applications. Using **weak** and **unowned** references correctly ensures that memory is efficiently freed when it’s no longer needed. However, it’s essential to be mindful of potential pitfalls:\n\n**Pros**:\n- **Automatic Reference Counting (ARC)** simplifies memory management.\n- Using weak\/unowned references helps prevent **retain cycles** and memory leaks.\n\n**Cons**:\n- **Incorrect use of unowned references** can lead to runtime crashes if the referenced object is deallocated unexpectedly.\n- **Weak references** must be optional, adding complexity in optional handling.\n\nUnderstanding memory management in Swift requires careful planning, particularly when working with closures, custom classes, and complex ownership relationships. Consider using weak or unowned references wherever retain cycles might otherwise arise.",
-      "title" : "Discussion"
-    },
-    {
-      "title" : "Key Takeaways",
-      "content" : "- **Automatic Reference Counting (ARC)** helps manage memory automatically by tracking object references.\n- **Strong references** keep an object in memory, while **weak** and **unowned references** do not.\n- **Retain cycles** occur when two objects hold strong references to each other, leading to memory leaks.\n- Use **capture lists** in closures to prevent retain cycles by making `self` weak or unowned.\n- **Memory leaks** can be detected using Xcode’s memory graph debugger to visualize object relationships."
-    }
-  ],
   "metadata" : {
     "title" : "Memory Management in Swift",
     "tags" : [
@@ -101,5 +11,95 @@
       "unowned references"
     ],
     "description" : "A comprehensive lesson on memory management concepts in Swift, covering ARC, strong, weak, and unowned references, retain cycles, and best practices for avoiding memory leaks in complex applications."
-  }
+  },
+  "questions" : [
+    {
+      "id" : "memory_management_q1",
+      "question" : "What does ARC stand for in Swift?",
+      "correctAnswerIndex" : 1,
+      "explanation" : "**ARC** stands for Automatic Reference Counting, which is used to manage memory by tracking object references.",
+      "type" : "multiple_choice",
+      "proficiency" : "intermediate",
+      "answers" : [
+        "Automatic Resource Control",
+        "Automatic Reference Counting",
+        "Automatic Resource Counting",
+        "Automatic Reference Control"
+      ]
+    },
+    {
+      "id" : "memory_management_q2",
+      "question" : "When should you use an unowned reference instead of a weak reference?",
+      "correctAnswerIndex" : 0,
+      "answers" : [
+        "When the referenced object will always exist during the lifetime of the unowned reference",
+        "When the referenced object might become nil",
+        "When managing optional data",
+        "When creating a retain cycle"
+      ],
+      "proficiency" : "intermediate",
+      "type" : "multiple_choice",
+      "explanation" : "An unowned reference is used when the referenced object is guaranteed to exist for the lifetime of the referencing object."
+    },
+    {
+      "id" : "memory_management_q3",
+      "question" : "How can you prevent a retain cycle in a closure?",
+      "correctAnswerIndex" : 0,
+      "answers" : [
+        "Using a capture list",
+        "Using only strong references",
+        "Removing the closure",
+        "Switching to Objective-C"
+      ],
+      "type" : "multiple_choice",
+      "proficiency" : "intermediate",
+      "explanation" : "Using a **capture list** with weak or unowned references prevents retain cycles within closures."
+    },
+    {
+      "id" : "memory_management_q4",
+      "question" : "What is the main disadvantage of using unowned references?",
+      "correctAnswerIndex" : 1,
+      "explanation" : "Unowned references are non-optional and can cause a crash if the referenced object is deallocated unexpectedly.",
+      "proficiency" : "intermediate",
+      "type" : "multiple_choice",
+      "answers" : [
+        "They are optional",
+        "They can cause a crash if the referenced object is deallocated",
+        "They cannot be used in closures",
+        "They are difficult to use in Swift"
+      ]
+    },
+    {
+      "id" : "memory_management_q5",
+      "question" : "What is a retain cycle?",
+      "correctAnswerIndex" : 0,
+      "explanation" : "A **retain cycle** occurs when two objects strongly reference each other, preventing deallocation and causing a memory leak.",
+      "type" : "multiple_choice",
+      "proficiency" : "intermediate",
+      "answers" : [
+        "A cycle where objects keep each other in memory through strong references",
+        "A way to keep objects in memory until they are needed",
+        "A way to remove unused objects from memory",
+        "An optimization in memory management"
+      ]
+    }
+  ],
+  "sections" : [
+    {
+      "title" : "Memory Management in Swift Introduction",
+      "content" : "### Introduction to Memory Management in Swift\n\nMemory management is a crucial aspect of application development, especially in languages like Swift that utilize **Automatic Reference Counting (ARC)**. ARC helps optimize memory usage by tracking and managing an object’s lifecycle, ensuring memory is efficiently used. However, understanding the nuances of **strong**, **weak**, and **unowned references** is essential for preventing **retain cycles** and **memory leaks** in complex applications.\n\n> **Automatic Reference Counting (ARC)** is a memory management feature in Swift that automatically tracks and manages memory by counting references to each instance.\n\nIn this lesson, we will explore how to manage memory effectively in Swift and avoid common pitfalls that can lead to inefficient memory usage."
+    },
+    {
+      "content" : "### Understanding Automatic Reference Counting (ARC)\n\n**Automatic Reference Counting (ARC)** is Swift's memory management system that automatically tracks and releases memory used by class instances. ARC works by maintaining a count of references (or \"owners\") to each object; when no references remain, the object is deallocated.\n\n### Strong, Weak, and Unowned References\n\n#### Strong References\nA **strong reference** keeps an object in memory as long as there’s at least one strong reference to it. By default, all references are strong unless specified otherwise.\n\n#### Example:\n    class Car {\n        let model: String\n        init(model: String) {\n            self.model = model\n        }\n    }\n\n    class Person {\n        var car: Car?\n    }\n\n    let person = Person()\n    person.car = Car(model: \"Tesla Model S\")\n\nIn this example, the `person` object holds a **strong reference** to the `Car` instance. As long as this reference exists, ARC will keep the `Car` instance in memory.\n\n#### Weak References\nA **weak reference** allows an instance to refer to another without creating a strong ownership relationship. Weak references are always optional (declared with `?`), as they may be `nil` when the referenced instance is deallocated.\n\n#### Example:\n    class Owner {\n        var pet: Pet?\n    }\n\n    class Pet {\n        weak var owner: Owner?\n    }\n\n    let owner = Owner()\n    let pet = Pet()\n    owner.pet = pet\n    pet.owner = owner\n\nIn this example, `pet.owner` is a weak reference. When either `owner` or `pet` is deallocated, there won’t be a retain cycle, preventing memory leaks.\n\n#### Unowned References\nAn **unowned reference** is similar to a weak reference but is non-optional. Use unowned references when you are certain the referenced instance will not be deallocated during the lifetime of the unowned reference.\n\n#### Example:\n    class Country {\n        var capitalCity: City!\n    }\n\n    class City {\n        unowned var country: Country\n        init(country: Country) {\n            self.country = country\n        }\n    }\n\n    let usa = Country()\n    let dc = City(country: usa)\n    usa.capitalCity = dc\n\nHere, `city.country` is an unowned reference, assuming the country exists for the lifetime of the city.\n\n### Retain Cycles and How to Avoid Them\n\n#### Retain Cycles\nA **retain cycle** occurs when two objects hold strong references to each other, preventing ARC from deallocating either object. This situation leads to memory leaks because neither object is freed.\n\n#### Example of a Retain Cycle:\n    class Parent {\n        var child: Child?\n    }\n\n    class Child {\n        var parent: Parent?\n    }\n\n    let parent = Parent()\n    let child = Child()\n    parent.child = child\n    child.parent = parent\n\nIn this example, the `Parent` and `Child` instances refer to each other strongly, causing a retain cycle. To avoid retain cycles, use **weak** or **unowned** references where appropriate.\n\n#### Resolving Retain Cycles in Closures\nClosures capture variables and can create retain cycles if they strongly reference `self`. Use a **capture list** to make these references weak or unowned.\n\n#### Example:\n    class ViewController {\n        var onCompletion: (() -> Void)?\n\n        func setupCompletionHandler() {\n            onCompletion = { [weak self] in\n                guard let self = self else { return }\n                self.executeTask()\n            }\n        }\n\n        func executeTask() {\n            \/\/ Task implementation\n        }\n    }\n\nHere, `[weak self]` in the closure prevents a retain cycle by capturing a weak reference to `self`.\n\n### Best Practices for Effective Memory Management\n- **Use weak references** for delegate properties.\n- **Prefer unowned references** for references that will never become nil during the object’s lifetime.\n- **Leverage capture lists** to avoid retain cycles in closures.\n- **Utilize memory profiling tools** (e.g., Xcode's memory graph debugger) to track object references and detect potential memory leaks.",
+      "title" : "Memory Management in Swift"
+    },
+    {
+      "title" : "Discussion",
+      "content" : "### Discussion on Memory Management Techniques\n\nEffective memory management is crucial for building robust, performant applications. Using **weak** and **unowned** references correctly ensures that memory is efficiently freed when it’s no longer needed. However, it’s essential to be mindful of potential pitfalls:\n\n**Pros**:\n- **Automatic Reference Counting (ARC)** simplifies memory management.\n- Using weak\/unowned references helps prevent **retain cycles** and memory leaks.\n\n**Cons**:\n- **Incorrect use of unowned references** can lead to runtime crashes if the referenced object is deallocated unexpectedly.\n- **Weak references** must be optional, adding complexity in optional handling.\n\nUnderstanding memory management in Swift requires careful planning, particularly when working with closures, custom classes, and complex ownership relationships. Consider using weak or unowned references wherever retain cycles might otherwise arise."
+    },
+    {
+      "title" : "Key Takeaways",
+      "content" : "- **Automatic Reference Counting (ARC)** helps manage memory automatically by tracking object references.\n- **Strong references** keep an object in memory, while **weak** and **unowned references** do not.\n- **Retain cycles** occur when two objects hold strong references to each other, leading to memory leaks.\n- Use **capture lists** in closures to prevent retain cycles by making `self` weak or unowned.\n- **Memory leaks** can be detected using Xcode’s memory graph debugger to visualize object relationships."
+    }
+  ]
 }
