@@ -28,7 +28,7 @@ You are creating a structured lesson on software engineering concepts for a lear
        - `proficiency`: An estimated proficiency level of the lesson (e.g., `"basic"`, `"intermediate"`, or `"advanced"`). Only use one of these choices.
        - `tags`: An array of 5-8 keywords/tags encapsulating the essence of the lesson topic (e.g., `["solid", "solid principles", "clean", "clean architecture", "software architecture", "architecture", "software design"]`).
      - **Wrap the metadata** with delimiters:
-       ```
+       
        {| metadata |}
        {
            "title": "Example Lesson",
@@ -37,7 +37,6 @@ You are creating a structured lesson on software engineering concepts for a lear
            "tags": ["solid", "solid principles", "clean", "clean architecture", "software architecture", "architecture", "software design"]
        }
        {| endmetadata |}
-       ```
 
    - **Sections**:
      - **Definition and Introduction**: 
@@ -73,7 +72,7 @@ You are creating a structured lesson on software engineering concepts for a lear
 3. **Questions Section**:
    - Conclude the lesson with a set of multiple-choice questions in JSON-like format.
    - **Wrap the questions section** with delimiters:
-       ```
+
        {| questions |}
        [
            {
@@ -93,7 +92,7 @@ You are creating a structured lesson on software engineering concepts for a lear
            // Additional questions following the same structure
        ]
        {| endquestions |}
-   ```
+
    - **Each question should include**:
      - `id`: A unique identifier based on the lesson title and question number (e.g., `"solid_principles_q1"`).
      - `type`: `"multiple_choice"`.
@@ -131,7 +130,7 @@ You are creating a structured lesson on software engineering concepts for a lear
 Generate a markdown lesson with the following structure:
 
 1. Metadata:
-    ```
+
     {| metadata |}
     { 
         "title": "Dependency Injection in iOS", 
@@ -140,7 +139,6 @@ Generate a markdown lesson with the following structure:
         "tags": ["dependency injection", "di", "software architecture", "design pattern", "dependency", "dependencies"]
     }
     {| endmetadata |}
-    ```
 
 2. Sections:
     - `=== Section: Dependency Injection Introduction ===`
@@ -169,7 +167,7 @@ Generate a markdown lesson with the following structure:
 3. Questions:
     - Create at least 5 multiple-choice questions relevant to Dependency Injection. Include an explanation for each answer to reinforce understanding.
     - Wrap the question section as follows:
-      ```
+
       {| questions |}
       [
           {
@@ -189,6 +187,6 @@ Generate a markdown lesson with the following structure:
           // Additional questions following the same structure
       ]
       {| endquestions |}
-      ```
 
 **Remember**: Use **indentation with spaces** for all code blocks to avoid using three backticks ("```"). This approach enhances readability and keeps code examples compatible with simpler Markdown parsers and editors.
+Ouput the result in a single markdown box without interruptions.

@@ -89,38 +89,97 @@ subModules:
 
 Here’s an example list of lesson metadata that you will be provided to organize within the modules. Focus on the **title** and **description** fields for this task.
 
-Example lesson metadata:
-
 [
   {
-    "title": "Swift Concurrency with Async-Await and Structured Concurrency",
-    "tags": ["concurrency", "async/await", "structured concurrency", "actors", "Swift", "asynchronous programming", "Swift concurrency"],
-    "description": "A detailed exploration of Swift’s concurrency model, covering async/await, structured concurrency, and actors for efficient asynchronous programming."
+    "title" : "Swift Concurrency with Async-Await and Structured Concurrency",
+    "tags" : [
+      "concurrency",
+      "async\/await",
+      "structured concurrency",
+      "actors",
+      "Swift",
+      "asynchronous programming",
+      "Swift concurrency"
+    ],
+    "description" : "A detailed exploration of Swift’s concurrency model, covering async\/await, structured concurrency, and actors for efficient asynchronous programming."
   },
   {
-    "title": "SOLID Principles for iOS Development",
-    "tags": ["solid", "solid principles", "clean", "clean architecture", "software architecture", "architecture", "software design"],
-    "description": "An in-depth lesson on the SOLID principles and their implementation in iOS development to enhance code modularity, maintainability, and scalability."
+    "title" : "VIPER Architecture for iOS Development using SwiftUI",
+    "tags" : [
+      "VIPER",
+      "iOS development",
+      "SwiftUI",
+      "architecture",
+      "design pattern",
+      "software engineering",
+      "modular code"
+    ],
+    "description" : "An introductory lesson on implementing the VIPER architecture in iOS applications using Swift and SwiftUI, with examples and best practices."
   },
   {
-    "title": "MVVM Architecture for iOS Development using SwiftUI",
-    "tags": ["mvvm", "model-view-viewmodel", "mvvm architecture", "mvvm design pattern", "design pattern", "ios architectures"],
-    "description": "An introductory lesson on MVVM architecture and how to implement it in iOS development with SwiftUI, covering key components, benefits, and implementation examples."
+    "title" : "SOLID Principles for iOS Development",
+    "tags" : [
+      "solid",
+      "solid principles",
+      "clean",
+      "clean architecture",
+      "software architecture",
+      "architecture",
+      "software design"
+    ],
+    "description" : "An in-depth lesson on the SOLID principles and their implementation in iOS development to enhance code modularity, maintainability, and scalability."
   },
   {
-    "title": "Optionals and Unwrapping in Swift",
-    "tags": ["swift", "optionals", "unwrapping", "optional chaining", "guard let", "if let", "nil coalescing", "swift programming"],
-    "description": "A comprehensive lesson on the use of optionals in Swift, including unwrapping techniques and underlying implementation details."
+    "title" : "MVVM Architecture for iOS Development using SwiftUI",
+    "tags" : [
+      "mvvm",
+      "model-view-viewmodel",
+      "mvvm architecture",
+      "mvvm design pattern",
+      "design pattern",
+      "ios architectures"
+    ],
+    "description" : "An introductory lesson on MVVM architecture and how to implement it in iOS development with SwiftUI, covering key components, benefits, and implementation examples."
   },
   {
-    "title": "Variables and Constants in Swift",
-    "tags": ["swift", "variables", "constants", "let", "var", "iOS development", "programming basics"],
-    "description": "A lesson on the use of variables and constants in Swift, explaining the differences between 'let' and 'var' and guiding when to use each."
+    "title" : "Optionals and Unwrapping in Swift",
+    "tags" : [
+      "swift",
+      "optionals",
+      "unwrapping",
+      "optional chaining",
+      "guard let",
+      "if let",
+      "nil coalescing",
+      "swift programming"
+    ],
+    "description" : "A comprehensive lesson on the use of optionals in Swift, including unwrapping techniques and underlying implementation details."
   },
   {
-    "title": "Memory Management in Swift",
-    "tags": ["memory management", "ARC", "automatic reference counting", "retain cycles", "weak references", "strong references", "unowned references"],
-    "description": "A comprehensive lesson on memory management concepts in Swift, covering ARC, strong, weak, and unowned references, retain cycles, and best practices for avoiding memory leaks in complex applications."
+    "title" : "Variables and Constants in Swift",
+    "tags" : [
+      "swift",
+      "variables",
+      "constants",
+      "let",
+      "var",
+      "iOS development",
+      "programming basics"
+    ],
+    "description" : "A lesson on the use of variables and constants in Swift, explaining the differences between 'let' and 'var' and guiding when to use each."
+  },
+  {
+    "title" : "Memory Management in Swift",
+    "tags" : [
+      "memory management",
+      "ARC",
+      "automatic reference counting",
+      "retain cycles",
+      "weak references",
+      "strong references",
+      "unowned references"
+    ],
+    "description" : "A comprehensive lesson on memory management concepts in Swift, covering ARC, strong, weak, and unowned references, retain cycles, and best practices for avoiding memory leaks in complex applications."
   }
 ]
 
@@ -128,4 +187,5 @@ Your task is to organize these lessons into a structured course outline using th
 
 ---
 
+**Remember to only use the lessons given you to within the lesson metadata, those are the only lessons to should be included**
 Ensure that your output has the correct structure, logically grouping related lessons and creating submodules as needed. The output should be a structured, organized **YAML file** with the title `"iOS Interview Preparation"` at the top level and a coherent hierarchy of modules and lessons beneath.

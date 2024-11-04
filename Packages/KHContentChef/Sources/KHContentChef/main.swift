@@ -11,8 +11,6 @@ struct ContentChef: ParsableCommand {
 
     func run() throws {
         print("Running ContentChef...")
-
-        // Parse lessons
         try parse(
             from: URL(fileURLWithPath: contentPath), 
             to: URL(fileURLWithPath: outputPath)
