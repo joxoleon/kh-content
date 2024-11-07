@@ -73,7 +73,7 @@ public class ContentRepository: ContentRepositoryProtocol {
         
         do {
             let remoteMetadata = try await fetcher.fetchContentMetadata()
-            if remoteMetadata.lastUpdatedTimestamp > localMetadata.lastUpdatedTimestamp + 0.1 { // Add a small buffer for floating point comparison
+            if remoteMetadata.lastUpdatedTimestamp > localMetadata.lastUpdatedTimestamp + 0.1 {
                 return try await fetchAndUpdateData()
             } else {
                 return false
@@ -84,22 +84,21 @@ public class ContentRepository: ContentRepositoryProtocol {
     }
     
     private func fetchAndUpdateData() async throws -> Bool {
-        async let metadataResult = fetcher.fetchContentMetadata()
-        async let lessonsResult = fetcher.fetchLessons()
-        async let modulesResult = fetcher.fetchModules()
-        
         do {
-            let metadata = try await metadataResult
+            let (metadata, lessons, modules) = try await (
+                fetcher.fetchContentMetadata(),
+                fetcher.fetchLessons(),
+                fetcher.fetchModules()
+            )
+            
             storage.saveMetadata(metadata)
-
-            let lessons = try await lessonsResult
             storage.saveLessons(lessons)
+            storage.saveModules(modules)
+            
             for lesson in lessons {
                 lessonsCache[lesson.metadata.id] = lesson
             }
             
-            let modules = try await modulesResult
-            storage.saveModules(modules)
             for module in modules {
                 modulesCache[module.id] = module
             }
