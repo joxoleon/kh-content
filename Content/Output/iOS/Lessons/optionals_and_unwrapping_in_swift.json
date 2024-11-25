@@ -1,18 +1,4 @@
 {
-  "metadata" : {
-    "title" : "Optionals and Unwrapping in Swift",
-    "tags" : [
-      "swift",
-      "optionals",
-      "unwrapping",
-      "optional chaining",
-      "guard let",
-      "if let",
-      "nil coalescing",
-      "swift programming"
-    ],
-    "description" : "A comprehensive lesson on the use of optionals in Swift, including unwrapping techniques and underlying implementation details."
-  },
   "sections" : [
     {
       "title" : "Optionals and Unwrapping in Swift Introduction",
@@ -42,23 +28,23 @@
         "Direct access",
         "Assigning it to another variable"
       ],
-      "proficiency" : "intermediate",
       "type" : "multiple_choice",
-      "explanation" : "Using `if let` safely unwraps the optional only if it has a value, preventing potential crashes."
+      "explanation" : "Using `if let` safely unwraps the optional only if it has a value, preventing potential crashes.",
+      "proficiency" : "intermediate"
     },
     {
       "id" : "optionals_and_unwrapping_q2",
       "question" : "What will happen if you try to force unwrap a `nil` optional?",
       "correctAnswerIndex" : 2,
+      "explanation" : "Force unwrapping a `nil` optional causes a runtime crash, making it an unsafe option.",
+      "proficiency" : "intermediate",
+      "type" : "multiple_choice",
       "answers" : [
         "The program will continue normally",
         "A compile-time error will occur",
         "A runtime crash will occur",
         "The optional will be set to a default value"
-      ],
-      "type" : "multiple_choice",
-      "proficiency" : "intermediate",
-      "explanation" : "Force unwrapping a `nil` optional causes a runtime crash, making it an unsafe option."
+      ]
     },
     {
       "id" : "optionals_and_unwrapping_q3",
@@ -84,8 +70,8 @@
         "Nil-coalescing",
         "Guard statements"
       ],
-      "proficiency" : "intermediate",
       "type" : "multiple_choice",
+      "proficiency" : "intermediate",
       "explanation" : "Optional chaining allows accessing multiple optional properties in a single expression, returning `nil` if any optional in the chain is `nil`."
     },
     {
@@ -98,9 +84,23 @@
         "As an enum with `none` and `some` cases",
         "As a struct that wraps values"
       ],
-      "proficiency" : "intermediate",
       "type" : "multiple_choice",
+      "proficiency" : "intermediate",
       "explanation" : "Optionals are implemented as an enum with cases `.none` and `.some`, allowing values to be either present or absent in a type-safe way."
     }
-  ]
+  ],
+  "metadata" : {
+    "title" : "Optionals and Unwrapping in Swift",
+    "tags" : [
+      "swift",
+      "optionals",
+      "unwrapping",
+      "optional chaining",
+      "guard let",
+      "if let",
+      "nil coalescing",
+      "swift programming"
+    ],
+    "description" : "A comprehensive lesson on the use of optionals in Swift, including unwrapping techniques and underlying implementation details."
+  }
 }

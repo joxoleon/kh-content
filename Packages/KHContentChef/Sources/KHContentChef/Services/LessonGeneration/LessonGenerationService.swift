@@ -103,9 +103,13 @@ final class LessonGenerationService: LessonGenerationServiceProtocol {
 
     func generateLesson(input: LessonGenerationInput) async throws -> URL {
         
+        printGreen("Generating lesson with title: \(input.title) and focus: \(input.description)")
         // Prepare prompt - Factory is not injected and I don't give a fuck
         let prompt = try PromptFactory.generatePrompt(for: .lesson(title: input.title, focus: input.description))
 
+        printGreen("Sending request to OpenAI")
+        let spinner = Spinner()
+        spinner.start()
         // Send API request
         let response = try await apiService.sendPrompt(
             request: PromptRequest(
@@ -114,29 +118,39 @@ final class LessonGenerationService: LessonGenerationServiceProtocol {
                 temperature: config.temperature,
                 maxTokens: config.maxTokens
             ))
-
+        spinner.stop()
+        printGreen("Successfully returned OpenAI result!!!")
+        
         // Save raw response to temporary directory
+        print("Ensuring the directory exists")
+        try CLIUtility.ensureDirectoryExists(config.temporaryDirectory)
         let fileName = input.title.lowercased().replacingOccurrences(of: " ", with: "_")
         let tempLessonURL = config.temporaryDirectory.appendingPathComponent(
             "\(fileName).md")
+        print("tempLessonUrl: \(tempLessonURL.absoluteString)")
         try response.responseString.write(to: tempLessonURL, atomically: true, encoding: .utf8)
+        print("Saved lesson to temporary directory: \(tempLessonURL.path)")
 
         // Validate and parse lesson
+        print("Parsing lesson")
         let lesson: Lesson
         do {
             lesson = try parser.parseLesson(from: tempLessonURL)
         } catch {
             throw LessonGenerationError.invalidLesson("Lesson parsing failed: \(error)")
         }
+        print("Lesson parsed successfully")
 
         // Move to final output directory
-        let outputURL = config.outputDirectory.appendingPathComponent("\(lesson.metadata.id).json")
+        print("Moving lesson to output directory")
+        let outputURL = config.outputDirectory.appendingPathComponent("\(lesson.metadata.id).md")
         try FileManager.default.moveItem(at: tempLessonURL, to: outputURL)
+        printGreen("Lesson generated successfully at \(outputURL.path)!!")
 
         return outputURL
     }
 
-    // TODO: FUTUUUUURE! (I don't give a fuck)
+    // TODO: FUTUUUUURE!
 
     // /// Generate multiple lessons in batch
     // func generateLessons(inputs: [LessonGenerationInput], progress: ((Double) -> Void)?)
