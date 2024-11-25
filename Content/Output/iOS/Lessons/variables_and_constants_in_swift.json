@@ -1,17 +1,22 @@
 {
-  "metadata" : {
-    "title" : "Variables and Constants in Swift",
-    "tags" : [
-      "swift",
-      "variables",
-      "constants",
-      "let",
-      "var",
-      "iOS development",
-      "programming basics"
-    ],
-    "description" : "A lesson on the use of variables and constants in Swift, explaining the differences between 'let' and 'var' and guiding when to use each."
-  },
+  "sections" : [
+    {
+      "content" : "# Introduction to Variables and Constants in Swift\n\nIn Swift, **variables** and **constants** are fundamental to handling data. A **variable** is a named storage that holds a value which can be changed later, while a **constant** stores a value that cannot be altered once it’s assigned. Swift provides these distinctions through the keywords `var` for variables and `let` for constants, which both make code more readable and help prevent unintended modifications.\n\n> **Key Principle**: Use `let` for values that should remain constant, and `var` for values that need flexibility to change.\n\nChoosing between variables and constants is crucial for making Swift code safer and more predictable.",
+      "title" : "Variables and Constants in Swift Introduction"
+    },
+    {
+      "title" : "Variables and Constants in Swift",
+      "content" : "## Variables and Constants in Swift\n\n### 1. Declaring Variables with `var`\nTo declare a variable in Swift, use the `var` keyword. This creates a value that can be changed later in the program.\n\n#### Syntax:\n    var variableName = initialValue\n\n#### Example:\n    var age = 25\n    age = 26  \/\/ age can be modified later in the code\n\n**Best Practice**: Use `var` for values that will change over time, like a score in a game or a user's login state.\n\n### 2. Declaring Constants with `let`\nConstants are defined with `let` and hold values that cannot be modified once set. This is useful for defining values that represent fixed data, ensuring they remain consistent.\n\n#### Syntax:\n    let constantName = initialValue\n\n#### Example:\n    let birthYear = 1998\n    \/\/ birthYear cannot be changed after assignment\n\n**Best Practice**: Use `let` for values that should remain constant, such as mathematical constants or configuration values that shouldn’t change during runtime.\n\n### 3. Type Inference in Swift\nSwift automatically infers the data type when you assign a value. However, you can also explicitly specify the type.\n\n#### Example:\n    let pi: Double = 3.14159\n    var greeting: String = \"Hello\"\n\nIn the example above, `pi` is explicitly declared as `Double`, and `greeting` as `String`. Swift’s type inference often lets you omit type declarations for conciseness.\n\n### 4. Value Immutability with `let`\nConstants enhance immutability, making it clear when a value should stay the same, which aids in debugging and prevents accidental data changes.\n\n#### Example:\n    let maximumAttempts = 5\n    var currentAttempt = 1\n\nIn this example, `maximumAttempts` remains fixed, while `currentAttempt` changes with each retry.\n\n### 5. Deciding Between `let` and `var`\nChoosing `let` over `var` whenever possible promotes stability in code by ensuring values do not accidentally change, leading to fewer bugs and more predictable behavior.\n\n> **Tip**: Always start with `let`, and only switch to `var` if you genuinely need mutability."
+    },
+    {
+      "content" : "## Discussion: `let` vs `var`\n\nUsing `let` helps create a safer codebase by preventing unexpected changes. Constants simplify understanding as they signal that certain values will not change, whereas variables provide flexibility for values that evolve, like counters or temporary states.\n\n### Pros and Cons\n- **Using `let`**:\n  - **Pros**: Reduces bugs by enforcing immutability, improves code readability, and clarifies intent.\n  - **Cons**: Limits flexibility; unsuitable for values that must change.\n\n- **Using `var`**:\n  - **Pros**: Allows mutable values; ideal for scenarios where values change, such as loops and counters.\n  - **Cons**: Increases the risk of accidental changes, requiring caution.\n\nIn iOS development, constants (using `let`) are often used for fixed UI configurations or non-changing properties, while variables (using `var`) are reserved for data likely to evolve during the app’s lifecycle, such as a user’s score or current location.",
+      "title" : "Discussion"
+    },
+    {
+      "title" : "Key Takeaways",
+      "content" : "- **Use `let` for values that should remain unchanged**.\n- **Use `var` for values that need to be updated**.\n- **Starting with `let` by default improves code safety**.\n- **Constants simplify debugging by preventing unexpected modifications**.\n- **Variables provide flexibility, suitable for changing values**."
+    }
+  ],
   "questions" : [
     {
       "id" : "variables_and_constants_q1",
@@ -23,9 +28,9 @@
         "const",
         "mutable"
       ],
-      "proficiency" : "basic",
       "type" : "multiple_choice",
-      "explanation" : "In Swift, 'var' is used to declare variables that can change."
+      "explanation" : "In Swift, 'var' is used to declare variables that can change.",
+      "proficiency" : "basic"
     },
     {
       "id" : "variables_and_constants_q2",
@@ -45,14 +50,14 @@
       "id" : "variables_and_constants_q3",
       "question" : "When should you use 'let' instead of 'var'?",
       "correctAnswerIndex" : 1,
-      "explanation" : "Using 'let' is suitable when you want the value to remain constant and avoid accidental modification.",
-      "proficiency" : "basic",
       "answers" : [
         "When the value will change frequently",
         "When the value should remain constant",
         "When you are unsure of the value type",
         "When the value is optional"
       ],
+      "proficiency" : "basic",
+      "explanation" : "Using 'let' is suitable when you want the value to remain constant and avoid accidental modification.",
       "type" : "multiple_choice"
     },
     {
@@ -65,41 +70,36 @@
         "It assumes all constants are integers",
         "It infers the type only for variables, not constants"
       ],
-      "proficiency" : "basic",
       "type" : "multiple_choice",
+      "proficiency" : "basic",
       "explanation" : "Swift automatically infers the type based on the assigned value, even if the type is not explicitly specified."
     },
     {
       "id" : "variables_and_constants_q5",
       "question" : "What is a key benefit of using 'let' in Swift?",
       "correctAnswerIndex" : 1,
-      "explanation" : "Using 'let' helps prevent accidental changes by making values immutable, enhancing code safety and predictability.",
-      "type" : "multiple_choice",
       "answers" : [
         "It allows for type flexibility",
         "It prevents unintended changes to values",
         "It simplifies variable declarations",
         "It requires less memory than 'var'"
       ],
-      "proficiency" : "basic"
+      "type" : "multiple_choice",
+      "proficiency" : "basic",
+      "explanation" : "Using 'let' helps prevent accidental changes by making values immutable, enhancing code safety and predictability."
     }
   ],
-  "sections" : [
-    {
-      "title" : "Variables and Constants in Swift Introduction",
-      "content" : "# Introduction to Variables and Constants in Swift\n\nIn Swift, **variables** and **constants** are fundamental to handling data. A **variable** is a named storage that holds a value which can be changed later, while a **constant** stores a value that cannot be altered once it’s assigned. Swift provides these distinctions through the keywords `var` for variables and `let` for constants, which both make code more readable and help prevent unintended modifications.\n\n> **Key Principle**: Use `let` for values that should remain constant, and `var` for values that need flexibility to change.\n\nChoosing between variables and constants is crucial for making Swift code safer and more predictable."
-    },
-    {
-      "title" : "Variables and Constants in Swift",
-      "content" : "## Variables and Constants in Swift\n\n### 1. Declaring Variables with `var`\nTo declare a variable in Swift, use the `var` keyword. This creates a value that can be changed later in the program.\n\n#### Syntax:\n    var variableName = initialValue\n\n#### Example:\n    var age = 25\n    age = 26  \/\/ age can be modified later in the code\n\n**Best Practice**: Use `var` for values that will change over time, like a score in a game or a user's login state.\n\n### 2. Declaring Constants with `let`\nConstants are defined with `let` and hold values that cannot be modified once set. This is useful for defining values that represent fixed data, ensuring they remain consistent.\n\n#### Syntax:\n    let constantName = initialValue\n\n#### Example:\n    let birthYear = 1998\n    \/\/ birthYear cannot be changed after assignment\n\n**Best Practice**: Use `let` for values that should remain constant, such as mathematical constants or configuration values that shouldn’t change during runtime.\n\n### 3. Type Inference in Swift\nSwift automatically infers the data type when you assign a value. However, you can also explicitly specify the type.\n\n#### Example:\n    let pi: Double = 3.14159\n    var greeting: String = \"Hello\"\n\nIn the example above, `pi` is explicitly declared as `Double`, and `greeting` as `String`. Swift’s type inference often lets you omit type declarations for conciseness.\n\n### 4. Value Immutability with `let`\nConstants enhance immutability, making it clear when a value should stay the same, which aids in debugging and prevents accidental data changes.\n\n#### Example:\n    let maximumAttempts = 5\n    var currentAttempt = 1\n\nIn this example, `maximumAttempts` remains fixed, while `currentAttempt` changes with each retry.\n\n### 5. Deciding Between `let` and `var`\nChoosing `let` over `var` whenever possible promotes stability in code by ensuring values do not accidentally change, leading to fewer bugs and more predictable behavior.\n\n> **Tip**: Always start with `let`, and only switch to `var` if you genuinely need mutability."
-    },
-    {
-      "title" : "Discussion",
-      "content" : "## Discussion: `let` vs `var`\n\nUsing `let` helps create a safer codebase by preventing unexpected changes. Constants simplify understanding as they signal that certain values will not change, whereas variables provide flexibility for values that evolve, like counters or temporary states.\n\n### Pros and Cons\n- **Using `let`**:\n  - **Pros**: Reduces bugs by enforcing immutability, improves code readability, and clarifies intent.\n  - **Cons**: Limits flexibility; unsuitable for values that must change.\n\n- **Using `var`**:\n  - **Pros**: Allows mutable values; ideal for scenarios where values change, such as loops and counters.\n  - **Cons**: Increases the risk of accidental changes, requiring caution.\n\nIn iOS development, constants (using `let`) are often used for fixed UI configurations or non-changing properties, while variables (using `var`) are reserved for data likely to evolve during the app’s lifecycle, such as a user’s score or current location."
-    },
-    {
-      "content" : "- **Use `let` for values that should remain unchanged**.\n- **Use `var` for values that need to be updated**.\n- **Starting with `let` by default improves code safety**.\n- **Constants simplify debugging by preventing unexpected modifications**.\n- **Variables provide flexibility, suitable for changing values**.",
-      "title" : "Key Takeaways"
-    }
-  ]
+  "metadata" : {
+    "title" : "Variables and Constants in Swift",
+    "tags" : [
+      "swift",
+      "variables",
+      "constants",
+      "let",
+      "var",
+      "iOS development",
+      "programming basics"
+    ],
+    "description" : "A lesson on the use of variables and constants in Swift, explaining the differences between 'let' and 'var' and guiding when to use each."
+  }
 }

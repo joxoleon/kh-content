@@ -4,7 +4,6 @@
       "id" : "mvvm_architecture_ios_q1",
       "question" : "In the MVVM pattern, which component is responsible for managing business logic?",
       "correctAnswerIndex" : 1,
-      "explanation" : "The ViewModel holds business logic, keeping the View focused solely on UI presentation.",
       "answers" : [
         "View",
         "ViewModel",
@@ -12,20 +11,21 @@
         "Controller"
       ],
       "type" : "multiple_choice",
-      "proficiency" : "basic"
+      "proficiency" : "basic",
+      "explanation" : "The ViewModel holds business logic, keeping the View focused solely on UI presentation."
     },
     {
       "id" : "mvvm_architecture_ios_q2",
       "question" : "Which property wrapper in SwiftUI helps observe changes in the ViewModel?",
       "correctAnswerIndex" : 0,
-      "explanation" : "The @StateObject property wrapper creates and owns an instance of the ViewModel, observing changes for reactive UI updates.",
-      "proficiency" : "intermediate",
       "answers" : [
         "@StateObject",
         "@EnvironmentObject",
         "@Binding",
         "@Published"
       ],
+      "proficiency" : "intermediate",
+      "explanation" : "The @StateObject property wrapper creates and owns an instance of the ViewModel, observing changes for reactive UI updates.",
       "type" : "multiple_choice"
     },
     {
@@ -33,8 +33,8 @@
       "question" : "What is a potential disadvantage of MVVM in iOS development?",
       "correctAnswerIndex" : 1,
       "explanation" : "MVVM has an initial learning curve, especially for beginners, but is generally compatible with SwiftUI and enhances testability.",
-      "type" : "multiple_choice",
       "proficiency" : "advanced",
+      "type" : "multiple_choice",
       "answers" : [
         "It makes testing more difficult.",
         "It adds initial complexity for beginners.",
@@ -47,28 +47,28 @@
       "question" : "What does the Model component represent in MVVM?",
       "correctAnswerIndex" : 1,
       "explanation" : "The Model in MVVM encapsulates the app’s data and core business logic, separate from the UI.",
+      "proficiency" : "intermediate",
       "type" : "multiple_choice",
       "answers" : [
         "The application's UI elements",
         "The data and business logic",
         "The connection between Model and View",
         "The observable data-binding"
-      ],
-      "proficiency" : "intermediate"
+      ]
     },
     {
       "id" : "mvvm_architecture_ios_q5",
       "question" : "Which SwiftUI property wrapper would you use to share a single ViewModel across multiple Views?",
       "correctAnswerIndex" : 1,
-      "explanation" : "Using @EnvironmentObject allows a single ViewModel instance to be shared across multiple Views, enabling global data management.",
-      "type" : "multiple_choice",
       "answers" : [
         "@StateObject",
         "@EnvironmentObject",
         "@Binding",
         "@Published"
       ],
-      "proficiency" : "advanced"
+      "type" : "multiple_choice",
+      "proficiency" : "advanced",
+      "explanation" : "Using @EnvironmentObject allows a single ViewModel instance to be shared across multiple Views, enabling global data management."
     }
   ],
   "metadata" : {
@@ -93,12 +93,12 @@
       "title" : "MVVM Architecture for iOS Development using SwiftUI"
     },
     {
-      "title" : "Discussion",
-      "content" : "## Pros and Cons of MVVM in SwiftUI\n\n### Pros\n- **Enhanced Testability**: The ViewModel’s separation of concerns makes it easier to test the app’s business logic independently of the UI.\n- **Declarative and Reactive**: SwiftUI’s declarative syntax aligns well with MVVM, automatically updating the UI when the ViewModel’s state changes.\n- **Better Organization**: Splitting data, logic, and UI enhances code modularity and readability.\n\n### Cons\n- **Initial Learning Curve**: MVVM can be challenging for beginners due to the separation of roles and reactive programming.\n- **Complexity**: For smaller apps, MVVM might add unnecessary complexity. The benefits are more apparent in larger applications where modularity is essential.\n- **Increased Files and Code Overhead**: Following MVVM strictly can lead to more files and code, as each View may require its own ViewModel.\n\n### Common Use Cases\n- **Dynamic UI Updates**: MVVM is well-suited for applications with frequent UI updates based on state changes, such as real-time data feeds or user interactions.\n- **Separation of Logic**: MVVM is ideal for apps with complex logic and data processing needs, where keeping logic out of the UI is critical.\n\n### Comparison with Other Patterns\n- **MVC (Model-View-Controller)**: While MVC combines data and logic in the Controller, MVVM separates them, leading to better testability.\n- **VIPER**: MVVM is simpler than VIPER and more suited for declarative UI frameworks like SwiftUI, while VIPER is beneficial for large-scale, complex applications."
+      "content" : "## Pros and Cons of MVVM in SwiftUI\n\n### Pros\n- **Enhanced Testability**: The ViewModel’s separation of concerns makes it easier to test the app’s business logic independently of the UI.\n- **Declarative and Reactive**: SwiftUI’s declarative syntax aligns well with MVVM, automatically updating the UI when the ViewModel’s state changes.\n- **Better Organization**: Splitting data, logic, and UI enhances code modularity and readability.\n\n### Cons\n- **Initial Learning Curve**: MVVM can be challenging for beginners due to the separation of roles and reactive programming.\n- **Complexity**: For smaller apps, MVVM might add unnecessary complexity. The benefits are more apparent in larger applications where modularity is essential.\n- **Increased Files and Code Overhead**: Following MVVM strictly can lead to more files and code, as each View may require its own ViewModel.\n\n### Common Use Cases\n- **Dynamic UI Updates**: MVVM is well-suited for applications with frequent UI updates based on state changes, such as real-time data feeds or user interactions.\n- **Separation of Logic**: MVVM is ideal for apps with complex logic and data processing needs, where keeping logic out of the UI is critical.\n\n### Comparison with Other Patterns\n- **MVC (Model-View-Controller)**: While MVC combines data and logic in the Controller, MVVM separates them, leading to better testability.\n- **VIPER**: MVVM is simpler than VIPER and more suited for declarative UI frameworks like SwiftUI, while VIPER is beneficial for large-scale, complex applications.",
+      "title" : "Discussion"
     },
     {
-      "content" : "- **MVVM** is a design pattern that separates concerns by dividing the UI (View), business logic (Model), and data-binding logic (ViewModel).\n- **SwiftUI**'s declarative syntax and data-binding features make it highly compatible with the MVVM architecture.\n- The **ViewModel** connects the Model and View, holding business logic and state, which updates the UI reactively.\n- **Best practice**: Keep logic in the ViewModel, making Views as “dumb” as possible for cleaner, more modular code.\n- **MVVM** is ideal for applications with complex UI interactions or frequent data updates, promoting maintainability and testability.",
-      "title" : "Key Takeaways"
+      "title" : "Key Takeaways",
+      "content" : "- **MVVM** is a design pattern that separates concerns by dividing the UI (View), business logic (Model), and data-binding logic (ViewModel).\n- **SwiftUI**'s declarative syntax and data-binding features make it highly compatible with the MVVM architecture.\n- The **ViewModel** connects the Model and View, holding business logic and state, which updates the UI reactively.\n- **Best practice**: Keep logic in the ViewModel, making Views as “dumb” as possible for cleaner, more modular code.\n- **MVVM** is ideal for applications with complex UI interactions or frequent data updates, promoting maintainability and testability."
     }
   ]
 }

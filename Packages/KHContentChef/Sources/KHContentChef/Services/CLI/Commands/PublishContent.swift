@@ -7,18 +7,16 @@ struct PublishContent: ParsableCommand {
         abstract: "Parses and publishes content from a directory."
     )
 
-    @Argument(help: "The root path of the content directory.")
-    var contentPath: String
+    @Option(name: .shortAndLong, help: "The root input path of the content directory.")
+    var inputPath: String = "../../Content/Input/iOS" // This is the only way to specify a default value for an Option - so goddamn stupid
 
     @Option(name: .shortAndLong, help: "The output path for generated JSON files.")
-    var outputPath: String
-
-    private let fileManager: FileManager = .default
+    var outputPath: String = "../../Content/Output/iOS" // Default value
 
     func run() throws {
         print("Running PublishContent...")
 
-        let contentDirectory = URL(fileURLWithPath: contentPath)
+        let contentDirectory = URL(fileURLWithPath: inputPath)
         let outputDirectory = URL(fileURLWithPath: outputPath)
 
         // Ensure output directories exist
@@ -101,28 +99,3 @@ struct PublishContent: ParsableCommand {
     }
 }
 
-// MARK: - CLIUtility Enum
-
-enum CLIUtility {
-    static func ensureDirectoryExists(_ directory: URL) throws {
-        let fileManager = FileManager.default
-        if !fileManager.fileExists(atPath: directory.path) {
-            try fileManager.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)
-        }
-    }
-
-    static func saveJSON<T: Encodable>(_ object: T, to url: URL) throws {
-        let jsonData = try JSONEncoder().encode(object)
-        let prettyJsonData = try serializeToPrettyJSON(jsonData)
-        try writeJSONData(prettyJsonData, to: url)
-    }
-
-    static func serializeToPrettyJSON(_ data: Data) throws -> Data {
-        let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
-        return try JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
-    }
-
-    static func writeJSONData(_ data: Data, to url: URL) throws {
-        try data.write(to: url)
-    }
-}
