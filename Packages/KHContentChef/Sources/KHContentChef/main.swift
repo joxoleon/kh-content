@@ -6,6 +6,7 @@ struct ContentChef: ParsableCommand {
         abstract: "ContentChef is a CLI tool for processing and publishing content.",
         subcommands: [
             PublishContent.self,
+            GenerateLesson.self,
             GenerateLessons.self // Add other commands here
         ]
     )

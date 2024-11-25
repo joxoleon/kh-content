@@ -18,7 +18,6 @@ final class OpenAIAPIServiceTests: XCTestCase {
         guard let apiKey = ProcessInfo.processInfo.environment["OPENAI_API_KEY"] else {
             fatalError("API key not set in environment variables.")
         }
-        print("API Key: \(apiKey)")
         openAIService = OpenAIAPIService(apiKey: apiKey)
     }
 

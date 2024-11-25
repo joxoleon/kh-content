@@ -16,8 +16,8 @@ final class OpenAIAPIService: OpenAIAPIProtocol {
     }
     
     // MARK: - Unified Request Handler
-    private func sendRequest<T: Codable, U: Codable>(endpoint: String, requestBody: T) async throws -> U {
-        guard let url = URL(string: endpoint) else {
+    private func sendRequest<T: Codable, U: Codable>(requestBody: T) async throws -> U {
+        guard let url = URL(string: baseURL) else {
             throw OpenAIAPIError.invalidURL
         }
         
@@ -28,19 +28,11 @@ final class OpenAIAPIService: OpenAIAPIProtocol {
         
         do {
             urlRequest.httpBody = try JSONEncoder().encode(requestBody)
-            if let httpBody = urlRequest.httpBody, let bodyString = String(data: httpBody, encoding: .utf8) {
-                print("Request Payload: \(bodyString)")
-            }
         } catch {
             throw OpenAIAPIError.invalidRequestEncoding(error)
         }
         
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
-        
-        if let httpResponse = response as? HTTPURLResponse {
-            print("Response Status Code: \(httpResponse.statusCode)")
-            print("Response Headers: \(httpResponse.allHeaderFields)")
-        }
         
         guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
             throw OpenAIAPIError.invalidResponse
@@ -49,25 +41,23 @@ final class OpenAIAPIService: OpenAIAPIProtocol {
         do {
             return try JSONDecoder().decode(U.self, from: data)
         } catch {
-            print("Failed to decode response: \(error)")
             throw OpenAIAPIError.invalidResponseDecoding(error)
         }
     }
     
     // MARK: - Single Prompt Request
     func sendPrompt(request: PromptRequest) async throws -> SinglePromptResponse {
-        try await sendRequest(endpoint: baseURL, requestBody: request)
+        try await sendRequest(requestBody: request)
     }
 
     // MARK: - Batch Prompt Request
     func sendBatchPrompts(request: BatchPromptRequest) async throws -> BatchPromptResponse {
-        try await sendRequest(endpoint: baseURL, requestBody: request)
+        try await sendRequest(requestBody: request)
     }
 }
 
 // MARK: - Models
 
-// Single Prompt Request
 struct PromptRequest: Codable {
     let model: String
     let messages: [[String: String]]
@@ -84,15 +74,12 @@ struct PromptRequest: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case model
-        case messages
-        case temperature
+        case model, messages, temperature
         case maxTokens = "max_tokens"
         case n
     }
 }
 
-// Batch Prompt Request
 struct BatchPromptRequest: Codable {
     let model: String
     let messages: [[String: String]]
@@ -100,22 +87,14 @@ struct BatchPromptRequest: Codable {
     let maxTokens: Int
     
     enum CodingKeys: String, CodingKey {
-        case model
-        case messages
-        case temperature
+        case model, messages, temperature
         case maxTokens = "max_tokens"
     }
 }
 
-// Single Prompt Response
 struct SinglePromptResponse: Codable {
-
-    // MARK - Properties
-
     let responseString: String
     
-    // MARK: - Codable
-
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let choices = try container.decode([Choice].self, forKey: .choices)
@@ -142,13 +121,8 @@ struct SinglePromptResponse: Codable {
 
 // Batch Prompt Response
 struct BatchPromptResponse: Codable {
-    
-    // MARK - Properties
-
     let responses: [String]
     
-    // MARK: - Codable
-
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let choices = try container.decode([Choice].self, forKey: .choices)
