@@ -1,14 +1,14 @@
 ### Title/Topic:
-*MVVM Architecture for iOS Development using SwiftUI*
+**{{title}}**
 
 ### Focus:
-*Introduce the MVVM Architecture and explain how it can be implemented in iOS development using Swift/SwiftUI with examples.*
+**{{focus}}**
 
 ---
 
 ### Introduction to AI:
 
-You are creating a structured lesson on software engineering concepts for a learning app. This lesson will help users prepare for interviews and deepen their understanding of iOS development, software engineering, and architecture concepts. While the lesson library will eventually expand to cover advanced topics, the current focus is interview preparation for iOS and software engineering.
+You are creating a structured lesson on software engineering concepts for a learning app. This lesson will help users prepare for a Senior iOS Developer technical interview and deepen their understanding of iOS development, software engineering, and architecture concepts. While the lesson library will eventually expand to cover advanced topics, the current focus is interview preparation for iOS and software engineering (for a technical interview).
 
 ---
 

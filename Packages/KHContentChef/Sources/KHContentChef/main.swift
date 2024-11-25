@@ -8,7 +8,6 @@ struct ContentChef: ParsableCommand {
             PublishContent.self,
             GenerateLessons.self // Add other commands here
         ]
-        // defaultSubcommand: PublishContent.self
     )
 }
 

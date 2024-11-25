@@ -9,7 +9,7 @@ final class PromptFactory {
     // MARK: - Properties
     private static var prompts: [String: String] = [:]
     private static var isLoaded = false
-    private static let templatePath = URL(fileURLWithPath: "../../Content/TemplatePrompts/")
+    private static let templatePath = URL(fileURLWithPath: "/Users/jovanradivojsa/Desktop/workspace/ios/kh-content/Content/TemplatePrompts") // HARDCODED FOR TESTS!!!!!! FUCK THESE TESTS AND FUCK APPLE! If this ever makes it to some CI, have fun (although I know this is a message to myself)
 
     // MARK: - Public API
 
@@ -88,28 +88,3 @@ enum PromptFactoryError: Error, CustomStringConvertible {
         }
     }
 }
-
-// MARK: - Example Usage
-
-// #if DEBUG
-// do {
-//     let lessonPrompt = try PromptFactory.generatePrompt(for: .lesson(
-//         title: "MVVM Architecture for iOS Development",
-//         focus: "How to use MVVM in combination with SwiftUI."
-//     ))
-//     print("Generated Lesson Prompt:\n\(lessonPrompt)")
-
-//     let quickSummaryPrompt = try PromptFactory.generatePrompt(for: .quickSummary(
-//         topic: "Concurrency in Swift"
-//     ))
-//     print("Generated Quick Summary Prompt:\n\(quickSummaryPrompt)")
-
-//     let advancedAnalysisPrompt = try PromptFactory.generatePrompt(for: .advancedAnalysis(
-//         subject: "Blockchain Scalability",
-//         depth: "A technical deep dive into Layer 2 solutions."
-//     ))
-//     print("Generated Advanced Analysis Prompt:\n\(advancedAnalysisPrompt)")
-// } catch {
-//     print("Error generating prompt: \(error)")
-// }
-// #endif

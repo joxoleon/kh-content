@@ -2,23 +2,23 @@ import Foundation
 
 // MARK: - Protocol for the OpenAI API Service
 protocol OpenAIAPIProtocol {
-    func sendPrompt(request: PromptRequest, completion: @escaping (Result<PromptResponse, Error>) -> Void)
-    func sendBatchPrompts(requests: [PromptRequest], completion: @escaping (Result<[PromptResponse], Error>) -> Void)
+    func sendPrompt(request: PromptRequest) async throws -> SinglePromptResponse
+    func sendBatchPrompts(request: BatchPromptRequest) async throws -> BatchPromptResponse
 }
 
 // MARK: - OpenAI API Service
 final class OpenAIAPIService: OpenAIAPIProtocol {
     private let apiKey: String
-    private let baseURL = "https://api.openai.com/v1/chat/completions" // Update as necessary
+    private let baseURL = "https://api.openai.com/v1/chat/completions"
     
     init(apiKey: String) {
-        self.apiKey = apiKey
+        self.apiKey = apiKey.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
-    func sendPrompt(request: PromptRequest, completion: @escaping (Result<PromptResponse, Error>) -> Void) {
-        guard let url = URL(string: baseURL) else {
-            completion(.failure(OpenAIAPIError.invalidURL))
-            return
+    // MARK: - Unified Request Handler
+    private func sendRequest<T: Codable, U: Codable>(endpoint: String, requestBody: T) async throws -> U {
+        guard let url = URL(string: endpoint) else {
+            throw OpenAIAPIError.invalidURL
         }
         
         var urlRequest = URLRequest(url: url)
@@ -27,154 +27,137 @@ final class OpenAIAPIService: OpenAIAPIProtocol {
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         do {
-            urlRequest.httpBody = try JSONEncoder().encode(request)
+            urlRequest.httpBody = try JSONEncoder().encode(requestBody)
+            if let httpBody = urlRequest.httpBody, let bodyString = String(data: httpBody, encoding: .utf8) {
+                print("Request Payload: \(bodyString)")
+            }
         } catch {
-            completion(.failure(error))
-            return
+            throw OpenAIAPIError.invalidRequestEncoding(error)
         }
         
-        let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-                completion(.failure(OpenAIAPIError.invalidResponse))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(OpenAIAPIError.noData))
-                return
-            }
-            
-            do {
-                let response = try JSONDecoder().decode(PromptResponse.self, from: data)
-                completion(.success(response))
-            } catch {
-                completion(.failure(error))
-            }
+        let (data, response) = try await URLSession.shared.data(for: urlRequest)
+        
+        if let httpResponse = response as? HTTPURLResponse {
+            print("Response Status Code: \(httpResponse.statusCode)")
+            print("Response Headers: \(httpResponse.allHeaderFields)")
         }
         
-        task.resume()
-    }
-    
-    func sendBatchPrompts(requests: [PromptRequest], completion: @escaping (Result<[PromptResponse], Error>) -> Void) {
-        guard let url = URL(string: baseURL) else {
-            completion(.failure(OpenAIAPIError.invalidURL))
-            return
+        guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+            throw OpenAIAPIError.invalidResponse
         }
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        urlRequest.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        // Prepare batch request payload
-        let messages = requests.map { ["role": "user", "content": $0.prompt] }
-        let batchPayload: [String: Any] = [
-            "model": requests.first?.model ?? "gpt-4",
-            "messages": messages,
-            "temperature": requests.first?.temperature ?? 0.7,
-            "max_tokens": requests.first?.maxTokens ?? 100,
-            "n": 1 // Always 1 choice per prompt in batch mode
-        ]
         
         do {
-            urlRequest.httpBody = try JSONSerialization.data(withJSONObject: batchPayload, options: [])
+            return try JSONDecoder().decode(U.self, from: data)
         } catch {
-            completion(.failure(error))
-            return
+            print("Failed to decode response: \(error)")
+            throw OpenAIAPIError.invalidResponseDecoding(error)
         }
-        
-        let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-                completion(.failure(OpenAIAPIError.invalidResponse))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(OpenAIAPIError.noData))
-                return
-            }
-            
-            do {
-                let responseDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                let choices = responseDict?["choices"] as? [[String: Any]]
-                let responses = choices?.compactMap { choice -> PromptResponse? in
-                    guard let content = (choice["message"] as? [String: Any])?["content"] as? String else { return nil }
-                    return PromptResponse(responseString: content)
-                } ?? []
-                completion(.success(responses))
-            } catch {
-                completion(.failure(error))
-            }
-        }
-        
-        task.resume()
+    }
+    
+    // MARK: - Single Prompt Request
+    func sendPrompt(request: PromptRequest) async throws -> SinglePromptResponse {
+        try await sendRequest(endpoint: baseURL, requestBody: request)
+    }
+
+    // MARK: - Batch Prompt Request
+    func sendBatchPrompts(request: BatchPromptRequest) async throws -> BatchPromptResponse {
+        try await sendRequest(endpoint: baseURL, requestBody: request)
     }
 }
 
 // MARK: - Models
+
+// Single Prompt Request
 struct PromptRequest: Codable {
-
-    // MARK: - Properties
-
     let model: String
-    let prompt: String
+    let messages: [[String: String]]
     let temperature: Double
     let maxTokens: Int
-    let n: Int // Number of choices to generate (default: 1)
-    
-    // MARK: - Codable
+    let n: Int
 
+    init(model: String, prompt: String, temperature: Double, maxTokens: Int) {
+        self.model = model
+        self.messages = [["role": "user", "content": prompt]]
+        self.temperature = temperature
+        self.maxTokens = maxTokens
+        self.n = 1
+    }
+    
     enum CodingKeys: String, CodingKey {
         case model
-        case prompt = "messages"
+        case messages
         case temperature
         case maxTokens = "max_tokens"
         case n
     }
+}
+
+// Batch Prompt Request
+struct BatchPromptRequest: Codable {
+    let model: String
+    let messages: [[String: String]]
+    let temperature: Double
+    let maxTokens: Int
     
-    init(model: String, prompt: String, temperature: Double, maxTokens: Int, n: Int = 1) {
-        self.model = model
-        self.prompt = prompt
-        self.temperature = temperature
-        self.maxTokens = maxTokens
-        self.n = n
+    enum CodingKeys: String, CodingKey {
+        case model
+        case messages
+        case temperature
+        case maxTokens = "max_tokens"
     }
 }
 
-struct PromptResponse: Codable {
-    
-    // MARK: - Properties
+// Single Prompt Response
+struct SinglePromptResponse: Codable {
+
+    // MARK - Properties
 
     let responseString: String
-
-    // MARK: - Initialization
-
-    init(responseString: String) {
-        self.responseString = responseString
-    }
-
+    
     // MARK: - Codable
 
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        let choices = [Choice(message: Choice.Message(content: responseString))]
-        try container.encode(choices, forKey: .choices)
-    }
-    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let choices = try container.decode([Choice].self, forKey: .choices)
         self.responseString = choices.first?.message.content ?? ""
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode([Choice(message: Choice.Message(content: responseString))], forKey: .choices)
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case choices
+    }
+    
+    private struct Choice: Codable {
+        let message: Message
+        
+        struct Message: Codable {
+            let content: String
+        }
+    }
+}
+
+// Batch Prompt Response
+struct BatchPromptResponse: Codable {
+    
+    // MARK - Properties
+
+    let responses: [String]
+    
+    // MARK: - Codable
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let choices = try container.decode([Choice].self, forKey: .choices)
+        self.responses = choices.compactMap { $0.message.content }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(responses.map { Choice(message: Choice.Message(content: $0)) }, forKey: .choices)
     }
     
     private enum CodingKeys: String, CodingKey {
@@ -194,38 +177,6 @@ struct PromptResponse: Codable {
 enum OpenAIAPIError: Error {
     case invalidURL
     case invalidResponse
-    case noData
+    case invalidRequestEncoding(Error)
+    case invalidResponseDecoding(Error)
 }
-
-// // MARK: - Example Usage
-// #if DEBUG
-// let apiService = OpenAIAPIService(apiKey: "your-openai-api-key")
-
-// // Single Prompt Example
-// let singleRequest = PromptRequest(model: "gpt-4", prompt: "What is the capital of France?", temperature: 0.7, maxTokens: 100)
-// apiService.sendPrompt(request: singleRequest) { result in
-//     switch result {
-//     case .success(let response):
-//         print("Single Response: \(response.responseString)")
-//     case .failure(let error):
-//         print("Error: \(error)")
-//     }
-// }
-
-// // Batch Prompt Example
-// let batchRequests = [
-//     PromptRequest(model: "gpt-4", prompt: "Define artificial intelligence.", temperature: 0.7, maxTokens: 100),
-//     PromptRequest(model: "gpt-4", prompt: "Explain the theory of relativity.", temperature: 0.7, maxTokens: 100)
-// ]
-
-// apiService.sendBatchPrompts(requests: batchRequests) { result in
-//     switch result {
-//     case .success(let responses):
-//         for (index, response) in responses.enumerated() {
-//             print("Batch Response \(index + 1): \(response.responseString)")
-//         }
-//     case .failure(let error):
-//         print("Batch Error: \(error)")
-//     }
-// }
-// #endif
