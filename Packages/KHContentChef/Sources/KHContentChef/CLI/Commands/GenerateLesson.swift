@@ -15,13 +15,19 @@ struct GenerateLesson: ParsableCommand {
     @Option(name: .shortAndLong, help: "The focus of the lesson to generate.")
     var focus: String
 
-    func run() throws {
+    func run() async throws {
+        print("Generating lesson with title: \(title) and focus: \(focus)")
 
+        // Load the config file
+        let config = try LessonGenerationConfig.load(from: URL(fileURLWithPath: configPath))
+
+        // Generate the lesson
+        try await generateLesson(config: config)
     }
 
     // MARK: - Private Methods
 
-    private func generateLEsson(config: LessonGenerationConfig) async throws {
+    private func generateLesson(config: LessonGenerationConfig) async throws {
         let service = LessonGenerationService(config: config)
         let lessonFileUrl = try await service.generateLesson(input: LessonGenerationInput(title: title, description: focus))
         print("Lesson generated successfully at \(lessonFileUrl.path)")

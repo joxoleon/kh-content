@@ -1,2 +1,7 @@
 {
+    "temporaryDirectory": "/var/tmp/contentChef",
+    "outputDirectory": "../../Content/Input/iOS/Lessons",
+    "model": "gpt-4o",
+    "temperature": 0.7,
+    "maxTokens": 2000
 }

@@ -8,7 +8,7 @@ struct LessonGenerationInput {
     let description: String
 }
 
-struct LessonGenerationConfig {
+struct LessonGenerationConfig: Codable {
     let temporaryDirectory: URL
     let outputDirectory: URL
     let model: String
@@ -27,6 +27,40 @@ struct LessonGenerationConfig {
         self.model = model
         self.temperature = temperature
         self.maxTokens = maxTokens
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case temporaryDirectory
+        case outputDirectory
+        case model
+        case temperature
+        case maxTokens
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let temporaryDirectoryString = try container.decode(String.self, forKey: .temporaryDirectory)
+        let outputDirectoryString = try container.decode(String.self, forKey: .outputDirectory)
+        self.temporaryDirectory = URL(fileURLWithPath: temporaryDirectoryString)
+        self.outputDirectory = URL(fileURLWithPath: outputDirectoryString)
+        self.model = try container.decode(String.self, forKey: .model)
+        self.temperature = try container.decode(Double.self, forKey: .temperature)
+        self.maxTokens = try container.decode(Int.self, forKey: .maxTokens)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(temporaryDirectory.path, forKey: .temporaryDirectory)
+        try container.encode(outputDirectory.path, forKey: .outputDirectory)
+        try container.encode(model, forKey: .model)
+        try container.encode(temperature, forKey: .temperature)
+        try container.encode(maxTokens, forKey: .maxTokens)
+    }
+
+    static func load(from url: URL) throws -> LessonGenerationConfig {
+        let data = try Data(contentsOf: url)
+        let decoder = JSONDecoder()
+        return try decoder.decode(LessonGenerationConfig.self, from: data)
     }
 }
 
