@@ -8,11 +8,13 @@ public enum ContentLocationConstants {
     static var configDir: String { return "\(contentDir)/Config" }
     static var lessonRawContentDir: String { return "\(contentDir)/Input/iOS/Lessons" }
     static var moduleRawContentDir: String { return "\(contentDir)/Input/iOS/Modules" }
+    static var topicBreakdownOutputDir: String { return "\(contentDir)/Input/iOS/Topics/BrokenDownTopics" }
 
     // Files
     static let lessonGenerationConfigFilePath = "\(configDir)/lesson_generation_config.json"
     static let rawLessonGeneratedContentListFilePath = "\(lessonRawContentDir)/lesson_content_list.json"
     static let batchLessonGenerationInputFilePath = "\(contentDir)/Input/Temp/batch_generate_lessons.json"
+    static let batchTopicGenerationInputFilePath = "\(contentDir)/Input/iOS/GenerationInput/topic_generation_input.json"
 }
 
 // MARK: - FILE MANAGER UTILITY

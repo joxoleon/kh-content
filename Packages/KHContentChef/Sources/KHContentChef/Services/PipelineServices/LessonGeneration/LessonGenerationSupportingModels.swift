@@ -39,7 +39,7 @@ struct LessonGenerationConfig: Codable, FilePersistable {
 
     init(
         temporaryDirectory: URL = URL(fileURLWithPath: "/var/tmp/contentChef"),
-        outputDirectory: URL = URL(fileURLWithPath: "/Users/jovanradivojsa/Desktop/workspace/ios/kh-content/Content/Input/iOS/Lessons"),
+        outputDirectory: URL = URL(fileURLWithPath: ContentLocationConstants.lessonRawContentDir),
         model: String = "gpt-4",
         temperature: Double = 0.7,
         maxTokens: Int = 1000

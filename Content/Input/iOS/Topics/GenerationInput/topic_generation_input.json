@@ -1,0 +1,12 @@
+{
+    "topics": [
+        {
+            "title": "Introduction to Swift",
+            "description": "Learn the basics of Swift programming language."
+        },
+        {
+            "title": "Advanced iOS Development",
+            "description": "Deep dive into advanced topics in iOS development."
+        }
+    ]
+}

@@ -101,7 +101,7 @@ final class LessonGenerationService: LessonGenerationServiceProtocol {
 
         try saveResponseToFile(response.responseString, at: tempLessonURL)
         do {
-            let lesson = try parser.parseLesson(from: tempLessonURL)
+            let _ = try parser.parseLesson(from: tempLessonURL)
             outputURL = config.outputDirectory.appendingPathComponent("\(input.filename).md")
             try FileManager.default.moveItem(at: tempLessonURL, to: outputURL)
         } catch {
