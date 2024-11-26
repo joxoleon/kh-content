@@ -41,7 +41,7 @@ You are creating a structured **lesson** on software engineering concepts for a 
    - **Sections**:
      - **Definition and Introduction**: 
        - Use the delimiter `=== Section: [Title] Introduction ===` to start this section (replace `[Title]` with the lesson title).
-       - Begin with a clear, descriptive heading for the introduction.
+       - **Start this section with a clear, descriptive heading for the introduction - use the title of the lesson for this.**
        - Provide a concise definition and introduction, focusing on the topic’s purpose and significance.
        - Emphasize key definitions or principles with quotation blocks (e.g., `> Dependency Injection is...`).
        - Use **bold** formatting to highlight important acronyms, terms, or phrases that should be easily memorable.
@@ -117,10 +117,11 @@ You are creating a structured **lesson** on software engineering concepts for a 
 ---
 
 ### Instructions to AI:
-
-Generate a markdown lesson with the following structure:
-
-Generate a markdown lesson with the following structure:
+- **Use clear, professional language suitable for an advanced audience (Senior iOS Engineer).**
+- **Ensure examples are easily understandable and demonstrate real-world applicability.**
+- **Structure paragraphs and explanations to be professional yet easy to read. Avoid large text blocks by formatting with readable spacing and breaking down complex explanations.**
+- **Start each lesson section with an appropriate heading of the same weight (let's say ##)**
+- **Generate a lesson with the following structure**:
 
 1. Metadata:
 

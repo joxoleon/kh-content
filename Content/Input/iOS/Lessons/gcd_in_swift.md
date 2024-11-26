@@ -2,227 +2,255 @@
 {| metadata |}
 {
     "title": "GCD in Swift",
-    "description": "A comprehensive lesson on Grand Central Dispatch (GCD) and its role in Swift for concurrent programming.",
+    "description": "A comprehensive lesson on Grand Central Dispatch (GCD) in Swift, covering its purpose, usage, and best practices.",
     "proficiency": "intermediate",
-    "tags": ["GCD", "Grand Central Dispatch", "concurrency", "iOS", "Swift", "multithreading", "asynchronous programming"]
+    "tags": ["GCD", "Swift", "concurrency", "iOS", "multithreading", "asynchronous", "performance"]
 }
 {| endmetadata |}
 
-=== Section: GCD Introduction ===
-# Introduction to GCD
-**Grand Central Dispatch (GCD)** is a powerful technology used in **Swift** for managing concurrent code execution. It enables developers to execute multiple tasks simultaneously, improving application performance and responsiveness. 
+=== Section: GCD in Swift Introduction ===
+# GCD in Swift
 
-GCD abstracts the complexities of thread management, allowing developers to focus on the tasks rather than how they run concurrently. 
+**Grand Central Dispatch** (GCD) is a powerful technology that enables developers to execute tasks concurrently in Swift applications. It simplifies the process of managing concurrent operations, allowing developers to improve the responsiveness and performance of their apps. The significance of GCD lies in its ability to handle multiple tasks simultaneously, leveraging multicore processors efficiently.
 
-> **GCD is fundamental for efficient asynchronous programming in iOS applications.**
+> GCD is designed to handle asynchronous execution of tasks, promoting better user experience by keeping the user interface responsive while performing heavy computations in the background.
 
-By leveraging GCD, developers can ensure that their applications remain fluid and responsive, especially during heavy processing tasks.
+With GCD, developers can write cleaner and more maintainable code, as it abstracts the low-level threading details, allowing them to focus on higher-level application logic. 
 
-=== EndSection: GCD Introduction ===
+=== EndSection: GCD in Swift Introduction ===
 
-=== Section: GCD ===
-# Understanding GCD
-Grand Central Dispatch simplifies the process of executing tasks concurrently, allowing developers to run code on background threads while keeping the main thread free for UI updates. Here are some key concepts and components of GCD:
+=== Section: GCD in Swift ===
+# Understanding GCD in Swift
 
-## Dispatch Queues
-GCD uses **dispatch queues** to manage the execution of tasks. There are two types of queues:
+## What is GCD?
 
-1. **Serial Queues**: Execute one task at a time in the order they are added. This is useful for tasks that need to be completed sequentially.
+Grand Central Dispatch is a **low-level API** that provides a way to execute tasks concurrently. It manages a pool of threads and allows developers to dispatch tasks to different queues based on their requirements.
 
-   Example:
-   
-       let serialQueue = DispatchQueue(label: "com.example.serialQueue")
-       serialQueue.async {
-           // Task 1
-           print("Task 1 started")
-           sleep(2)
-           print("Task 1 completed")
-       }
-       serialQueue.async {
-           // Task 2
-           print("Task 2 started")
-           sleep(1)
-           print("Task 2 completed")
-       }
+### Key Components of GCD:
 
-2. **Concurrent Queues**: Execute multiple tasks simultaneously. This is ideal for tasks that can run independently of each other.
+1. **Queues**: GCD uses queues to manage the execution of tasks. There are two main types of queues:
+   - **Serial Queues**: Execute one task at a time in the order they are added.
+   - **Concurrent Queues**: Execute multiple tasks simultaneously.
 
-   Example:
-   
-       let concurrentQueue = DispatchQueue(label: "com.example.concurrentQueue", attributes: .concurrent)
-       concurrentQueue.async {
-           // Task 1
-           print("Task 1 started")
-           sleep(2)
-           print("Task 1 completed")
-       }
-       concurrentQueue.async {
-           // Task 2
-           print("Task 2 started")
-           sleep(1)
-           print("Task 2 completed")
-       }
+2. **Main Queue**: This is a special serial queue that executes tasks on the main thread. It is crucial for updating the user interface, as UI updates must occur on the main thread.
 
-## Main Queue
-The **main queue** is a serial queue that runs on the main thread. It is crucial for UI updates since all UI-related tasks must be executed on the main thread. 
+3. **Global Queues**: These are concurrent queues provided by GCD that can be used for background tasks.
 
-Example:
-   
-    DispatchQueue.main.async {
-        // Update UI
-        print("Updating UI on the main thread")
-    }
+### Benefits of Using GCD:
 
-## Quality of Service (QoS)
-GCD allows developers to set the **Quality of Service** for different tasks, indicating the priority of execution. Priorities include:
+- **Performance**: GCD optimizes performance by efficiently managing threads and using system resources effectively.
+- **Simplicity**: It abstracts the complexity of thread management, making code easier to read and maintain.
+- **Responsiveness**: Keeps the user interface responsive by offloading heavy tasks to background threads.
 
-- **User-interactive**: For tasks that must complete immediately to ensure a responsive user experience.
-- **User-initiated**: For tasks initiated by the user that need to complete quickly.
-- **Utility**: For long-running tasks that may take time to complete, such as data processing.
-- **Background**: For tasks that the user is not directly aware of.
+### Basic Example of GCD Usage:
 
-Example:
-   
+To execute a task asynchronously on the global queue, you can use the following code:
+
     DispatchQueue.global(qos: .background).async {
-        // Long-running background task
-        print("Running a background task")
+        // Perform background work here
+        print("Background task running")
     }
 
-## Grouping Tasks
-GCD offers the ability to group tasks and synchronize their completion using `DispatchGroup`. This is useful when you need to wait for multiple tasks to finish before proceeding.
+To update the UI after the background task completes, switch back to the main queue:
 
-Example:
-   
-    let group = DispatchGroup()
+    DispatchQueue.main.async {
+        // Update UI here
+        print("UI updated")
+    }
+
+### Using Serial and Concurrent Queues:
+
+#### Serial Queue Example:
+
+    let serialQueue = DispatchQueue(label: "com.example.serialQueue")
     
-    group.enter()
-    DispatchQueue.global().async {
-        // Task 1
+    serialQueue.async {
         print("Task 1 started")
-        sleep(1)
-        print("Task 1 completed")
-        group.leave()
-    }
-    
-    group.enter()
-    DispatchQueue.global().async {
-        // Task 2
-        print("Task 2 started")
         sleep(2)
+        print("Task 1 completed")
+    }
+
+    serialQueue.async {
+        print("Task 2 started")
+        sleep(1)
         print("Task 2 completed")
-        group.leave()
     }
+
+*Output will show Task 1 completes before Task 2 starts due to serial execution.*
+
+#### Concurrent Queue Example:
+
+    let concurrentQueue = DispatchQueue(label: "com.example.concurrentQueue", attributes: .concurrent)
     
-    group.notify(queue: DispatchQueue.main) {
-        // All tasks completed
-        print("All tasks are completed")
+    concurrentQueue.async {
+        print("Concurrent Task 1 started")
+        sleep(2)
+        print("Concurrent Task 1 completed")
     }
 
-In conclusion, GCD is an essential tool in Swift that allows for efficient and effective management of concurrent tasks, ultimately leading to improved performance and user experience in iOS applications.
+    concurrentQueue.async {
+        print("Concurrent Task 2 started")
+        sleep(1)
+        print("Concurrent Task 2 completed")
+    }
 
-=== EndSection: GCD ===
+*Output may show both tasks running concurrently, with Task 2 completing before Task 1.*
+
+### Best Practices:
+
+- Always perform UI updates on the **main queue**.
+- Use background queues for heavy computations or network requests.
+- Avoid blocking the main queue to keep the user interface responsive.
+
+=== EndSection: GCD in Swift ===
 
 === Section: Discussion ===
 # Discussion
-**Pros of GCD**:
-- Simplifies concurrency management by abstracting thread handling.
-- Improves application responsiveness by offloading heavy tasks to background threads.
-- Reduces complexity in multi-threaded programming.
 
-**Cons of GCD**:
-- Requires a good understanding of concurrency to avoid pitfalls like race conditions.
-- Debugging issues in concurrent code can be more challenging than in serial code.
+### Pros of GCD:
 
-**Common Use Cases**:
-- **Networking**: Fetching data from APIs without blocking the UI.
-- **Data Processing**: Performing heavy computations in the background.
-- **Animations**: Keeping animations smooth by offloading non-UI tasks.
+- **Efficiency**: GCD manages threads automatically, optimizing resource usage.
+- **Ease of Use**: Simplifies concurrent programming with high-level abstractions.
+- **Scalability**: Adapts to the current hardware capabilities, utilizing all available processor cores.
 
-GCD is particularly useful in iOS development, where maintaining a responsive UI is critical. By effectively using GCD, developers can enhance the performance and user experience of their applications.
+### Cons of GCD:
+
+- **Complexity in Debugging**: Asynchronous code can be harder to debug due to its non-linear execution.
+- **Potential for Race Conditions**: Improper use of shared resources can lead to data corruption if not handled carefully.
+
+### Common Use Cases:
+
+GCD is commonly used in various scenarios, including:
+- Performing network requests in the background to keep the UI responsive.
+- Processing large data sets concurrently to improve performance.
+- Handling animations or UI updates that require quick responses from user interactions.
 
 === EndSection: Discussion ===
 
 === Section: Key Takeaways ===
 # Key Takeaways
-- **GCD** enables efficient concurrent programming in Swift.
-- There are two main types of **dispatch queues**: serial and concurrent.
-- The **main queue** is essential for UI updates in iOS applications.
-- **Quality of Service** (QoS) allows prioritization of tasks.
-- **Dispatch Groups** help synchronize the completion of multiple tasks.
+
+- **GCD** allows for efficient execution of tasks concurrently in Swift.
+- There are two main types of queues: **serial** and **concurrent**.
+- Always perform UI updates on the **main queue** to maintain responsiveness.
+- Use background queues for heavy computations to avoid blocking the main thread.
+- GCD simplifies concurrent programming but requires careful management to avoid race conditions.
 
 === EndSection: Key Takeaways ===
 
 {| questions |}
 [
     {
-        "id": "gcd_q1",
+        "id": "gcd_in_swift_q1",
         "type": "multiple_choice",
         "proficiency": "intermediate",
-        "question": "What is the primary purpose of Grand Central Dispatch (GCD)?",
+        "question": "What is the main purpose of GCD?",
         "answers": [
-            "To manage file storage",
-            "To handle concurrency in applications",
-            "To optimize memory usage",
-            "To simplify UI design"
+            "To manage user interface layouts",
+            "To execute tasks concurrently",
+            "To create and manage UI components",
+            "To perform data persistence"
         ],
         "correctAnswerIndex": 1,
-        "explanation": "GCD is designed to manage concurrency in applications, allowing multiple tasks to be executed simultaneously."
+        "explanation": "The main purpose of GCD is to execute tasks concurrently, allowing for better performance and responsiveness in applications."
     },
     {
-        "id": "gcd_q2",
+        "id": "gcd_in_swift_q2",
         "type": "multiple_choice",
         "proficiency": "intermediate",
-        "question": "Which queue type executes tasks one at a time?",
+        "question": "Which queue should be used for UI updates?",
         "answers": [
-            "Concurrent Queue",
-            "Serial Queue",
-            "Main Queue",
-            "Global Queue"
+            "Global queue",
+            "Main queue",
+            "Background queue",
+            "Concurrent queue"
         ],
         "correctAnswerIndex": 1,
-        "explanation": "A Serial Queue executes tasks one at a time in the order they are added."
+        "explanation": "The main queue should be used for UI updates as it executes tasks on the main thread."
     },
     {
-        "id": "gcd_q3",
+        "id": "gcd_in_swift_q3",
         "type": "multiple_choice",
         "proficiency": "intermediate",
-        "question": "Which QoS level should you use for tasks that need to be completed immediately for a responsive user experience?",
+        "question": "What type of queue executes tasks one at a time?",
         "answers": [
-            "User-initiated",
-            "User-interactive",
-            "Utility",
-            "Background"
+            "Concurrent queue",
+            "Global queue",
+            "Serial queue",
+            "Main queue"
         ],
-        "correctAnswerIndex": 1,
-        "explanation": "User-interactive QoS is used for tasks that require immediate attention to maintain a responsive user experience."
+        "correctAnswerIndex": 2,
+        "explanation": "A serial queue executes tasks one at a time in the order they are added."
     },
     {
-        "id": "gcd_q4",
+        "id": "gcd_in_swift_q4",
         "type": "multiple_choice",
         "proficiency": "intermediate",
-        "question": "What does DispatchGroup allow you to do?",
+        "question": "What does the 'async' method do in GCD?",
         "answers": [
-            "Manage memory usage",
-            "Synchronize the completion of multiple tasks",
-            "Handle user input",
-            "Create UI components"
+            "Executes a task synchronously",
+            "Executes a task asynchronously",
+            "Pauses the current thread",
+            "Creates a new thread"
         ],
         "correctAnswerIndex": 1,
-        "explanation": "DispatchGroup is used to synchronize the completion of multiple tasks, allowing you to perform actions once all tasks are finished."
+        "explanation": "The 'async' method executes a task asynchronously, allowing other tasks to run concurrently."
     },
     {
-        "id": "gcd_q5",
+        "id": "gcd_in_swift_q5",
         "type": "multiple_choice",
         "proficiency": "intermediate",
-        "question": "When should you use the main queue?",
+        "question": "Which of the following is NOT a type of GCD queue?",
         "answers": [
-            "For executing background tasks",
-            "For UI updates",
-            "For heavy computation",
-            "For data processing"
+            "Serial queue",
+            "Concurrent queue",
+            "Global queue",
+            "Static queue"
+        ],
+        "correctAnswerIndex": 3,
+        "explanation": "Static queue is not a type of GCD queue. The available types are serial, concurrent, and global queues."
+    },
+    {
+        "id": "gcd_in_swift_q6",
+        "type": "multiple_choice",
+        "proficiency": "intermediate",
+        "question": "What will happen if you block the main queue?",
+        "answers": [
+            "The application will crash",
+            "The user interface will freeze",
+            "All background tasks will stop",
+            "Nothing will change"
         ],
         "correctAnswerIndex": 1,
-        "explanation": "The main queue should be used for UI updates, as all UI-related tasks must run on the main thread."
+        "explanation": "Blocking the main queue will freeze the user interface, preventing any UI updates or interactions."
+    },
+    {
+        "id": "gcd_in_swift_q7",
+        "type": "multiple_choice",
+        "proficiency": "intermediate",
+        "question": "How does GCD handle task execution?",
+        "answers": [
+            "By creating a fixed number of threads",
+            "By managing a pool of threads dynamically",
+            "By assigning tasks to the main thread only",
+            "By executing tasks in a linear fashion"
+        ],
+        "correctAnswerIndex": 1,
+        "explanation": "GCD manages a pool of threads dynamically, optimizing resource usage based on available system resources."
+    },
+    {
+        "id": "gcd_in_swift_q8",
+        "type": "multiple_choice",
+        "proficiency": "intermediate",
+        "question": "What is a potential downside of using GCD?",
+        "answers": [
+            "Increased responsiveness",
+            "Easier debugging",
+            "Complexity in managing shared resources",
+            "Improved performance"
+        ],
+        "correctAnswerIndex": 2,
+        "explanation": "A potential downside of using GCD is the complexity that arises in managing shared resources, which can lead to race conditions."
     }
 ]
 {| endquestions |}
