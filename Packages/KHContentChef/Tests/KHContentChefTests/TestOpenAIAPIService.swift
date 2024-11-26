@@ -41,4 +41,32 @@ final class OpenAIAPIServiceTests: XCTestCase {
             XCTFail("API call failed with error: \(error)")
         }
     }
+    
+    func testSendBatchPrompt() async throws {
+        // Given
+        let batchPromptRequest = BatchPromptRequest(
+            model: "gpt-4o-mini",
+            prompts: [
+                "What is the capital of France?",
+                "What is the capital of Germany?",
+                "What is the capital of Italy?"
+            ],
+            temperature: 0.5,
+            maxTokens: 10
+        )
+
+        // When
+        do {
+            let responses = try await openAIService.sendBatchPrompts(request: batchPromptRequest)
+            print("Response count: \(responses.count)")
+
+            // Then
+            XCTAssertTrue(responses.count == 3, "There should be 3 responses.")
+            XCTAssertTrue(responses[0].responseString.lowercased().contains("paris"), "The response should contain 'Paris'.")
+            XCTAssertTrue(responses[1].responseString.lowercased().contains("berlin"), "The response should contain 'Berlin'.")
+            XCTAssertTrue(responses[2].responseString.lowercased().contains("rome"), "The response should contain 'Rome'.")
+        } catch {
+            XCTFail("API call failed with error: \(error)")
+        }
+    }
 }

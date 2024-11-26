@@ -7,7 +7,7 @@ struct GenerateLesson: ParsableCommand {
     )
 
     @Option(name: .shortAndLong, help: "The config file path used for the LessonGenerationService.")
-    var configPath: String = "../../Content/Config/lesson_generation_config.json"
+    var configPath: String = "/Users/jovanradivojsa/Desktop/workspace/ios/kh-content/Content/Config/lesson_generation_config.json"
 
     @Option(name: .shortAndLong, help: "The title of the lesson to generate.")
     var title: String

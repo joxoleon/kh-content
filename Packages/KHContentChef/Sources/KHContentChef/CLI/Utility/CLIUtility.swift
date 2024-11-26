@@ -24,6 +24,16 @@ enum CLIUtility {
     }
 }
 
+enum FileManagerUtility {
+    static func moveItemOverwrite(from sourceURL: URL, to destinationURL: URL) throws {
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: destinationURL.path) {
+            try fileManager.removeItem(at: destinationURL)
+        }
+        try fileManager.moveItem(at: sourceURL, to: destinationURL)
+    }
+}
+
 func printGreen(_ message: String) {
     print("\u{001B}[0;32m\(message)\u{001B}[0;0m")
 }

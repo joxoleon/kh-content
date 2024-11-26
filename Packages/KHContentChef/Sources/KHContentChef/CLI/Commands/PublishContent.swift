@@ -8,10 +8,10 @@ struct PublishContent: ParsableCommand {
     )
 
     @Option(name: .shortAndLong, help: "The root input path of the content directory.")
-    var inputPath: String = "../../Content/Input/iOS" // This is the only way to specify a default value for an Option - so goddamn stupid
+    var inputPath: String = "/Users/jovanradivojsa/Desktop/workspace/ios/kh-content/Content/Input/iOS" // This is the only way to specify a default value for an Option - so goddamn stupid
 
     @Option(name: .shortAndLong, help: "The output path for generated JSON files.")
-    var outputPath: String = "../../Content/Output/iOS" // Default value
+    var outputPath: String = "/Users/jovanradivojsa/Desktop/workspace/ios/kh-content/Content/Output/iOS" // Default value
 
     func run() throws {
         print("Running PublishContent...")

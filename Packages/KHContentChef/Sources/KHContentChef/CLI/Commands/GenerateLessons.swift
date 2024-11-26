@@ -7,10 +7,10 @@ struct GenerateLessons: ParsableCommand {
     )
 
     @Option(name: .shortAndLong, help: "The config file path used for the LessonGenerationService.")
-    var configPath: String = "../../Content/Config/lesson_generation_config.json"
+    var configPath: String = "/Users/jovanradivojsa/Desktop/workspace/ios/kh-content/Content/Config/lesson_generation_config.json"
 
     @Option(name: .shortAndLong, help: "The batch input file path that lists the lessons to generate.")
-    var batchInputFile: String = "../../Content/Input/Temp/batch_generate_lessons.json"
+    var batchInputFile: String = "/Users/jovanradivojsa/Desktop/workspace/ios/kh-content/Content/Input/Temp/batch_generate_lessons.json"
 
     func run() throws {
 
