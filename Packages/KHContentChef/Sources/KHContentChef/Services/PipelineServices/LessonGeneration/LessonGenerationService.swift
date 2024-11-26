@@ -1,23 +1,6 @@
 import Foundation
 import KHContentSource
 
-// MARK: - Supporting Models
-
-struct LessonGenerationInput: Codable {
-    let title: String
-    let description: String
-}
-
-struct BatchLessonGenerationInput: Codable {
-    let lessons: [LessonGenerationInput]
-
-    static func load(from url: URL) throws -> BatchLessonGenerationInput {
-        let data = try Data(contentsOf: url)
-        let decoder = JSONDecoder()
-        return try decoder.decode(BatchLessonGenerationInput.self, from: data)
-    }
-}
-
 // MARK: - Errors
 
 enum LessonGenerationError: Error {

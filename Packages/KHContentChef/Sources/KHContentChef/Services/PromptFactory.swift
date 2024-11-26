@@ -2,6 +2,7 @@ import Foundation
 
 enum PromptType {
     case lesson(title: String, focus: String)
+    case topic(title: String, focus: String)
 }
 
 final class PromptFactory {
@@ -27,6 +28,12 @@ final class PromptFactory {
                 throw PromptFactoryError.missingTemplate("lesson")
             }
             return injectParameters(template: template, with: ["title": title, "focus": focus])
+
+        case .topic(let title, let focus): 
+            guard let template = prompts["topic_breakdown"] else {
+                throw PromptFactoryError.missingTemplate("topic_breakdown")
+            }
+            return injectParameters(template: template, with: ["title": title, "focus": focus])
         }
     }
 
@@ -45,7 +52,10 @@ final class PromptFactory {
         for file in files {
             let fileURL = templatePath.appendingPathComponent(file)
             guard file.hasSuffix(".md") else { continue } // Only load markdown files
-            let templateName = file.replacingOccurrences(of: ".md", with: "").lowercased()
+            let templateName = file
+                .replacingOccurrences(of: ".md", with: "")
+                .replacingOccurrences(of: " ", with: "_")
+                .lowercased()
 
             do {
                 let content = try String(contentsOf: fileURL, encoding: .utf8)

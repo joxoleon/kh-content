@@ -1,12 +1,64 @@
 {
-    "lessons": [
+  "lessons": [
       {
-        "title": "GCD in Swift",
-        "description": "Deep dive into how GCD works in Swift."
+          "title": "Introduction to Concurrency in Swift",
+          "description": "An overview of concurrency in Swift, including the importance of concurrency in modern app development, challenges of multithreading, and the role of Swift's concurrency model."
       },
       {
-        "title": "Task in Swift",
-        "description": "Learn how to use Tasks in Swift and how to invoke async functions from sync functions."
+          "title": "Understanding Threads, Queues, and Tasks",
+          "description": "A foundational lesson on how threads, queues, and tasks work in Swift. Covers the differences between main and background threads, serial vs. concurrent queues, and their use cases in iOS development."
+      },
+      {
+          "title": "Grand Central Dispatch (GCD): Basics",
+          "description": "Learn the fundamentals of Grand Central Dispatch, including how to use dispatch queues, async and sync operations, and task prioritization to manage concurrent workloads."
+      },
+      {
+          "title": "Advanced GCD Techniques",
+          "description": "Delve deeper into GCD with topics like dispatch groups, barriers, semaphores, and managing thread safety. Includes practical examples and common pitfalls."
+      },
+      {
+          "title": "Introduction to Swift's Async/Await",
+          "description": "Explore the async/await syntax introduced in Swift, understanding its role in simplifying asynchronous programming. Covers basic syntax, examples, and how it compares to previous techniques."
+      },
+      {
+          "title": "Task-Based Concurrency in Swift",
+          "description": "Learn about Swift's task-based concurrency model, including tasks, task groups, and structured concurrency. Understand how these concepts ensure safer and more manageable concurrent code."
+      },
+      {
+          "title": "Actor Model in Swift",
+          "description": "Understand the actor model introduced in Swift to manage shared mutable state. Topics include defining actors, actor isolation, and practical use cases for actors in iOS development."
+      },
+      {
+          "title": "Combining GCD and Swift Concurrency",
+          "description": "Discover how to integrate legacy GCD code with Swift's new concurrency model. Covers techniques to bridge the gap and ensure smooth interoperability."
+      },
+      {
+          "title": "Concurrency and Memory Management",
+          "description": "Learn about memory management challenges in concurrent programming, including race conditions, deadlocks, and techniques to avoid memory leaks in Swift."
+      },
+      {
+          "title": "Debugging Concurrency Issues",
+          "description": "A guide to identifying and resolving concurrency-related bugs using Xcode's tools, such as the Thread Sanitizer and Instruments."
+      },
+      {
+          "title": "Concurrency Design Patterns in iOS",
+          "description": "Explore common design patterns for concurrency in iOS development, including producer-consumer, delegation, and observer patterns."
+      },
+      {
+          "title": "Concurrency in Combine Framework",
+          "description": "Understand how Combine integrates with Swift's concurrency features. Topics include using publishers and subscribers in a concurrent environment."
+      },
+      {
+          "title": "Concurrency in SwiftUI",
+          "description": "Learn how to handle concurrency in SwiftUI, focusing on async data loading, state management, and ensuring a responsive UI."
+      },
+      {
+          "title": "Concurrency Best Practices for iOS Developers",
+          "description": "A comprehensive list of best practices for writing efficient, maintainable, and safe concurrent code in iOS projects."
+      },
+      {
+          "title": "Concurrency for Technical Interviews",
+          "description": "Tailored guidance on how to prepare for concurrency-related interview questions, including examples, common scenarios, and tips for explaining solutions effectively."
       }
-    ]
-  }
+  ]
+}

@@ -25,6 +25,7 @@ final class OpenAIAPIService: OpenAIAPIProtocol {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.timeoutInterval = 400 // Increase the timeout interval to 60 seconds
         
         urlRequest.httpBody = try JSONEncoder().encode(requestBody)
         
