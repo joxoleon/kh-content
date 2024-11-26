@@ -11,6 +11,7 @@ final class PromptFactory {
     private static var prompts: [String: String] = [:]
     private static var isLoaded = false
     private static let templatePath = URL(fileURLWithPath: "/Users/jovanradivojsa/Desktop/workspace/ios/kh-content/Content/TemplatePrompts") // HARDCODED FOR TESTS!!!!!! FUCK THESE TESTS AND FUCK APPLE! If this ever makes it to some CI, have fun (although I know this is a message to myself)
+    private static let queue = DispatchQueue(label: "com.promptfactory.queue", attributes: .concurrent)
 
     // MARK: - Public API
 
@@ -22,18 +23,20 @@ final class PromptFactory {
         try loadPromptsIfNeeded()
 
         // Handle the specific prompt type
-        switch type {
-        case .lesson(let title, let focus):
-            guard let template = prompts["lesson"] else {
-                throw PromptFactoryError.missingTemplate("lesson")
-            }
-            return injectParameters(template: template, with: ["title": title, "focus": focus])
+        return try queue.sync {
+            switch type {
+            case .lesson(let title, let focus):
+                guard let template = prompts["lesson"] else {
+                    throw PromptFactoryError.missingTemplate("lesson")
+                }
+                return injectParameters(template: template, with: ["title": title, "focus": focus])
 
-        case .topic(let title, let focus): 
-            guard let template = prompts["topic_breakdown"] else {
-                throw PromptFactoryError.missingTemplate("topic_breakdown")
+            case .topic(let title, let focus): 
+                guard let template = prompts["topic_breakdown"] else {
+                    throw PromptFactoryError.missingTemplate("topic_breakdown")
+                }
+                return injectParameters(template: template, with: ["title": title, "focus": focus])
             }
-            return injectParameters(template: template, with: ["title": title, "focus": focus])
         }
     }
 
@@ -41,31 +44,43 @@ final class PromptFactory {
 
     /// Loads all prompt templates lazily if not already loaded.
     private static func loadPromptsIfNeeded() throws {
-        guard !isLoaded else { return }
-
-        // Read files from the template directory
-        let fileManager = FileManager.default
-        guard let files = try? fileManager.contentsOfDirectory(atPath: templatePath.path) else {
-            throw PromptFactoryError.failedToLoadTemplates("Could not read files in directory \(templatePath.path)")
+        var shouldLoad = false
+        queue.sync {
+            shouldLoad = !isLoaded
         }
+        if shouldLoad {
+            try loadPrompts()
+        }
+    }
 
-        for file in files {
-            let fileURL = templatePath.appendingPathComponent(file)
-            guard file.hasSuffix(".md") else { continue } // Only load markdown files
-            let templateName = file
-                .replacingOccurrences(of: ".md", with: "")
-                .replacingOccurrences(of: " ", with: "_")
-                .lowercased()
+    private static func loadPrompts() throws {
+        try queue.sync(flags: .barrier) {
+            guard !isLoaded else { return }
 
-            do {
-                let content = try String(contentsOf: fileURL, encoding: .utf8)
-                prompts[templateName] = content
-            } catch {
-                throw PromptFactoryError.failedToLoadTemplates("Failed to load template \(file): \(error)")
+            // Read files from the template directory
+            let fileManager = FileManager.default
+            guard let files = try? fileManager.contentsOfDirectory(atPath: templatePath.path) else {
+                throw PromptFactoryError.failedToLoadTemplates("Could not read files in directory \(templatePath.path)")
             }
-        }
 
-        isLoaded = true
+            for file in files {
+                let fileURL = templatePath.appendingPathComponent(file)
+                guard file.hasSuffix(".md") else { continue } // Only load markdown files
+                let templateName = file
+                    .replacingOccurrences(of: ".md", with: "")
+                    .replacingOccurrences(of: " ", with: "_")
+                    .lowercased()
+
+                do {
+                    let content = try String(contentsOf: fileURL, encoding: .utf8)
+                    prompts[templateName] = content
+                } catch {
+                    throw PromptFactoryError.failedToLoadTemplates("Failed to load template \(file): \(error)")
+                }
+            }
+
+            isLoaded = true
+        }
     }
 
     /// Replaces placeholders in the format `{{key}}` within the template string.

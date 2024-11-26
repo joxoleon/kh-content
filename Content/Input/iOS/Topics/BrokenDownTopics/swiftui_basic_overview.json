@@ -1,0 +1,60 @@
+{
+  "description" : "A comprehensive guide to SwiftUI basics, including layout, view composition, declarative syntax, and state management for building iOS applications.",
+  "batchLessonGenerationInput" : {
+    "lessons" : [
+      {
+        "title" : "Introduction to SwiftUI",
+        "description" : "An overview of SwiftUI, including its purpose, advantages over UIKit, and the principles of declarative programming. This lesson sets the stage for understanding the framework's capabilities in building robust iOS applications."
+      },
+      {
+        "title" : "SwiftUI Views and Modifiers",
+        "description" : "Dive into the core components of SwiftUI: views and modifiers. Learn about the built-in views, how to compose them, and the use of modifiers to change appearance and behavior, enhancing the customization of user interfaces."
+      },
+      {
+        "title" : "Layout in SwiftUI",
+        "description" : "Explore the layout system in SwiftUI, including stacks (HStack, VStack, ZStack), geometry readers, and alignment guides. Understand how to create responsive designs that adapt to different screen sizes and orientations."
+      },
+      {
+        "description" : "Understand the declarative syntax that defines how the UI should look at any point in time. This lesson covers the implications of this approach and how it simplifies UI updates compared to imperative programming.",
+        "title" : "Declarative Syntax in SwiftUI"
+      },
+      {
+        "title" : "State Management in SwiftUI",
+        "description" : "Learn about state management in SwiftUI, focusing on @State, @Binding, and @ObservedObject. This lesson explains how to manage and propagate state changes throughout your application effectively."
+      },
+      {
+        "description" : "Examine the data flow architecture in SwiftUI, including how data is passed between views using properties, how to use environment objects, and the importance of maintaining a unidirectional data flow for predictable UI behavior.",
+        "title" : "Data Flow in SwiftUI"
+      },
+      {
+        "description" : "Discover how to implement navigation within a SwiftUI application using NavigationView and NavigationLink. This lesson covers best practices for navigating between views and passing data along the navigation stack.",
+        "title" : "SwiftUI Navigation"
+      },
+      {
+        "title" : "Lists and ForEach in SwiftUI",
+        "description" : "Learn how to display collections of data using List and ForEach in SwiftUI. This lesson focuses on dynamic content generation, handling selections, and customizing list rows for a better user experience."
+      },
+      {
+        "description" : "Explore the animation capabilities of SwiftUI, including implicit and explicit animations. This lesson demonstrates how to create engaging user experiences through smooth transitions and visual feedback.",
+        "title" : "Animations in SwiftUI"
+      },
+      {
+        "title" : "Integrating UIKit with SwiftUI",
+        "description" : "Understand how to leverage existing UIKit components within a SwiftUI application. This lesson covers the use of UIViewControllerRepresentable and UIViewRepresentable to bridge between the two frameworks."
+      },
+      {
+        "description" : "Learn the principles of testing SwiftUI views using XCTest. This lesson highlights how to write unit tests for view logic, ensuring your UI behaves as expected and adheres to best practices in software development.",
+        "title" : "Testing SwiftUI Views"
+      },
+      {
+        "description" : "Gain insights into making SwiftUI applications accessible to all users. This lesson covers accessibility features, modifiers, and best practices for ensuring your app is usable by individuals with disabilities.",
+        "title" : "Accessibility in SwiftUI"
+      },
+      {
+        "description" : "Explore advanced patterns in SwiftUI, including the MVVM architecture, custom view compositions, and leveraging Combine for reactive programming. This lesson prepares you for architecting complex applications.",
+        "title" : "Advanced SwiftUI Patterns"
+      }
+    ]
+  },
+  "title" : "SwiftUI: Basic Overview"
+}

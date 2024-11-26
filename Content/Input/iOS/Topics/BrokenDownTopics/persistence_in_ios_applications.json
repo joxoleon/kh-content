@@ -1,0 +1,56 @@
+{
+  "description" : "Learn about data persistence techniques in iOS, including UserDefaults, Core Data, SQLite, and modern persistence strategies.",
+  "batchLessonGenerationInput" : {
+    "lessons" : [
+      {
+        "description" : "Explore the concept of data persistence in iOS applications, covering why it is essential for app development. Understand the different types of data storage options available, including in-memory storage, file storage, and persistent storage solutions.",
+        "title" : "Introduction to Data Persistence in iOS"
+      },
+      {
+        "title" : "UserDefaults: Storing Simple Data",
+        "description" : "Learn how to use UserDefaults for storing small amounts of data, such as user preferences and settings. This lesson covers the types of data that can be stored, how to read and write values, and best practices to ensure efficient usage."
+      },
+      {
+        "title" : "Core Data: Introduction and Setup",
+        "description" : "Gain an understanding of Core Data, Apple's framework for managing object graphs. This lesson covers the basics of setting up Core Data in an iOS project, including how to create a data model and configure the persistent store."
+      },
+      {
+        "description" : "Dive deeper into Core Data by learning how to fetch data from the persistent store and display it in the app. This lesson covers NSFetchRequest, predicates for filtering data, and how to handle results efficiently.",
+        "title" : "Core Data: Fetching and Displaying Data"
+      },
+      {
+        "description" : "Explore how to define relationships between entities in Core Data. This lesson includes creating one-to-one and one-to-many relationships, as well as the implications of these relationships on data integrity and fetching strategies.",
+        "title" : "Core Data: Relationships and Data Modeling"
+      },
+      {
+        "description" : "Understand SQLite, a lightweight database engine, and how to integrate it into your iOS projects. This lesson covers the basics of creating a SQLite database, performing CRUD operations, and using SQLite directly through SQL queries.",
+        "title" : "SQLite: Overview and Integration in iOS"
+      },
+      {
+        "description" : "Compare and contrast SQLite and Core Data, discussing the scenarios in which each is most appropriate. This lesson focuses on performance considerations, ease of use, and the complexity of data models.",
+        "title" : "SQLite vs Core Data: When to Use Which"
+      },
+      {
+        "description" : "Learn about modern data persistence solutions like Realm and cloud-based options. This lesson covers the benefits of using these technologies, including performance, ease of use, and synchronization capabilities.",
+        "title" : "Modern Persistence Strategies: Realm and Cloud Storage"
+      },
+      {
+        "title" : "Handling Data Migrations in Core Data",
+        "description" : "Explore how to manage data migrations in Core Data when your data model changes. This lesson details lightweight migrations, mapping models, and best practices for ensuring data integrity during updates."
+      },
+      {
+        "title" : "Concurrency in Core Data",
+        "description" : "Understand how to handle concurrency in Core Data to ensure smooth performance in your iOS applications. This lesson covers the use of background contexts, merging changes, and resolving conflicts."
+      },
+      {
+        "title" : "Best Practices for Data Persistence in iOS",
+        "description" : "Review best practices for implementing data persistence in iOS applications. This lesson includes strategies for optimizing performance, maintaining data integrity, organizing data models, and ensuring a smooth user experience."
+      },
+      {
+        "description" : "Learn how to effectively test data persistence mechanisms in your iOS apps. This lesson covers unit testing with UserDefaults, Core Data, and SQLite, as well as strategies for mocking and validating data storage.",
+        "title" : "Testing Data Persistence in iOS Applications"
+      }
+    ]
+  },
+  "title" : "Persistence in iOS Applications"
+}

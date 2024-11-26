@@ -1,0 +1,60 @@
+{
+  "description" : "In-depth guide to Core Data, including data modeling, CRUD operations, relationships, and performance optimization.",
+  "batchLessonGenerationInput" : {
+    "lessons" : [
+      {
+        "description" : "This lesson provides an overview of Core Data, its purpose, and its role in iOS app development. It covers the benefits of using Core Data for data management, including persistence, data modeling, and integration with Swift.",
+        "title" : "Introduction to Core Data"
+      },
+      {
+        "title" : "Core Data Stack",
+        "description" : "Learn about the components of the Core Data stack, including NSManagedObjectContext, NSManagedObjectModel, and NSPersistentStoreCoordinator. This lesson explains how these components interact to manage data in your application."
+      },
+      {
+        "description" : "Explore the process of creating a data model in Core Data. This lesson discusses entities, attributes, relationships, and how to use the data model editor in Xcode to visually design your data structure.",
+        "title" : "Data Modeling in Core Data"
+      },
+      {
+        "description" : "Understand how to create and manage NSManagedObject subclasses for your entities. This lesson covers the importance of custom subclasses, property declarations, and how to implement custom logic within these classes.",
+        "title" : "Creating and Managing NSManagedObject Subclasses"
+      },
+      {
+        "title" : "CRUD Operations with Core Data",
+        "description" : "Dive into the essential CRUD (Create, Read, Update, Delete) operations using Core Data. This lesson details how to perform each operation, including saving context, fetching records, and deleting entities."
+      },
+      {
+        "title" : "Fetching Data with NSPredicate",
+        "description" : "Learn how to effectively fetch data from Core Data using NSPredicate. This lesson covers the syntax and various filtering options available, helping you to retrieve specific data sets according to your criteria."
+      },
+      {
+        "title" : "Understanding Relationships in Core Data",
+        "description" : "This lesson explores the concept of relationships in Core Data, including one-to-one, one-to-many, and many-to-many relationships. Learn how to define and manage relationships in your data model."
+      },
+      {
+        "description" : "Gain insights into data model versioning and migration strategies in Core Data. This lesson discusses how to handle changes in your data model and ensure a smooth transition for existing data.",
+        "title" : "Data Migration in Core Data"
+      },
+      {
+        "description" : "Focus on performance optimization techniques for Core Data. This lesson covers batching, faulting, and prefetching strategies to enhance the efficiency of your data operations.",
+        "title" : "Performance Optimization in Core Data"
+      },
+      {
+        "title" : "Concurrency and Core Data",
+        "description" : "Learn about concurrency management in Core Data, including best practices for using multiple contexts and ensuring thread safety. This lesson emphasizes the importance of managing data access across different threads."
+      },
+      {
+        "title" : "Using Core Data with SwiftUI",
+        "description" : "Explore how to integrate Core Data with SwiftUI. This lesson covers the use of @FetchRequest, managing data in views, and updating the UI in response to Core Data changes."
+      },
+      {
+        "title" : "Testing Core Data Applications",
+        "description" : "Understand the significance of testing in Core Data applications. This lesson discusses strategies for unit testing Core Data stack, managing mock data, and ensuring data integrity through tests."
+      },
+      {
+        "description" : "Learn how to enable iCloud support in your Core Data applications. This lesson covers the setup process, handling conflicts, and the considerations needed for syncing data across devices.",
+        "title" : "Core Data and iCloud Integration"
+      }
+    ]
+  },
+  "title" : "Core Data Essentials"
+}

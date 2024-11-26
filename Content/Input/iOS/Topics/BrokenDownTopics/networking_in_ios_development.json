@@ -1,0 +1,56 @@
+{
+  "title" : "Networking in iOS Development",
+  "batchLessonGenerationInput" : {
+    "lessons" : [
+      {
+        "title" : "Introduction to Networking in iOS",
+        "description" : "This lesson provides an overview of networking in iOS development, including fundamental concepts such as the client-server model, protocols (HTTP\/HTTPS), and the importance of networking in mobile applications. It sets the stage for understanding how iOS interacts with web services."
+      },
+      {
+        "title" : "Understanding URLSession",
+        "description" : "Dive deep into URLSession, Apple's API for networking. This lesson covers the creation and configuration of URLSession, different session types (default, ephemeral, and background), and how to perform data tasks, download tasks, and upload tasks effectively."
+      },
+      {
+        "title" : "Making GET and POST Requests",
+        "description" : "Learn how to make GET and POST requests using URLSession. This lesson focuses on constructing URL requests, handling response data, and parsing JSON data into Swift models, emphasizing practical examples and common use cases."
+      },
+      {
+        "title" : "Handling RESTful APIs",
+        "description" : "This lesson focuses on integrating RESTful APIs into iOS applications. Topics include understanding REST principles, crafting requests, handling responses, and best practices for working with third-party APIs. Real-world examples will be provided."
+      },
+      {
+        "title" : "Error Handling in Networking",
+        "description" : "Explore strategies for error handling in networking tasks. This lesson discusses common networking errors, the importance of robust error handling, and how to gracefully manage failures using do-catch statements and completion handlers."
+      },
+      {
+        "title" : "Data Caching in iOS Networking",
+        "description" : "Understand how to implement caching for network requests in iOS applications. This lesson covers HTTP caching mechanisms, using NSURLCache, and strategies to improve performance by reducing redundant network calls."
+      },
+      {
+        "description" : "This lesson introduces Combine, Apple's framework for handling asynchronous events. Learn how to use Combine to manage network requests, handle responses, and chain multiple network calls, enhancing code readability and maintainability.",
+        "title" : "Using Combine for Networking"
+      },
+      {
+        "description" : "Delve into different methods of authentication for network requests, including Basic Auth, OAuth 2.0, and API keys. This lesson covers how to implement these authentication methods in your iOS applications, along with security best practices.",
+        "title" : "Authenticating Network Requests"
+      },
+      {
+        "title" : "Working with WebSockets in iOS",
+        "description" : "Explore WebSocket connections for real-time applications in iOS development. This lesson covers establishing WebSocket connections using URLSessionWebSocketTask, sending and receiving messages, and handling disconnections."
+      },
+      {
+        "description" : "Learn how to test network requests in iOS applications. This lesson discusses using XCTest for unit testing network code, mocking network responses, and ensuring that networking components behave as expected.",
+        "title" : "Testing Network Requests"
+      },
+      {
+        "title" : "Optimizing Networking Performance",
+        "description" : "This lesson focuses on techniques to optimize network performance in iOS apps. Topics include reducing latency, managing network bandwidth, and optimizing data transfer sizes and formats."
+      },
+      {
+        "description" : "Summarize best practices for networking in iOS development, including efficient use of resources, maintaining user experience during network calls, and adhering to security guidelines when handling sensitive data.",
+        "title" : "Best Practices for Networking in iOS"
+      }
+    ]
+  },
+  "description" : "Master networking concepts in iOS, including URLSession, RESTful API integration, error handling, and advanced techniques like Combine for networking."
+}

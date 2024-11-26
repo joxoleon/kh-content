@@ -1,0 +1,56 @@
+{
+  "title" : "Core iOS Concepts and Principles",
+  "batchLessonGenerationInput" : {
+    "lessons" : [
+      {
+        "description" : "Explore the concept of dependency injection (DI) in iOS development. This lesson covers the importance of DI in enhancing code modularity and testability, different DI patterns (constructor injection, property injection, and method injection), and how to implement DI in Swift using protocols and closures.",
+        "title" : "Introduction to Dependency Injection"
+      },
+      {
+        "title" : "Composition Over Inheritance",
+        "description" : "Learn about the principle of composition over inheritance and its advantages in iOS applications. This lesson discusses scenarios where composition leads to more maintainable and flexible code structures compared to traditional inheritance, along with practical examples and when to choose each strategy."
+      },
+      {
+        "description" : "Dive into type erasure in Swift, a powerful concept that allows you to hide the specific type of a value while exposing a common interface. This lesson focuses on the need for type erasure in generic programming, its implementation, and how it can help simplify API design in iOS development.",
+        "title" : "Understanding Type Erasure"
+      },
+      {
+        "description" : "An overview of the SOLID principles tailored for iOS development. This lesson breaks down each of the five principles—Single Responsibility, Open\/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion—with real-world examples and best practices for applying them in your projects.",
+        "title" : "SOLID Principles in iOS Development"
+      },
+      {
+        "title" : "Protocol-Oriented Programming in Swift",
+        "description" : "Examine protocol-oriented programming (POP) in Swift, a paradigm that emphasizes the use of protocols over classes. This lesson highlights the benefits of POP, including code reuse and flexibility, along with practical examples demonstrating how to effectively use protocols in iOS development."
+      },
+      {
+        "description" : "Learn about the Model-View-ViewModel (MVVM) design pattern and its application in iOS development. This lesson discusses the separation of concerns, how to bind data to views efficiently, and the role of Combine or SwiftUI in building reactive interfaces.",
+        "title" : "Implementing the MVVM Design Pattern"
+      },
+      {
+        "title" : "Unit Testing with Dependency Injection",
+        "description" : "Understand how dependency injection facilitates unit testing in iOS applications. This lesson covers strategies for designing testable code, mocking dependencies, and writing effective unit tests using XCTest, demonstrating the benefits of DI in ensuring code quality."
+      },
+      {
+        "title" : "Combining Protocols and Extensions",
+        "description" : "Explore how to use protocols and extensions together in Swift to build flexible and reusable components. This lesson delves into protocol extensions, default implementations, and how they can enhance your code's readability and maintainability."
+      },
+      {
+        "description" : "A comprehensive look at closures in Swift, including syntax, capturing values, and memory management implications. This lesson also covers practical use cases for closures, such as callbacks, completion handlers, and functional programming techniques.",
+        "title" : "Understanding Closures and Their Uses"
+      },
+      {
+        "description" : "Dive into error handling mechanisms in Swift, focusing on the do-try-catch model. This lesson discusses how to define, throw, and handle errors gracefully, including best practices for error propagation and creating custom error types.",
+        "title" : "Error Handling in Swift"
+      },
+      {
+        "title" : "Asynchronous Programming with Combine",
+        "description" : "An in-depth look at Combine, Apple's framework for asynchronous programming. This lesson covers key concepts such as publishers, subscribers, and operators, along with practical examples of how Combine can be utilized to manage asynchronous data flows in iOS applications."
+      },
+      {
+        "description" : "Learn the fundamentals of memory management in Swift, focusing on Automatic Reference Counting (ARC). This lesson explains strong, weak, and unowned references, along with best practices for avoiding retain cycles and managing memory efficiently in iOS apps.",
+        "title" : "Understanding Swift's Memory Management"
+      }
+    ]
+  },
+  "description" : "Overview of essential iOS concepts such as dependency injection, composition over inheritance, type erasure, SOLID principles, and other key software engineering concepts."
+}
