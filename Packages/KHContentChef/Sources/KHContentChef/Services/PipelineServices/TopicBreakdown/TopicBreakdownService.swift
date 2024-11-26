@@ -30,13 +30,15 @@ struct BatchTopicBreakdownInput: Codable, FilePersistable {
     let topics: [TopicBreakdownInput]
 }
 
-// MARK: - Service
-
-protocol TopicBreakdownServiceProtocol {
-    func generateTopicBreakdown(input: TopicBreakdownInput) async throws -> BatchLessonGenerationInput
+struct TopicBreakdownOutput: Codable, FilePersistable {
+    let title: String
+    let description: String
+    let batchLessonGenerationInput: BatchLessonGenerationInput
 }
 
-final class TopicBreakdownService: TopicBreakdownServiceProtocol {
+// MARK: - Service
+
+final class TopicBreakdownService {
     
     // MARK: - Properties
     
@@ -54,61 +56,85 @@ final class TopicBreakdownService: TopicBreakdownServiceProtocol {
     // MARK: - Public Methods
 
     func generateTopicBreakdowns(inputFilePath: URL, outputDirectory: URL) async throws {
-        // Load the input file
-        let batchTopicBreakdownInput = try BatchTopicBreakdownInput.load(from: inputFilePath)
+        do {
+            // Load the input file
+            let batchTopicBreakdownInput = try BatchTopicBreakdownInput.load(from: inputFilePath)
 
-        // Generate topic breakdowns for each topic in the input file by calling generateTopicBreakdown in a TaskGroup
-        await withTaskGroup(of: Void.self) { group in
-            for topic in batchTopicBreakdownInput.topics {
-                group.addTask {
-                    if let batchLessonGenerationInput = try? await self.generateTopicBreakdown(input: topic) {
-                        print("Topic breakdown for \(topic.title) generated successfully")
-                        let batchLessonGenerationInputFilePath = outputDirectory.appendingPathComponent("\(topic.filename).json")
-                        try? batchLessonGenerationInput.save(to: batchLessonGenerationInputFilePath)
-                        print("Topic breakdown for \(topic.title) saved to \(batchLessonGenerationInputFilePath.path)")
+            // Generate topic breakdowns for each topic in the input file by calling generateTopicBreakdown in a TaskGroup
+            await withTaskGroup(of: Void.self) { group in
+                for topic in batchTopicBreakdownInput.topics {
+                    group.addTask {
+                        do {
+                            if let topicBreakdownOutput = try? await self.generateTopicBreakdown(input: topic) {
+                                print("Topic breakdown for \(topic.title) generated successfully")
+                                let batchLessonGenerationInputFilePath = outputDirectory.appendingPathComponent("\(topic.filename).json")
+                                try topicBreakdownOutput.save(to: batchLessonGenerationInputFilePath)
+                                print("Topic breakdown for \(topic.title) saved to \(batchLessonGenerationInputFilePath.path)")
+                            }
+                        } catch {
+                            print("Failed to generate topic breakdown for \(topic.title): \(error)")
+                        }
                     }
                 }
             }
-        }
 
-        printGreen("Topic breakdowns generated successfully")
+            printGreen("Topic breakdowns generated successfully")
+        } catch {
+            print("Failed to load input file: \(error)")
+            throw TopicBreakdownError.missingPromptFile
+        }
     }
 
-    func generateTopicBreakdown(input: TopicBreakdownInput) async throws -> BatchLessonGenerationInput {
+    func generateTopicBreakdown(input: TopicBreakdownInput) async throws -> TopicBreakdownOutput {
         printGreen("Breaking down topic with title: \(input.title) and focus: \(input.description)")
 
-        // Fetch prompt from prompt factory
-        let prompt = try PromptFactory.generatePrompt(for: .topic(title: input.title, focus: input.description))
+        do {
+            // Fetch prompt from prompt factory
+            let prompt = try PromptFactory.generatePrompt(for: .topic(title: input.title, focus: input.description))
 
-        // Send request to OpenAI
-        printBlue("Sending prompt to OpenAI API")
-        let response = try await apiService.sendPrompt( 
-            request: PromptRequest(
-                model: TopicBreakdownConstants.model,
-                prompt: prompt,
-                temperature: TopicBreakdownConstants.temperature,
-                maxTokens: TopicBreakdownConstants.maxTokens,
-                n: 1
+            // Send request to OpenAI
+            printBlue("Sending prompt to OpenAI API")
+            let response = try await apiService.sendPrompt( 
+                request: PromptRequest(
+                    model: TopicBreakdownConstants.model,
+                    prompt: prompt,
+                    temperature: TopicBreakdownConstants.temperature,
+                    maxTokens: TopicBreakdownConstants.maxTokens,
+                    n: 1
+                )
             )
-        )
-        printBlue("Received response from OpenAI API")
+            printBlue("Received response from OpenAI API")
 
-        // Process the topic breakdown response (deserialize JSON)
-        let batchLessonGenerationIput = try processTopicBreakdownResponse(response, input: input)
-        printGreen("Topic broken down successfully!!")
+            // Process the topic breakdown response (deserialize JSON)
+            let topicBreakdownOutput = try processTopicBreakdownResponse(response, input: input)
+            printGreen("Topic broken down successfully!!")
 
-        return batchLessonGenerationIput
+            return topicBreakdownOutput
+        } catch {
+            print("Failed to generate topic breakdown: \(error)")
+            throw TopicBreakdownError.apiError(error.localizedDescription)
+        }
     }
 
     // MARK: - Private Methods
 
-    private func processTopicBreakdownResponse(_ response: SinglePromptResponse, input: TopicBreakdownInput) throws -> BatchLessonGenerationInput {
-        guard let data = response.responseString.data(using: .utf8) else {
+    private func processTopicBreakdownResponse(_ response: SinglePromptResponse, input: TopicBreakdownInput) throws -> TopicBreakdownOutput {
+        // Remove Markdown code block delimiters
+        let cleanedResponseString = response.responseString
+            .replacingOccurrences(of: "```json\n", with: "")
+            .replacingOccurrences(of: "\n```", with: "")
+        
+        guard let data = cleanedResponseString.data(using: .utf8) else {
             throw TopicBreakdownError.apiError("Failed to convert response string to data")
         }
         
         do {
-            return try JSONDecoder().decode(BatchLessonGenerationInput.self, from: data)
+            let batchLessonGenerationInput = try JSONDecoder().decode(BatchLessonGenerationInput.self, from: data)
+            return TopicBreakdownOutput(
+                title: input.title,
+                description: input.description,
+                batchLessonGenerationInput: batchLessonGenerationInput
+            )
         } catch {
             throw TopicBreakdownError.apiError("Failed to decode JSON response: \(error.localizedDescription)")
         }

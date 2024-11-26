@@ -7,10 +7,11 @@ struct ContentChef: ParsableCommand {
         subcommands: [
             TestRun.self,
             PublishContent.self,
+            BreakdownTopics.self,
             GenerateLesson.self,
             GenerateLessons.self // Add other commands here
         ],
-        defaultSubcommand: TestRun.self
+        defaultSubcommand: BreakdownTopics.self
     )
 }
 

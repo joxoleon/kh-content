@@ -1,12 +1,8 @@
 {
     "topics": [
         {
-            "title": "Introduction to Swift",
-            "description": "Learn the basics of Swift programming language."
-        },
-        {
-            "title": "Advanced iOS Development",
-            "description": "Deep dive into advanced topics in iOS development."
+            "title": "SwiftUI: Basic Overview",
+            "description": "A comprehensive guide to SwiftUI basics, including layout, view composition, declarative syntax, and state management for building iOS applications."
         }
     ]
 }
