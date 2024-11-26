@@ -1,0 +1,105 @@
+{
+  "questions" : [
+    {
+      "id" : "advanced_gcd_q1",
+      "question" : "What is the primary purpose of a Dispatch Group?",
+      "correctAnswerIndex" : 2,
+      "answers" : [
+        "To synchronize access to a shared resource",
+        "To limit the number of concurrent tasks",
+        "To monitor a set of tasks and notify when they complete",
+        "To perform synchronous tasks only"
+      ],
+      "explanation" : "A Dispatch Group is designed to monitor a set of tasks and provide a notification when all of them are completed.",
+      "proficiency" : "advanced",
+      "type" : "multiple_choice"
+    },
+    {
+      "id" : "advanced_gcd_q2",
+      "question" : "How do barrier blocks ensure thread safety?",
+      "correctAnswerIndex" : 2,
+      "answers" : [
+        "By allowing multiple writes at the same time",
+        "By ensuring read operations can occur simultaneously",
+        "By blocking other tasks from executing until the barrier block is finished",
+        "By grouping tasks together"
+      ],
+      "proficiency" : "advanced",
+      "type" : "multiple_choice",
+      "explanation" : "Barrier blocks ensure thread safety by blocking any read or write operations until the block is completed, protecting shared resources."
+    },
+    {
+      "id" : "advanced_gcd_q3",
+      "question" : "What is the purpose of semaphores in GCD?",
+      "correctAnswerIndex" : 1,
+      "explanation" : "Semaphores are used to control access to shared resources by limiting the number of concurrent accesses.",
+      "type" : "multiple_choice",
+      "answers" : [
+        "To create new threads",
+        "To control access to shared resources",
+        "To measure execution time of tasks",
+        "To synchronize execution order"
+      ],
+      "proficiency" : "advanced"
+    },
+    {
+      "id" : "advanced_gcd_q4",
+      "question" : "Which of the following is a risk of using GCD improperly?",
+      "correctAnswerIndex" : 1,
+      "answers" : [
+        "Increased memory usage",
+        "Race conditions and deadlocks",
+        "Simplified code structure",
+        "Improved performance"
+      ],
+      "type" : "multiple_choice",
+      "proficiency" : "advanced",
+      "explanation" : "Improper use of GCD can lead to race conditions and deadlocks, which create difficult-to-debug scenarios."
+    },
+    {
+      "id" : "advanced_gcd_q5",
+      "question" : "In what scenario would you prefer a serial dispatch queue over a concurrent queue?",
+      "correctAnswerIndex" : 1,
+      "explanation" : "A serial dispatch queue is preferred when the order of execution is important, ensuring tasks are executed one after the other.",
+      "answers" : [
+        "When executing multiple independent tasks",
+        "When order of execution is important",
+        "When tasks are CPU-bound",
+        "When tasks must finish immediately"
+      ],
+      "type" : "multiple_choice",
+      "proficiency" : "advanced"
+    }
+  ],
+  "metadata" : {
+    "title" : "Advanced GCD Techniques",
+    "tags" : [
+      "GCD",
+      "Grand Central Dispatch",
+      "iOS",
+      "thread safety",
+      "concurrency",
+      "semaphores",
+      "dispatch groups"
+    ],
+    "description" : "A comprehensive lesson on Grand Central Dispatch (GCD) focusing on dispatch groups, barriers, semaphores, and thread safety management."
+  },
+  "sections" : [
+    {
+      "title" : "Advanced GCD Techniques Introduction",
+      "content" : "# Advanced GCD Techniques\n\nIn this lesson, we will explore **Advanced GCD Techniques** that enhance the performance and safety of concurrent programming in iOS applications. **Grand Central Dispatch (GCD)** is a powerful tool for managing concurrent operations, allowing developers to execute tasks asynchronously and efficiently. \n\n> **GCD** is designed to optimize the performance of apps by dispatching tasks to system-managed threads.\n\nUnderstanding advanced concepts like **dispatch groups**, **barrier blocks**, and **semaphores** is essential for creating robust, thread-safe applications. Let's delve into these concepts, their usage, and practical examples."
+    },
+    {
+      "title" : "Advanced GCD Techniques",
+      "content" : "# Understanding Advanced GCD Techniques\n\n## Dispatch Groups\n\n**Dispatch Groups** allow you to monitor a set of tasks and get notified when they have all completed. This is particularly useful when you need to perform multiple asynchronous tasks and wait for all of them to finish before proceeding.\n\n```swift\nlet dispatchGroup = DispatchGroup()\n\nfor i in 1...5 {\n    dispatchGroup.enter()\n    DispatchQueue.global().async {\n        \/\/ Simulate a network request or heavy task\n        sleep(2)\n        print(\"Task \\(i) completed.\")\n        dispatchGroup.leave()\n    }\n}\n\ndispatchGroup.notify(queue: DispatchQueue.main) {\n    print(\"All tasks are completed.\")\n}\n```\n\nIn this example, we create a dispatch group and enter it for each asynchronous task. Once a task finishes, we call `leave()`, and when all tasks have completed, the `notify` block runs on the main queue.\n\n## Barrier Blocks\n\n**Barrier blocks** allow you to synchronize read and write operations on a shared resource, ensuring that writes do not occur simultaneously with reads. This is particularly important in scenarios where you want to maintain data integrity.\n\n```swift\nlet queue = DispatchQueue(label: \"com.example.queue\", attributes: .concurrent)\n\nqueue.async {\n    \/\/ Read operation\n    print(\"Reading data...\")\n}\n\nqueue.async(flags: .barrier) {\n    \/\/ Write operation\n    print(\"Writing data...\")\n}\n\nqueue.async {\n    \/\/ Another read operation\n    print(\"Reading data again...\")\n}\n```\n\nIn this code snippet, the barrier block ensures that the write operation completes before any subsequent read operations can execute, thus preventing race conditions.\n\n## Semaphores\n\n**Semaphores** are a mechanism for controlling access to a common resource in a concurrent system. They can be used to limit the number of concurrent tasks that access a resource or to synchronize threads.\n\n```swift\nlet semaphore = DispatchSemaphore(value: 2) \/\/ Limit to 2 concurrent tasks\n\nlet queue = DispatchQueue.global()\n\nfor i in 1...5 {\n    queue.async {\n        semaphore.wait() \/\/ Decrement the semaphore count\n        print(\"Task \\(i) is running.\")\n        sleep(1) \/\/ Simulate work\n        print(\"Task \\(i) is finished.\")\n        semaphore.signal() \/\/ Increment the semaphore count\n    }\n}\n```\n\nIn this example, the semaphore allows only two concurrent tasks to run at a time. Each task must call `wait()` before it can proceed, and `signal()` is called when the task is done, allowing another task to start.\n\n## Managing Thread Safety\n\nEnsuring thread safety is essential when multiple threads access shared resources. Techniques such as **serial dispatch queues**, **locks**, and **atomic operations** can help manage access effectively.\n\n```swift\nlet serialQueue = DispatchQueue(label: \"com.example.serialQueue\")\nvar sharedResource = 0\n\nfor _ in 1...5 {\n    serialQueue.async {\n        let currentValue = sharedResource\n        sleep(1) \/\/ Simulate some processing time\n        sharedResource = currentValue + 1\n        print(\"Shared resource updated to \\(sharedResource)\")\n    }\n}\n```\n\nIn the above example, a serial queue ensures that only one task can update the `sharedResource` at a time, effectively preventing race conditions."
+    },
+    {
+      "title" : "Discussion",
+      "content" : "# Discussion\n\nAdvanced GCD techniques enable developers to manage concurrency effectively. \n\n### Pros:\n- **Performance:** GCD optimizes CPU usage by managing system threads efficiently.\n- **Simplicity:** High-level abstractions make it easier to write concurrent code without dealing with low-level thread management.\n- **Flexibility:** Supports various patterns through dispatch queues, groups, semaphores, and barriers.\n\n### Cons:\n- **Complexity with Debugging:** Concurrency can introduce hard-to-track bugs such as race conditions or deadlocks.\n- **Overhead:** Misusing GCD (e.g., too many concurrent tasks) can lead to performance degradation instead of improvement.\n\n### Use Cases:\n- **Network Requests:** Handling multiple API calls without blocking the main thread.\n- **Heavy Calculations:** Performing background computations while keeping the UI responsive.\n- **Data Processing:** Efficiently managing access to shared resources in applications with multiple threads.\n\nUnderstanding these concepts and their proper usage is crucial for writing efficient, safe, and maintainable code in iOS applications."
+    },
+    {
+      "title" : "Key Takeaways",
+      "content" : "# Key Takeaways\n- **Dispatch Groups** allow synchronization of multiple asynchronous tasks.\n- **Barrier Blocks** ensure safe access to shared resources by blocking read operations during writes.\n- **Semaphores** control access to limited resources, implementing concurrency limits effectively.\n- **Thread Safety** can be managed using serial queues or synchronization mechanisms like locks and atomic operations.\n- GCD enhances performance and simplifies concurrency management in **iOS applications**."
+    }
+  ]
+}

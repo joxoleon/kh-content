@@ -1,93 +1,192 @@
 [
   {
-    "title" : "Swift Concurrency with Async-Await and Structured Concurrency",
+    "title" : "Concurrency in Combine Framework",
+    "tags" : [
+      "combine",
+      "swift",
+      "concurrency",
+      "async",
+      "publishers",
+      "subscribers"
+    ],
+    "description" : "A comprehensive lesson on how the Combine framework integrates with Swift's concurrency features."
+  },
+  {
+    "title" : "Advanced GCD Techniques",
+    "tags" : [
+      "GCD",
+      "Grand Central Dispatch",
+      "iOS",
+      "thread safety",
+      "concurrency",
+      "semaphores",
+      "dispatch groups"
+    ],
+    "description" : "A comprehensive lesson on Grand Central Dispatch (GCD) focusing on dispatch groups, barriers, semaphores, and thread safety management."
+  },
+  {
+    "title" : "Actor Model in Swift",
+    "tags" : [
+      "actor model",
+      "swift",
+      "concurrency",
+      "iOS",
+      "software engineering",
+      "actor isolation",
+      "mutable state"
+    ],
+    "description" : "An in-depth lesson on the Actor Model introduced in Swift for managing shared mutable state."
+  },
+  {
+    "title" : "Introduction to Concurrency in Swift",
     "tags" : [
       "concurrency",
-      "async\/await",
-      "structured concurrency",
-      "actors",
-      "Swift",
-      "asynchronous programming",
-      "Swift concurrency"
+      "swift",
+      "multithreading",
+      "async",
+      "iOS",
+      "programming"
     ],
-    "description" : "A detailed exploration of Swift’s concurrency model, covering async\/await, structured concurrency, and actors for efficient asynchronous programming."
+    "description" : "An overview of concurrency in Swift, highlighting its significance in modern app development and exploring the challenges of multithreading."
   },
   {
-    "title" : "VIPER Architecture for iOS Development using SwiftUI",
+    "title" : "Debugging Concurrency Issues in iOS",
     "tags" : [
-      "VIPER",
-      "iOS development",
-      "SwiftUI",
-      "architecture",
-      "design pattern",
+      "concurrency",
+      "debugging",
+      "iOS",
+      "Thread Sanitizer",
+      "Instruments",
       "software engineering",
-      "modular code"
+      "performance"
     ],
-    "description" : "An introductory lesson on implementing the VIPER architecture in iOS applications using Swift and SwiftUI, with examples and best practices."
+    "description" : "A comprehensive guide to identifying and resolving concurrency-related bugs using Xcode's tools, such as the Thread Sanitizer and Instruments."
   },
   {
-    "title" : "SOLID Principles for iOS Development",
+    "title" : "Combining GCD and Swift Concurrency",
     "tags" : [
-      "solid",
-      "solid principles",
-      "clean",
-      "clean architecture",
-      "software architecture",
-      "architecture",
-      "software design"
+      "GCD",
+      "Swift",
+      "Concurrency",
+      "iOS",
+      "Asynchronous",
+      "Software Engineering"
     ],
-    "description" : "An in-depth lesson on the SOLID principles and their implementation in iOS development to enhance code modularity, maintainability, and scalability."
+    "description" : "Explore how to integrate legacy GCD code with Swift's new concurrency model, ensuring smooth interoperability."
   },
   {
-    "title" : "MVVM Architecture for iOS Development using SwiftUI",
+    "title" : "Introduction to Swift's Async\/Await",
     "tags" : [
-      "mvvm",
-      "model-view-viewmodel",
-      "mvvm architecture",
-      "mvvm design pattern",
-      "design pattern",
-      "ios architectures"
+      "async",
+      "await",
+      "swift",
+      "asynchronous programming",
+      "iOS",
+      "software engineering"
     ],
-    "description" : "An introductory lesson on MVVM architecture and how to implement it in iOS development with SwiftUI, covering key components, benefits, and implementation examples."
+    "description" : "Explore the async\/await syntax introduced in Swift, understanding its role in simplifying asynchronous programming."
   },
   {
-    "title" : "Optionals and Unwrapping in Swift",
+    "title" : "Concurrency Best Practices for iOS Developers",
+    "tags" : [
+      "concurrency",
+      "ios",
+      "swift",
+      "multithreading",
+      "asynchronous",
+      "programming",
+      "best practices"
+    ],
+    "description" : "A comprehensive guide on writing efficient, maintainable, and safe concurrent code in iOS projects."
+  },
+  {
+    "title" : "Task-Based Concurrency in Swift",
     "tags" : [
       "swift",
-      "optionals",
-      "unwrapping",
-      "optional chaining",
-      "guard let",
-      "if let",
-      "nil coalescing",
-      "swift programming"
+      "concurrency",
+      "structured concurrency",
+      "tasks",
+      "task groups",
+      "async",
+      "await"
     ],
-    "description" : "A comprehensive lesson on the use of optionals in Swift, including unwrapping techniques and underlying implementation details."
+    "description" : "An in-depth lesson on Swift's task-based concurrency model, focusing on tasks, task groups, and structured concurrency."
   },
   {
-    "title" : "Variables and Constants in Swift",
+    "title" : "Concurrency Design Patterns in iOS",
     "tags" : [
-      "swift",
-      "variables",
-      "constants",
-      "let",
-      "var",
+      "concurrency",
+      "iOS",
+      "software design",
+      "producer-consumer",
+      "delegation",
+      "observer pattern",
+      "design patterns"
+    ],
+    "description" : "An in-depth exploration of common concurrency design patterns in iOS development, including producer-consumer, delegation, and observer patterns."
+  },
+  {
+    "title" : "Concurrency in iOS Development",
+    "tags" : [
+      "concurrency",
       "iOS development",
-      "programming basics"
+      "multithreading",
+      "GCD",
+      "asynchronous",
+      "performance"
     ],
-    "description" : "A lesson on the use of variables and constants in Swift, explaining the differences between 'let' and 'var' and guiding when to use each."
+    "description" : "A comprehensive lesson on concurrency in iOS development, including concepts, benefits, and implementation strategies."
   },
   {
-    "title" : "Memory Management in Swift",
+    "title" : "Grand Central Dispatch (GCD) Basics",
     "tags" : [
-      "memory management",
-      "ARC",
-      "automatic reference counting",
-      "retain cycles",
-      "weak references",
-      "strong references",
-      "unowned references"
+      "GCD",
+      "Grand Central Dispatch",
+      "iOS",
+      "concurrency",
+      "dispatch queues",
+      "asynchronous programming",
+      "synchronous programming"
     ],
-    "description" : "A comprehensive lesson on memory management concepts in Swift, covering ARC, strong, weak, and unowned references, retain cycles, and best practices for avoiding memory leaks in complex applications."
+    "description" : "An introductory lesson on Grand Central Dispatch, focusing on dispatch queues, async and sync operations, and task prioritization."
+  },
+  {
+    "title" : "Understanding Threads, Queues, and Tasks in Swift",
+    "tags" : [
+      "threads",
+      "queues",
+      "tasks",
+      "swift",
+      "iOS",
+      "concurrency",
+      "multithreading"
+    ],
+    "description" : "A foundational lesson on how threads, queues, and tasks work in Swift, covering main and background threads, serial and concurrent queues, and their use cases in iOS development."
+  },
+  {
+    "title" : "Concurrency and Memory Management in Swift",
+    "tags" : [
+      "concurrency",
+      "memory management",
+      "swift",
+      "race conditions",
+      "deadlocks",
+      "memory leaks",
+      "iOS development"
+    ],
+    "description" : "A comprehensive guide to understanding memory management challenges in concurrent programming, including race conditions, deadlocks, and techniques to avoid memory leaks in Swift."
+  },
+  {
+    "title" : "Concurrency in SwiftUI",
+    "tags" : [
+      "swiftui",
+      "concurrency",
+      "async",
+      "data loading",
+      "state management",
+      "responsive ui",
+      "iOS development"
+    ],
+    "description" : "Learn how to handle concurrency in SwiftUI, focusing on async data loading, state management, and ensuring a responsive UI."
   }
 ]

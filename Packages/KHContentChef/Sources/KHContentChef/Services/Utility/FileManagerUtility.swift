@@ -12,6 +12,7 @@ public enum ContentLocationConstants {
     // Files
     static let lessonGenerationConfigFilePath = "\(configDir)/lesson_generation_config.json"
     static let rawLessonGeneratedContentListFilePath = "\(lessonRawContentDir)/lesson_content_list.json"
+    static let batchLessonGenerationInputFilePath = "\(contentDir)/Input/Temp/batch_generate_lessons.json"
 }
 
 // MARK: - FILE MANAGER UTILITY

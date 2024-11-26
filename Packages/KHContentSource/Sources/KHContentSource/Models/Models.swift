@@ -120,8 +120,9 @@ public struct LearningModule: Codable {
 // MARK: - Utility functions
 
 public func sanitizeString(_ string: String) -> String {
-    let invalidCharacters = CharacterSet(charactersIn: " /\\:*?\"<>|.,'")
-    return string.lowercased()
+    let invalidCharacters = CharacterSet(charactersIn: "/\\:*?\"<>|.,':;{}[]()!@#$%^&*+-=")
+    let sanitizedString = string
         .components(separatedBy: invalidCharacters)
-        .joined(separator: "_")
+        .joined()
+    return sanitizedString.replacingOccurrences(of: " ", with: "_").lowercased()
 }

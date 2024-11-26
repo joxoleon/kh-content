@@ -36,6 +36,10 @@ func printYellow(_ message: String) {
     print("\u{001B}[0;33m\(message)\u{001B}[0;0m")
 }
 
+func printBlue(_ message: String) {
+    print("\u{001B}[0;34m\(message)\u{001B}[0;0m")
+}
+
 
 class Spinner {
     private var isSpinning = false

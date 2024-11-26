@@ -27,10 +27,8 @@ final class LessonGenerationService: LessonGenerationServiceProtocol {
     // MARK: - Initializers
 
     init(
-        // Fucking Xcode/Apple is the worst piece of garbage on the planet
-        // It can't even handle a simple environment variable
         apiService: OpenAIAPIProtocol = OpenAIAPIService(
-            apiKey: ProcessInfo.processInfo.environment["OPENAI_API_KEY"]!),  // Intentionally force unwrapped
+            apiKey: ProcessInfo.processInfo.environment["OPENAI_API_KEY"]!),
         parser: LessonParser = LessonParser(),
         config: LessonGenerationConfig = LessonGenerationConfig()
     ) {
@@ -44,129 +42,28 @@ final class LessonGenerationService: LessonGenerationServiceProtocol {
     func generateLesson(input: LessonGenerationInput) async throws -> URL {
         printGreen("Generating lesson with title: \(input.title) and focus: \(input.description)")
 
-        // Prepare prompt - Factory is not injected and I don't give a shit
-        let prompt = try PromptFactory.generatePrompt(
-            for: .lesson(
-                title: input.title,
-                focus: input.description
-            )
-        )
+        // Prepare prompt and send request
+        let response = try await sendPromptRequest(for: input)
 
-        printGreen("Sending request to OpenAI")
-        let spinner = Spinner()
-        spinner.start()
-        // Send API request
-        let response = try await apiService.sendPrompt(
-            request: PromptRequest(
-                model: config.model,
-                prompt: prompt,
-                temperature: config.temperature,
-                maxTokens: config.maxTokens
-            ))
-        spinner.stop()
-        printGreen("Successfully returned OpenAI result!!!")
-
-        // Save raw response to temporary directory
-        print("Ensuring the directory exists")
-        try CLIUtility.ensureDirectoryExists(config.temporaryDirectory)
-        let fileName = sanitizeString(input.title)
-        let tempLessonURL = config.temporaryDirectory.appendingPathComponent(
-            "\(fileName).md")
-        print("tempLessonUrl: \(tempLessonURL.absoluteString)")
-        try response.responseString.write(to: tempLessonURL, atomically: true, encoding: .utf8)
-        print("Saved lesson to temporary directory: \(tempLessonURL.path)")
-
-        // Validate and parse lesson
-        print("Parsing lesson")
-        let lesson: Lesson
-        do {
-            lesson = try parser.parseLesson(from: tempLessonURL)
-        } catch {
-            throw LessonGenerationError.invalidLesson("Lesson parsing failed: \(error)")
-        }
-        print("Lesson parsed successfully")
-
-        // Move to final output directory
-        print("Moving lesson to output directory")
-        let outputURL = config.outputDirectory.appendingPathComponent("\(lesson.metadata.id).md")
-        try FileManager.default.moveItem(at: tempLessonURL, to: outputURL)
+        // Process and save lesson
+        let outputURL = try processLessonResponse(response, input: input)
         printGreen("Lesson generated successfully at \(outputURL.path)!!")
 
         return outputURL
     }
 
-
     func generateLessons(batchInput: BatchLessonGenerationInput) async throws -> [URL] {
-        printGreen("Generating \(batchInput.lessons.count) lessons in batch")
-        print("Lessons to generate: \(batchInput.lessons.map { $0.title })")
-        var outputURLs: [URL] = []
+        printGreen("Lessons to generate: \(batchInput.lessons.map { $0.title })")
 
-        // Filter out lessons that have already been generated
-        print("Filtering out already generated lessons")
-        updateGeneratedContentList()
-        var batchInput = batchInput
-        if let generatedContentList = try? KHContentFileUtility.fetchLessonGeneratedContentList() {
-            let lessonList = batchInput.lessons.filter { lesson in
-                return !generatedContentList.lessonFileNames.contains(lesson.filename)
-            }
-            batchInput = BatchLessonGenerationInput(lessons: lessonList)
-        }
+        // Filter out already generated lessons
+        let filteredBatchInput = batchInput.filterAlreadyGeneratedLessons()
 
-        // Prepare prompts
-        print("Preparing prompts")
-        let promptRequests = try batchInput.lessons.map { input in
-            let prompt = try PromptFactory.generatePrompt(
-                for: .lesson(title: input.title, focus: input.description))
-            return prompt
-        }
+        // Prepare and send batch prompts
+        let responses = try await sendBatchPromptRequests(for: filteredBatchInput.lessons)
 
-        // Send batch API requests
-        printGreen("Sending batch requests to OpenAI")
-        let spinner = Spinner()
-        spinner.start()
+        // Process each response
+        let outputURLs = try await processBatchResponses(responses, lessons: filteredBatchInput.lessons)
 
-        let responses = try await apiService.sendBatchPrompts(
-            request: BatchPromptRequest(
-                model: config.model,
-                prompts: promptRequests,
-                temperature: config.temperature,
-                maxTokens: config.maxTokens
-            ))
-
-        spinner.stop()
-        printGreen("Successfully returned OpenAI results!!!")
-
-        // Process each API response
-        printGreen("Processing responses and verifying lessons")
-        for (index, response) in responses.enumerated() {
-            do {
-                let input = batchInput.lessons[index]
-                let fileName = sanitizeString(input.title)
-                let tempLessonURL = config.temporaryDirectory.appendingPathComponent(
-                    "\(fileName).md")
-                print("tempLessonUrl: \(tempLessonURL.absoluteString)")
-
-                try response.responseString.write(
-                    to: tempLessonURL, atomically: true, encoding: .utf8)
-                print("Saved lesson to temporary directory: \(tempLessonURL.path)")
-
-                // Validate and parse lesson
-                print("Validating and parsing lesson: \(input.title)")
-                let lesson = try parser.parseLesson(from: tempLessonURL)
-                let outputURL = config.outputDirectory.appendingPathComponent(
-                    "\(lesson.metadata.id).md")
-                print("Lesson parsed successfully")
-
-                // Move to final output directory
-                print("Moving lesson to output directory: \(outputURL.path)")
-                try FileManagerUtility.moveItemOverwrite(from: tempLessonURL, to: outputURL)
-                print("Lesson generated successfully at \(outputURL.path)!!")
-
-                outputURLs.append(outputURL)
-            } catch {
-                print("Error processing lesson \(index): \(error)")
-            }
-        }
         printGreen("Batch generation complete for \(outputURLs.count) lessons")
         print("Lessons generated at: \(outputURLs.map { $0.path })")
 
@@ -174,6 +71,86 @@ final class LessonGenerationService: LessonGenerationServiceProtocol {
         updateGeneratedContentList()
 
         return outputURLs
+    }
+
+    // MARK: - Private Methods
+
+    private func sendPromptRequest(for input: LessonGenerationInput) async throws -> SinglePromptResponse {
+        let prompt = try PromptFactory.generatePrompt(
+            for: .lesson(title: input.title, focus: input.description)
+        )
+        printBlue("Sending request to OpenAI")
+        let spinner = Spinner()
+        spinner.start()
+        let response = try await apiService.sendPrompt(
+            request: PromptRequest(
+                model: config.model,
+                prompt: prompt,
+                temperature: config.temperature,
+                maxTokens: config.maxTokens
+            )
+        )
+        spinner.stop()
+        printBlue("Successfully returned OpenAI result!")
+        return response
+    }
+
+    private func processLessonResponse(_ response: SinglePromptResponse, input: LessonGenerationInput) throws -> URL {
+        let tempLessonURL = config.temporaryDirectory.appendingPathComponent("\(input.filename).md")
+        let outputURL: URL
+
+        try saveResponseToFile(response.responseString, at: tempLessonURL)
+        do {
+            let lesson = try parser.parseLesson(from: tempLessonURL)
+            outputURL = config.outputDirectory.appendingPathComponent("\(input.filename).md")
+            try FileManager.default.moveItem(at: tempLessonURL, to: outputURL)
+        } catch {
+            throw LessonGenerationError.invalidLesson("Lesson parsing failed: \(error)")
+        }
+
+        return outputURL
+    }
+
+    private func sendBatchPromptRequests(for lessons: [LessonGenerationInput]) async throws -> [SinglePromptResponse] {
+        let promptRequests = try lessons.map { input in
+            try PromptFactory.generatePrompt(
+                for: .lesson(title: input.title, focus: input.description)
+            )
+        }
+        printBlue("Sending batch requests to OpenAI for \(promptRequests.count) lessons")
+        let spinner = Spinner()
+        spinner.start()
+        let responses = try await apiService.sendBatchPrompts(
+            request: BatchPromptRequest(
+                model: config.model,
+                prompts: promptRequests,
+                temperature: config.temperature,
+                maxTokens: config.maxTokens
+            )
+        )
+        spinner.stop()
+        printBlue("Successfully returned OpenAI results!")
+        return responses
+    }
+
+    private func processBatchResponses(_ responses: [SinglePromptResponse], lessons: [LessonGenerationInput]) async throws -> [URL] {
+        var outputURLs: [URL] = []
+        for (index, response) in responses.enumerated() {
+            let input = lessons[index]
+            do {
+                let outputURL = try processLessonResponse(response, input: input)
+                outputURLs.append(outputURL)
+            } catch {
+                print("Error processing lesson \(input.title): \(error)")
+            }
+        }
+        return outputURLs
+    }
+
+    private func saveResponseToFile(_ responseString: String, at url: URL) throws {
+        print("Saving response to \(url.path)")
+        try CLIUtility.ensureDirectoryExists(config.temporaryDirectory)
+        try responseString.write(to: url, atomically: true, encoding: .utf8)
     }
 
     private func updateGeneratedContentList() {

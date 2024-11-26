@@ -15,6 +15,19 @@ struct LessonGenerationInput: Codable {
 
 struct BatchLessonGenerationInput: Codable, FilePersistable {
     let lessons: [LessonGenerationInput]
+
+    // I KNOW this isn't desireable, but I'm just really in a hurry
+    func filterAlreadyGeneratedLessons() -> Self {
+        guard let lessonGeneratedContentList = try? LessonGeneratedContentList.load(from: ContentLocationConstants.rawLessonGeneratedContentListFilePath) else { return self }
+        let filteredLessons = lessons.filter { !lessonGeneratedContentList.lessonFileNames.contains($0.filename) }
+        print("***")
+        print("lessons that remain: \(filteredLessons.map { $0.filename })")
+        print("***")
+        print("Lesson generated content list: \(lessonGeneratedContentList.lessonFileNames)")
+        print("***")
+
+        return BatchLessonGenerationInput(lessons: filteredLessons)
+    }
 }
 
 struct LessonGenerationConfig: Codable, FilePersistable {
