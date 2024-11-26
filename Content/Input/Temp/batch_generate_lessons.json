@@ -1,0 +1,12 @@
+{
+    "lessons": [
+      {
+        "title": "GCD in Swift",
+        "description": "Deep dive into how GCD works in Swift."
+      },
+      {
+        "title": "Task in Swift",
+        "description": "Learn how to use Tasks in Swift and how to invoke async functions from sync functions."
+      }
+    ]
+  }

@@ -26,7 +26,8 @@ struct GenerateLesson: ParsableCommand {
         // Run the async function in a Task
         Task {
             do {
-                try await generateLesson(config: config)
+                let service = LessonGenerationService(config: config)
+                let _ = try await service.generateLesson(input: LessonGenerationInput(title: title, description: focus))
                 semaphore.signal()
             } catch {
                 print("Error: \(error)")
@@ -41,8 +42,7 @@ struct GenerateLesson: ParsableCommand {
     // MARK: - Private Methods
 
     private func generateLesson(config: LessonGenerationConfig) async throws {
-        let service = LessonGenerationService(config: config)
-        let _ = try await service.generateLesson(input: LessonGenerationInput(title: title, description: focus))
+
     }
 
 
