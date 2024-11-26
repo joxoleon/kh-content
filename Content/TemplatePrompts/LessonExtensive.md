@@ -1,20 +1,20 @@
-
-# **{{title}}**
+### Title/Topic:
+**{{title}}**
 
 ### Focus:
 **{{focus}}**
 
 ---
 
-## Introduction to AI:
+### Introduction to AI:
 
-You are creating a structured **lesson** on software engineering concepts for a learning app. This lesson will help users prepare for technical interviews and deepen their understanding of iOS development, software engineering, and architecture concepts. While the lesson library will eventually expand to cover advanced topics, the current focus is technical interview preparation on the following topics: iOS, Software Engineering, Software Architecture, System Design, etc.
+You are creating a structured lesson on software engineering concepts for a learning app. This lesson will help users prepare for a Senior iOS Developer technical interview and deepen their understanding of iOS development, software engineering, and architecture concepts. While the lesson library will eventually expand to cover advanced topics, the current focus is interview preparation for iOS and software engineering (for a technical interview).
 
 ---
 
-## Lesson Requirements:
+### Lesson Requirements:
 
-### Format and Structure:
+#### Format and Structure:
 
 1. **Output**: Format the final lesson as a **single Markdown file (.md)** that follows a consistent structure for readability and compatibility with Markdown editors. **Each section should have a clear delimiter**.
 
@@ -53,25 +53,24 @@ You are creating a structured **lesson** on software engineering concepts for a 
        - Start with a heading that appropriately describes the section.
        - Provide a thorough, structured explanation of the topic. Include all necessary details, examples, best practices, and relevant code snippets.
        - **Do not be stingy with examples**: Whenever a concept would benefit from one, provide a clear, relevant example, whether it be a code snippet or an illustrative scenario. Use sensible formatting and indentation for code examples.
+       - **Important Note**: **Do NOT use three backticks ("```") for code blocks**. Instead, format all code examples by indenting with four spaces to improve readability and maintain smooth text flow within Markdown.
        - **Examples should be practical and based on real-world scenarios**, not purely theoretical code.
        - **Subsections**: If the lesson covers multiple concepts, split the Full Lesson into up to 5-6 subsections only if needed for distinct topics.
        - End this section with the delimiter `=== EndSection: [Title] ===`.
        
      - **Discussion**: 
        - Use the delimiter `=== Section: Discussion ===` to start the discussion.
-       - Start with a "Discussion" heading
        - Cover the topic’s pros, cons, common use cases, or comparisons with related concepts to provide a broader context.
        - End this section with the delimiter `=== EndSection: Discussion ===`.
        
      - **Key Takeaways**: 
        - Use the delimiter `=== Section: Key Takeaways ===`.
-       - Start with a "Key Takeaways" heading
        - Summarize the lesson with concise, flashcard-friendly points.
        - Focus on “bite-sized” statements that serve as memory aids.
        - End this section with the delimiter `=== EndSection: Key Takeaways ===`.
 
 3. **Questions Section**:
-   - Conclude the lesson with a set of multiple-choice questions in JSON format.
+   - Conclude the lesson with a set of multiple-choice questions in JSON-like format.
    - **Wrap the questions section** with delimiters:
 
        {| questions |}
@@ -104,7 +103,7 @@ You are creating a structured **lesson** on software engineering concepts for a 
      - `correctAnswerIndex`: Index of the correct answer within the `answers` array.
      - `explanation`: A markdown-formatted explanation that clarifies why the correct answer is right and why other options are incorrect.
    - **Requirements**:
-     - Generate at least 8 well-thought-out questions based on topic difficulty - if you deem the topic important for an iOS interview then generate up to 15 questions
+     - Generate at least 5 well-thought-out questions that test different facets of the lesson topic, helping reinforce core concepts.
 
 4. **Quality and Readability**:
     - Use clear, professional language suitable for an advanced audience.
@@ -116,9 +115,17 @@ You are creating a structured **lesson** on software engineering concepts for a 
 
 ---
 
-### Instructions to AI:
+### Sample Lesson
 
-Generate a markdown lesson with the following structure:
+**Title/Topic**: Dependency Injection in iOS
+
+**Focus**: Introduce Dependency Injection (DI) and demonstrate how it can improve code modularity and testability in iOS development, including practical code examples.
+
+---
+
+**Instructions to AI**:
+
+**Important Note**: **Do NOT use three backticks ("```") for code blocks**. Instead, format all code examples by indenting with four spaces to improve readability and maintain smooth text flow within Markdown.
 
 Generate a markdown lesson with the following structure:
 
@@ -181,3 +188,5 @@ Generate a markdown lesson with the following structure:
       ]
       {| endquestions |}
 
+**Remember**: Use **indentation with spaces** for all code blocks to avoid using three backticks ("```"). This approach enhances readability and keeps code examples compatible with simpler Markdown parsers and editors.
+Ouput the result in a single markdown box without interruptions.

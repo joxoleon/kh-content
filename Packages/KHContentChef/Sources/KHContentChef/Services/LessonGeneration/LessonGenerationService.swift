@@ -44,7 +44,7 @@ final class LessonGenerationService: LessonGenerationServiceProtocol {
     // MARK: - Initializers
 
     init(
-        // Fucking Xcode is the worst piece of garbage on the planet
+        // Fucking Xcode/Apple is the worst piece of garbage on the planet
         // It can't even handle a simple environment variable
         apiService: OpenAIAPIProtocol = OpenAIAPIService(apiKey: ProcessInfo.processInfo.environment["OPENAI_API_KEY"]!), // Intentionally force unwrapped
         parser: LessonParser = LessonParser(),
