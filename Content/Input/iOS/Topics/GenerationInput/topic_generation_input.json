@@ -3,6 +3,86 @@
         {
             "title": "SwiftUI: Basic Overview",
             "description": "A comprehensive guide to SwiftUI basics, including layout, view composition, declarative syntax, and state management for building iOS applications."
+        },
+        {
+            "title": "SwiftUI: Advanced Overview",
+            "description": "Deep dive into advanced SwiftUI topics such as custom views, animations, advanced state management, integrating SwiftUI with UIKit, and optimizing performance."
+        },
+        {
+            "title": "Combine in iOS Development",
+            "description": "Learn the principles of reactive programming with Combine, including publishers, subscribers, data streams, and advanced topics like custom publishers and scheduling."
+        },
+        {
+            "title": "Swift Language: Intermediate Concepts",
+            "description": "Explore intermediate Swift language topics such as optionals, closures, structs vs. classes, extensions, and collection transformations."
+        },
+        {
+            "title": "Swift Language: Advanced Concepts",
+            "description": "Master advanced Swift concepts, including generics, protocol-oriented programming, type erasure, property wrappers, and memory management."
+        },
+        {
+            "title": "Concurrency in Swift",
+            "description": "Comprehensive guide to concurrency in Swift, covering async/await, Grand Central Dispatch (GCD), NSOperationQueue, structured concurrency, and best practices."
+        },
+        {
+            "title": "iOS Architectures: MVC, MVVM, MVP, VIP, VIPER, Clean, TCA, UDF",
+            "description": "In-depth exploration of iOS architectural patterns, including their principles, strengths, weaknesses, and practical use cases."
+        },
+        {
+            "title": "iOS Design Patterns",
+            "description": "Detailed guide to common design patterns in iOS, such as delegation, factory, singleton, observer, and strategy, with examples and practical applications."
+        },
+        {
+            "title": "Core iOS Concepts and Principles",
+            "description": "Overview of essential iOS concepts such as dependency injection, composition over inheritance, type erasure, SOLID principles, and other key software engineering concepts."
+        },
+        {
+            "title": "Testing in iOS",
+            "description": "Comprehensive guide to testing in iOS, including unit testing, UI testing, test-driven development, and asynchronous testing using XCTest and other frameworks."
+        },
+        {
+            "title": "Clean Architecture in iOS Development",
+            "description": "Detailed exploration of Clean Architecture principles applied to iOS, focusing on modularity, separation of concerns, and scalable application design."
+        },
+        {
+            "title": "UIKit Overview",
+            "description": "Comprehensive guide to UIKit, including view hierarchy, view controllers, navigation patterns, and managing user interfaces programmatically or with Storyboards."
+        },
+        {
+            "title": "App Lifecycle and Events in UIKit and SwiftUI",
+            "description": "Learn about application lifecycles in UIKit and SwiftUI, including app states, view lifecycle events, and managing background tasks."
+        },
+        {
+            "title": "Reactive Programming Concepts in Swift",
+            "description": "Explore reactive programming principles using frameworks like Combine and RxSwift, focusing on handling asynchronous streams of data effectively."
+        },
+        {
+            "title": "Networking in iOS Development",
+            "description": "Master networking concepts in iOS, including URLSession, RESTful API integration, error handling, and advanced techniques like Combine for networking."
+        },
+        {
+            "title": "Persistence in iOS Applications",
+            "description": "Learn about data persistence techniques in iOS, including UserDefaults, Core Data, SQLite, and modern persistence strategies."
+        },
+        {
+            "title": "Core Data Essentials",
+            "description": "In-depth guide to Core Data, including data modeling, CRUD operations, relationships, and performance optimization."
+        },
+        {
+            "title": "Memory Management and ARC in Swift",
+            "description": "Comprehensive understanding of memory management in Swift, including Automatic Reference Counting (ARC), strong vs. weak references, retain cycles, and debugging memory issues."
+        },
+        {
+            "title": "System Design for iOS Applications: Principles and Patterns",
+            "description": "High-level design principles for iOS applications, covering modularization, scaling, fault tolerance, and real-world implementation strategies."
+        },
+        {
+            "title": "Mobile System Design: Offline-First Applications",
+            "description": "Learn strategies for designing offline-first mobile applications, including data synchronization, conflict resolution, and local-first architecture patterns."
+        },
+        {
+            "title": "Mobile System Design: Data Storage and Synchronization",
+            "description": "Strategies for designing scalable data storage, local databases, and real-time synchronization with backend servers for mobile applications."
         }
     ]
 }
