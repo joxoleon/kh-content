@@ -29,7 +29,8 @@ final class LessonGenerationService: LessonGenerationServiceProtocol {
     init(
         // Fucking Xcode/Apple is the worst piece of garbage on the planet
         // It can't even handle a simple environment variable
-        apiService: OpenAIAPIProtocol = OpenAIAPIService(apiKey: ProcessInfo.processInfo.environment["OPENAI_API_KEY"]!), // Intentionally force unwrapped
+        apiService: OpenAIAPIProtocol = OpenAIAPIService(
+            apiKey: ProcessInfo.processInfo.environment["OPENAI_API_KEY"]!),  // Intentionally force unwrapped
         parser: LessonParser = LessonParser(),
         config: LessonGenerationConfig = LessonGenerationConfig()
     ) {
@@ -41,10 +42,15 @@ final class LessonGenerationService: LessonGenerationServiceProtocol {
     // MARK: - Public Methods
 
     func generateLesson(input: LessonGenerationInput) async throws -> URL {
-        
         printGreen("Generating lesson with title: \(input.title) and focus: \(input.description)")
-        // Prepare prompt - Factory is not injected and I don't give a fuck
-        let prompt = try PromptFactory.generatePrompt(for: .lesson(title: input.title, focus: input.description))
+
+        // Prepare prompt - Factory is not injected and I don't give a shit
+        let prompt = try PromptFactory.generatePrompt(
+            for: .lesson(
+                title: input.title,
+                focus: input.description
+            )
+        )
 
         printGreen("Sending request to OpenAI")
         let spinner = Spinner()
@@ -59,11 +65,11 @@ final class LessonGenerationService: LessonGenerationServiceProtocol {
             ))
         spinner.stop()
         printGreen("Successfully returned OpenAI result!!!")
-        
+
         // Save raw response to temporary directory
         print("Ensuring the directory exists")
         try CLIUtility.ensureDirectoryExists(config.temporaryDirectory)
-        let fileName = input.title.lowercased().replacingOccurrences(of: " ", with: "_")
+        let fileName = sanitizeString(input.title)
         let tempLessonURL = config.temporaryDirectory.appendingPathComponent(
             "\(fileName).md")
         print("tempLessonUrl: \(tempLessonURL.absoluteString)")
@@ -89,16 +95,28 @@ final class LessonGenerationService: LessonGenerationServiceProtocol {
         return outputURL
     }
 
-    /// Generate multiple lessons in a batch
+
     func generateLessons(batchInput: BatchLessonGenerationInput) async throws -> [URL] {
         printGreen("Generating \(batchInput.lessons.count) lessons in batch")
         print("Lessons to generate: \(batchInput.lessons.map { $0.title })")
         var outputURLs: [URL] = []
 
+        // Filter out lessons that have already been generated
+        print("Filtering out already generated lessons")
+        updateGeneratedContentList()
+        var batchInput = batchInput
+        if let generatedContentList = try? KHContentFileUtility.fetchLessonGeneratedContentList() {
+            let lessonList = batchInput.lessons.filter { lesson in
+                return !generatedContentList.lessonFileNames.contains(lesson.filename)
+            }
+            batchInput = BatchLessonGenerationInput(lessons: lessonList)
+        }
+
         // Prepare prompts
         print("Preparing prompts")
         let promptRequests = try batchInput.lessons.map { input in
-            let prompt = try PromptFactory.generatePrompt(for: .lesson(title: input.title, focus: input.description))
+            let prompt = try PromptFactory.generatePrompt(
+                for: .lesson(title: input.title, focus: input.description))
             return prompt
         }
 
@@ -106,7 +124,7 @@ final class LessonGenerationService: LessonGenerationServiceProtocol {
         printGreen("Sending batch requests to OpenAI")
         let spinner = Spinner()
         spinner.start()
-        
+
         let responses = try await apiService.sendBatchPrompts(
             request: BatchPromptRequest(
                 model: config.model,
@@ -123,19 +141,22 @@ final class LessonGenerationService: LessonGenerationServiceProtocol {
         for (index, response) in responses.enumerated() {
             do {
                 let input = batchInput.lessons[index]
-                let fileName = input.title.lowercased().replacingOccurrences(of: " ", with: "_")
-                let tempLessonURL = config.temporaryDirectory.appendingPathComponent("\(fileName).md")
+                let fileName = sanitizeString(input.title)
+                let tempLessonURL = config.temporaryDirectory.appendingPathComponent(
+                    "\(fileName).md")
                 print("tempLessonUrl: \(tempLessonURL.absoluteString)")
-                
-                try response.responseString.write(to: tempLessonURL, atomically: true, encoding: .utf8)
+
+                try response.responseString.write(
+                    to: tempLessonURL, atomically: true, encoding: .utf8)
                 print("Saved lesson to temporary directory: \(tempLessonURL.path)")
 
                 // Validate and parse lesson
                 print("Validating and parsing lesson: \(input.title)")
                 let lesson = try parser.parseLesson(from: tempLessonURL)
-                let outputURL = config.outputDirectory.appendingPathComponent("\(lesson.metadata.id).md")
+                let outputURL = config.outputDirectory.appendingPathComponent(
+                    "\(lesson.metadata.id).md")
                 print("Lesson parsed successfully")
-                
+
                 // Move to final output directory
                 print("Moving lesson to output directory: \(outputURL.path)")
                 try FileManagerUtility.moveItemOverwrite(from: tempLessonURL, to: outputURL)
@@ -149,6 +170,13 @@ final class LessonGenerationService: LessonGenerationServiceProtocol {
         printGreen("Batch generation complete for \(outputURLs.count) lessons")
         print("Lessons generated at: \(outputURLs.map { $0.path })")
 
+        // Update generated content list
+        updateGeneratedContentList()
+
         return outputURLs
+    }
+
+    private func updateGeneratedContentList() {
+        try? KHContentFileUtility.updateLessonGeneratedContentList()
     }
 }

@@ -10,7 +10,7 @@ public struct ContentMetadata: Codable {
 
 public struct LessonMetadata: Codable {
     public var id: String {
-        return title.replacingOccurrences(of: " ", with: "_").lowercased()
+        sanitizeString(title)
     }
     public let title: String
     public let description: String
@@ -114,4 +114,14 @@ public struct LearningModule: Codable {
             try container.decodeIfPresent([LearningModule].self, forKey: .subModules) ?? []
         lessons = try container.decodeIfPresent([String].self, forKey: .lessons) ?? []
     }
+}
+
+
+// MARK: - Utility functions
+
+public func sanitizeString(_ string: String) -> String {
+    let invalidCharacters = CharacterSet(charactersIn: " /\\:*?\"<>|.,'")
+    return string.lowercased()
+        .components(separatedBy: invalidCharacters)
+        .joined(separator: "_")
 }

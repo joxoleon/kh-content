@@ -1,21 +1,23 @@
 import Foundation
+import KHContentSource
+
+struct LessonGeneratedContentList: Codable, FilePersistable {
+    let lessonFileNames: [String]
+}
 
 struct LessonGenerationInput: Codable {
     let title: String
     let description: String
-}
-
-struct BatchLessonGenerationInput: Codable {
-    let lessons: [LessonGenerationInput]
-
-    static func load(from url: URL) throws -> BatchLessonGenerationInput {
-        let data = try Data(contentsOf: url)
-        let decoder = JSONDecoder()
-        return try decoder.decode(BatchLessonGenerationInput.self, from: data)
+    var filename: String {
+        return sanitizeString(title)
     }
 }
 
-struct LessonGenerationConfig: Codable {
+struct BatchLessonGenerationInput: Codable, FilePersistable {
+    let lessons: [LessonGenerationInput]
+}
+
+struct LessonGenerationConfig: Codable, FilePersistable {
     let temporaryDirectory: URL
     let outputDirectory: URL
     let model: String
@@ -62,11 +64,5 @@ struct LessonGenerationConfig: Codable {
         try container.encode(model, forKey: .model)
         try container.encode(temperature, forKey: .temperature)
         try container.encode(maxTokens, forKey: .maxTokens)
-    }
-
-    static func load(from url: URL) throws -> LessonGenerationConfig {
-        let data = try Data(contentsOf: url)
-        let decoder = JSONDecoder()
-        return try decoder.decode(LessonGenerationConfig.self, from: data)
     }
 }
