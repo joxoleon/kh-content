@@ -88,6 +88,18 @@
     "description" : "Explore techniques for optimizing Core Data performance, including background contexts, batching fetch requests, and prefetching relationships."
   },
   {
+    "title" : "Understanding Database Schemas",
+    "tags" : [
+      "database",
+      "SQLite",
+      "schema",
+      "data modeling",
+      "software engineering",
+      "SQL"
+    ],
+    "description" : "A comprehensive guide on designing database schemas using SQLite, covering essential elements like tables, fields, data types, and constraints."
+  },
+  {
     "title" : "Handling API Responses and Errors",
     "tags" : [
       "API",
@@ -363,6 +375,19 @@
     "description" : "A comprehensive guide to testing asynchronous code in Swift, focusing on concurrency, race conditions, and deadlocks."
   },
   {
+    "title" : "Integrating SQLite with iOS Applications",
+    "tags" : [
+      "sqlite",
+      "ios",
+      "swift",
+      "database",
+      "CRUD",
+      "sqlite.swift",
+      "local storage"
+    ],
+    "description" : "This lesson explores how to integrate SQLite into iOS applications using Swift, covering CRUD operations and using the SQLite.swift library."
+  },
+  {
     "title" : "Best Practices for Concurrency in Swift",
     "tags" : [
       "concurrency",
@@ -497,6 +522,18 @@
     "description" : "Explore emerging trends in iOS application architecture and how they relate to Clean Architecture principles."
   },
   {
+    "title" : "Backup and Restore Strategies for SQLite",
+    "tags" : [
+      "SQLite",
+      "backup",
+      "restore",
+      "mobile applications",
+      "data integrity",
+      "software engineering"
+    ],
+    "description" : "An in-depth lesson on the importance of data backup and restoration in SQLite, with strategies tailored for mobile applications."
+  },
+  {
     "title" : "Observer Pattern in iOS",
     "tags" : [
       "observer pattern",
@@ -618,6 +655,20 @@
       "swift runtime"
     ],
     "description" : "This lesson provides a foundational understanding of memory management in Swift, covering how Swift manages memory, the role of the Swift runtime, and efficient memory use in iOS applications."
+  },
+  {
+    "title" : "SQLite Data Types and Constraints",
+    "tags" : [
+      "SQLite",
+      "data types",
+      "constraints",
+      "database",
+      "SQL",
+      "data integrity",
+      "primary key",
+      "foreign key"
+    ],
+    "description" : "A comprehensive lesson on SQLite data types and constraints to enforce data integrity, covering primary keys, foreign keys, unique constraints, and check constraints."
   },
   {
     "title" : "User Experience in Offline Scenarios",
@@ -796,6 +847,18 @@
     "description" : "Explore how reactive programming principles can be applied in SwiftUI applications, integrating Combine or RxSwift for seamless data binding and state management."
   },
   {
+    "title" : "Implementing Security in SQLite Databases",
+    "tags" : [
+      "SQLite",
+      "security",
+      "encryption",
+      "mobile applications",
+      "access control",
+      "best practices"
+    ],
+    "description" : "A comprehensive guide on securing SQLite databases in mobile applications, focusing on encryption, access control, and best practices."
+  },
+  {
     "title" : "Accessibility in SwiftUI",
     "tags" : [
       "accessibility",
@@ -889,6 +952,19 @@
       "software engineering"
     ],
     "description" : "An in-depth exploration of the various operators available in Combine to manipulate and transform data streams."
+  },
+  {
+    "title" : "Querying SQLite Databases",
+    "tags" : [
+      "SQLite",
+      "SQL",
+      "database",
+      "querying",
+      "data retrieval",
+      "software engineering",
+      "iOS"
+    ],
+    "description" : "A comprehensive lesson on querying data in SQLite, covering SELECT statements, WHERE clauses, sorting, and aggregation."
   },
   {
     "title" : "Architectural Patterns in iOS",
@@ -1054,6 +1130,19 @@
       "asynchronous"
     ],
     "description" : "Gain insights into scheduling in Combine, learning how to control when and where your publishers emit values."
+  },
+  {
+    "title" : "Optimizing SQLite Database Performance",
+    "tags" : [
+      "SQLite",
+      "database optimization",
+      "query performance",
+      "caching",
+      "SQL",
+      "software engineering",
+      "iOS development"
+    ],
+    "description" : "A comprehensive guide on advanced techniques for optimizing SQLite database performance, including query optimization and caching strategies."
   },
   {
     "title" : "Introduction to Concurrency in Swift",
@@ -1637,6 +1726,18 @@
     "description" : "A comprehensive guide on how to effectively test network code in iOS applications, covering unit testing, mocking frameworks, and error handling strategies."
   },
   {
+    "title" : "Common Pitfalls in SQLite Database Design",
+    "tags" : [
+      "sqlite",
+      "database design",
+      "normalization",
+      "indexing",
+      "relationships",
+      "best practices"
+    ],
+    "description" : "A comprehensive lesson on common mistakes in SQLite database design and how to avoid them."
+  },
+  {
     "title" : "Introduction to App Lifecycle in iOS",
     "tags" : [
       "iOS",
@@ -1859,6 +1960,19 @@
     "description" : "Explore how design patterns influence testing strategies in iOS development, with practical examples of unit testing for various patterns."
   },
   {
+    "title" : "Defining Relationships Between Tables in SQLite",
+    "tags" : [
+      "SQLite",
+      "database design",
+      "relationships",
+      "foreign keys",
+      "one-to-one",
+      "one-to-many",
+      "many-to-many"
+    ],
+    "description" : "This lesson examines how to establish relationships in SQLite databases, covering one-to-one, one-to-many, and many-to-many relationships, and demonstrates how to implement foreign keys."
+  },
+  {
     "title" : "Testing Combine Code in iOS",
     "tags" : [
       "combine",
@@ -1961,6 +2075,18 @@
       "filter"
     ],
     "description" : "A comprehensive lesson on using RxSwift operators to transform and combine data streams effectively."
+  },
+  {
+    "title" : "Introduction to SQLite",
+    "tags" : [
+      "SQLite",
+      "database",
+      "mobile applications",
+      "iOS development",
+      "lightweight database",
+      "file-based storage"
+    ],
+    "description" : "Explore SQLite as a lightweight database engine ideal for mobile applications, focusing on its architecture and advantages for iOS development."
   },
   {
     "title" : "Memory Management in Swift",
@@ -2378,6 +2504,19 @@
     "description" : "Learn how to create adaptive user interfaces that work across various devices and screen sizes in iOS development."
   },
   {
+    "title" : "Using Transactions in SQLite",
+    "tags" : [
+      "sqlite",
+      "transactions",
+      "database",
+      "data integrity",
+      "commit",
+      "rollback",
+      "savepoints"
+    ],
+    "description" : "This lesson covers transactional control in SQLite, focusing on commit, rollback, and savepoints, alongside practical examples."
+  },
+  {
     "title" : "Property Wrappers in Swift",
     "tags" : [
       "swift",
@@ -2401,6 +2540,18 @@
       "cancellation"
     ],
     "description" : "An introduction to the Combine framework in Swift, covering publishers, subscribers, and cancellation."
+  },
+  {
+    "title" : "Indexing for Performance Optimization",
+    "tags" : [
+      "indexing",
+      "SQLite",
+      "database",
+      "performance optimization",
+      "query performance",
+      "software engineering"
+    ],
+    "description" : "Discover the role of indexing in improving query performance in SQLite. Learn about different types of indexes, how to create them, and best practices for when to use indexes in your database design."
   },
   {
     "title" : "Previews in SwiftUI",
@@ -2912,6 +3063,18 @@
       "dependencies"
     ],
     "description" : "An introductory lesson on Dependency Injection and its benefits in iOS applications."
+  },
+  {
+    "title" : "Normalization in Database Design",
+    "tags" : [
+      "database design",
+      "normalization",
+      "SQLite",
+      "data integrity",
+      "redundancy",
+      "database theory"
+    ],
+    "description" : "A comprehensive lesson on the principles of database normalization, its importance, and its application in SQLite."
   },
   {
     "title" : "Understanding the Layers of Clean Architecture",

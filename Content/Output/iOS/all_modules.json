@@ -440,6 +440,28 @@
           "data_migration_strategies",
           "user_experience_and_data_management"
         ]
+      },
+      {
+        "title" : "Database Modeling and Design in SQLite",
+        "subModules" : [
+
+        ],
+        "description" : "A practical guide to designing and modeling databases in SQLite, including schema design, normalization, relationships, indexing, and best practices for optimizing performance in mobile applications",
+        "lessons" : [
+          "introduction_to_sqlite",
+          "understanding_database_schemas",
+          "normalization_in_database_design",
+          "defining_relationships_between_tables",
+          "indexing_for_performance_optimization",
+          "sqlite_data_types_and_constraints",
+          "using_transactions_in_sqlite",
+          "querying_sqlite_databases",
+          "optimizing_sqlite_database_performance",
+          "backup_and_restore_strategies_for_sqlite",
+          "implementing_security_in_sqlite_databases",
+          "integrating_sqlite_with_ios_applications",
+          "common_pitfalls_in_sqlite_database_design"
+        ]
       }
     ],
     "description" : "Comprehensive preparation course for Senior iOS Developer interviews, covering advanced Swift concepts, iOS architectures, design patterns, concurrency, testing, and key principles needed to excel in technical interviews at top-tier companies.",
