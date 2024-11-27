@@ -9,9 +9,11 @@ struct ContentChef: ParsableCommand {
             PublishContent.self,
             BreakdownTopics.self,
             GenerateLesson.self,
-            GenerateLessons.self // Add other commands here
+            GenerateLessonsFromTopics.self,
+            GenerateLessons.self,
+            BuildTopLevelModule.self
         ],
-        defaultSubcommand: BreakdownTopics.self
+        defaultSubcommand: BuildTopLevelModule.self
     )
 }
 
