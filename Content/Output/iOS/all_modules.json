@@ -1,78 +1,448 @@
 [
   {
-    "title" : "iOS Interview Preparation",
+    "title" : "iOS Interview Preparation Course",
     "subModules" : [
       {
-        "title" : "Swift Programming Language",
+        "title" : "SwiftUI: Basic Overview",
         "subModules" : [
-          {
-            "title" : "Fundamental Swift Concepts",
-            "subModules" : [
 
-            ],
-            "description" : "Covers basic Swift language constructs and types, essential for building a solid programming foundation.",
-            "lessons" : [
-              "variables_and_constants_in_swift",
-              "optionals_and_unwrapping_in_swift"
-            ]
-          },
-          {
-            "title" : "Intermediate Swift Concepts",
-            "subModules" : [
-
-            ],
-            "description" : "Explores intermediate Swift features such as protocols, memory management, and error handling, crucial for app development.",
-            "lessons" : [
-              "memory_management_in_swift"
-            ]
-          },
-          {
-            "title" : "Advanced Swift Features",
-            "subModules" : [
-
-            ],
-            "description" : "Delves into advanced Swift language features, enabling high-performance, modular code for large-scale applications.",
-            "lessons" : [
-              "swift_concurrency_with_async_await_and_structured_concurrency"
-            ]
-          }
         ],
-        "description" : "Comprehensive insights into the Swift programming language, covering foundational to advanced concepts critical for iOS development.",
+        "description" : "A comprehensive guide to SwiftUI basics, including layout, view composition, declarative syntax, and state management for building iOS applications.",
         "lessons" : [
-
+          "introduction_to_swiftui",
+          "creating_your_first_swiftui_view",
+          "understanding_swiftui_layouts",
+          "modifiers_in_swiftui",
+          "state_management_in_swiftui",
+          "building_complex_views_with_swiftui",
+          "navigation_and_data_flow_in_swiftui",
+          "handling_user_input_with_swiftui",
+          "animations_in_swiftui",
+          "previews_in_swiftui",
+          "integrating_swiftui_with_uikit",
+          "testing_swiftui_views",
+          "accessibility_in_swiftui",
+          "best_practices_and_common_pitfalls_in_swiftui"
         ]
       },
       {
-        "title" : "Software Architecture and Design Patterns",
+        "title" : "SwiftUI: Advanced Overview",
         "subModules" : [
-          {
-            "title" : "SOLID Principles",
-            "subModules" : [
 
-            ],
-            "description" : "Explains the SOLID principles and their application in iOS development for improved code modularity, maintainability, and scalability.",
-            "lessons" : [
-              "solid_principles_for_ios_development"
-            ]
-          },
-          {
-            "title" : "Model-View-ViewModel (MVVM) Architecture",
-            "subModules" : [
-
-            ],
-            "description" : "An exploration of MVVM architecture, commonly used for complex iOS apps, especially with SwiftUI.",
-            "lessons" : [
-              "mvvm_architecture_for_ios_development_using_swiftui"
-            ]
-          }
         ],
-        "description" : "A deep dive into essential software architectures and design patterns used in iOS for scalable and maintainable applications.",
+        "description" : "Deep dive into advanced SwiftUI topics such as custom views, animations, advanced state management, integrating SwiftUI with UIKit, and optimizing performance.",
         "lessons" : [
+          "custom_views_in_swiftui",
+          "advanced_animations_in_swiftui",
+          "state_management_techniques",
+          "integrating_swiftui_with_uikit",
+          "performance_optimization_in_swiftui",
+          "dynamic_data_handling_with_combine",
+          "creating_adaptive_interfaces",
+          "testing_swiftui_views",
+          "building_complex_lists_with_swiftui",
+          "accessibility_in_swiftui",
+          "handling_gestures_in_swiftui"
+        ]
+      },
+      {
+        "title" : "Combine in iOS Development",
+        "subModules" : [
 
+        ],
+        "description" : "Learn the principles of reactive programming with Combine, including publishers, subscribers, data streams, and advanced topics like custom publishers and scheduling.",
+        "lessons" : [
+          "introduction_to_combine",
+          "understanding_publishers_and_subscribers",
+          "data_streams_in_combine",
+          "operators_in_combine",
+          "handling_errors_in_combine",
+          "scheduling_in_combine",
+          "creating_custom_publishers",
+          "combining_multiple_publishers",
+          "combine_with_swiftui",
+          "testing_combine_code",
+          "advanced_combine_patterns"
+        ]
+      },
+      {
+        "title" : "Swift Language: Intermediate Concepts",
+        "subModules" : [
+
+        ],
+        "description" : "Explore intermediate Swift language topics such as optionals, closures, structs vs. classes, extensions, and collection transformations.",
+        "lessons" : [
+          "understanding_optionals",
+          "mastering_closures",
+          "structs_vs_classes_in_swift",
+          "extending_functionality_with_extensions",
+          "collection_transformations_in_swift",
+          "error_handling_in_swift",
+          "protocols_and_protocoloriented_programming",
+          "generics_in_swift",
+          "memory_management_and_arc"
+        ]
+      },
+      {
+        "title" : "Swift Language: Advanced Concepts",
+        "subModules" : [
+
+        ],
+        "description" : "Master advanced Swift concepts, including generics, protocol-oriented programming, type erasure, property wrappers, and memory management.",
+        "lessons" : [
+          "introduction_to_advanced_swift",
+          "generics_in_swift",
+          "advanced_generics_patterns",
+          "protocoloriented_programming",
+          "creating_and_using_protocols",
+          "type_erasure_in_swift",
+          "property_wrappers",
+          "memory_management_in_swift",
+          "advanced_memory_management_techniques",
+          "concurrency_in_swift",
+          "swift_error_handling",
+          "design_patterns_in_swift",
+          "testing_in_swift",
+          "performance_optimization_techniques",
+          "future_of_swift_evolving_concepts"
+        ]
+      },
+      {
+        "title" : "Concurrency in Swift",
+        "subModules" : [
+
+        ],
+        "description" : "Comprehensive guide to concurrency in Swift, covering async\/await, Grand Central Dispatch (GCD), NSOperationQueue, structured concurrency, and best practices.",
+        "lessons" : [
+          "introduction_to_concurrency_in_swift",
+          "understanding_grand_central_dispatch_gcd",
+          "using_dispatch_queues",
+          "asyncawait_in_swift",
+          "error_handling_in_async_code",
+          "nsoperation_and_nsoperationqueue",
+          "structured_concurrency_in_swift",
+          "best_practices_for_concurrency_in_swift",
+          "concurrency_patterns_in_swift",
+          "testing_concurrency_in_swift",
+          "realworld_examples_of_concurrency",
+          "concurrency_debugging_techniques"
+        ]
+      },
+      {
+        "title" : "iOS Architectures: MVC, MVVM, MVP, VIP, VIPER, Clean, TCA, UDF",
+        "subModules" : [
+
+        ],
+        "description" : "In-depth exploration of iOS architectural patterns, including their principles, strengths, weaknesses, and practical use cases.",
+        "lessons" : [
+          "introduction_to_ios_architectures",
+          "understanding_mvc_in_ios",
+          "exploring_mvvm_architecture",
+          "mvp_architecture_explained",
+          "overview_of_vip_architecture",
+          "deep_dive_into_viper_architecture",
+          "clean_architecture_principles",
+          "the_composable_architecture_tca",
+          "understanding_udf_in_ios_development",
+          "comparing_ios_architectures",
+          "integrating_architectural_patterns_in_projects",
+          "testing_strategies_across_architectures",
+          "realworld_use_cases_of_ios_architectures",
+          "future_trends_in_ios_architectural_patterns"
+        ]
+      },
+      {
+        "title" : "iOS Design Patterns",
+        "subModules" : [
+
+        ],
+        "description" : "Detailed guide to common design patterns in iOS, such as delegation, factory, singleton, observer, and strategy, with examples and practical applications.",
+        "lessons" : [
+          "introduction_to_ios_design_patterns",
+          "understanding_the_delegation_pattern",
+          "factory_design_pattern_in_ios",
+          "implementing_the_singleton_pattern",
+          "the_observer_pattern_explained",
+          "strategy_pattern_for_flexible_algorithms",
+          "combining_design_patterns_in_ios",
+          "best_practices_for_using_ios_design_patterns",
+          "realworld_applications_of_ios_design_patterns",
+          "testing_and_design_patterns_in_ios",
+          "common_mistakes_with_ios_design_patterns"
+        ]
+      },
+      {
+        "title" : "Core iOS Concepts and Principles",
+        "subModules" : [
+
+        ],
+        "description" : "Overview of essential iOS concepts such as dependency injection, composition over inheritance, type erasure, SOLID principles, and other key software engineering concepts.",
+        "lessons" : [
+          "introduction_to_dependency_injection",
+          "composition_over_inheritance",
+          "type_erasure_in_swift",
+          "understanding_solid_principles",
+          "design_patterns_in_ios",
+          "protocoloriented_programming",
+          "error_handling_in_swift",
+          "asynchronous_programming_with_swift",
+          "unit_testing_and_testdriven_development",
+          "memory_management_in_swift",
+          "networking_best_practices_in_ios"
+        ]
+      },
+      {
+        "title" : "Testing in iOS",
+        "subModules" : [
+
+        ],
+        "description" : "Comprehensive guide to testing in iOS, including unit testing, UI testing, test-driven development, and asynchronous testing using XCTest and other frameworks.",
+        "lessons" : [
+          "introduction_to_testing_in_ios",
+          "unit_testing_with_xctest",
+          "mocking_and_stubbing_in_unit_tests",
+          "ui_testing_in_ios_with_xctest",
+          "testdriven_development_tdd",
+          "asynchronous_testing_with_xctest",
+          "continuous_integration_and_testing",
+          "performance_testing_in_ios",
+          "code_coverage_and_analyzing_test_results",
+          "behaviordriven_development_bdd_in_ios",
+          "debugging_tests_and_common_pitfalls"
+        ]
+      },
+      {
+        "title" : "Clean Architecture in iOS Development",
+        "subModules" : [
+
+        ],
+        "description" : "Detailed exploration of Clean Architecture principles applied to iOS, focusing on modularity, separation of concerns, and scalable application design.",
+        "lessons" : [
+          "introduction_to_clean_architecture",
+          "understanding_the_layers_of_clean_architecture",
+          "the_dependency_rule_in_clean_architecture",
+          "implementing_use_cases_in_clean_architecture",
+          "creating_a_modular_ios_application",
+          "testing_in_clean_architecture",
+          "handling_data_with_repositories",
+          "creating_presenters_and_views_in_clean_architecture",
+          "integrating_networking_with_clean_architecture",
+          "decoupling_with_protocols_in_swift",
+          "architectural_patterns_comparison",
+          "realworld_case_study_clean_architecture_in_action",
+          "refactoring_legacy_code_to_clean_architecture",
+          "best_practices_for_clean_architecture_implementation",
+          "future_trends_in_ios_architecture"
+        ]
+      },
+      {
+        "title" : "UIKit Overview",
+        "subModules" : [
+
+        ],
+        "description" : "Comprehensive guide to UIKit, including view hierarchy, view controllers, navigation patterns, and managing user interfaces programmatically or with Storyboards.",
+        "lessons" : [
+          "introduction_to_uikit",
+          "understanding_the_view_hierarchy",
+          "working_with_view_controllers",
+          "navigation_patterns_in_uikit",
+          "creating_user_interfaces_with_storyboards",
+          "programmatic_ui_development_with_uikit",
+          "managing_user_interaction",
+          "advanced_view_customization",
+          "resizing_and_adapting_ui_for_different_devices",
+          "debugging_and_profiling_uikit_applications",
+          "best_practices_for_uikit_development"
+        ]
+      },
+      {
+        "title" : "App Lifecycle and Events in UIKit and SwiftUI",
+        "subModules" : [
+
+        ],
+        "description" : "Learn about application lifecycles in UIKit and SwiftUI, including app states, view lifecycle events, and managing background tasks.",
+        "lessons" : [
+          "introduction_to_app_lifecycle",
+          "uikit_app_lifecycle_states",
+          "swiftui_app_lifecycle_overview",
+          "view_lifecycle_in_uikit",
+          "view_lifecycle_in_swiftui",
+          "managing_background_tasks_in_uikit",
+          "managing_background_tasks_in_swiftui",
+          "responding_to_app_state_changes",
+          "error_handling_in_app_lifecycle",
+          "testing_app_lifecycle_events",
+          "best_practices_for_app_lifecycle_management"
+        ]
+      },
+      {
+        "title" : "Reactive Programming Concepts in Swift",
+        "subModules" : [
+
+        ],
+        "description" : "Explore reactive programming principles using frameworks like Combine and RxSwift, focusing on handling asynchronous streams of data effectively.",
+        "lessons" : [
+          "introduction_to_reactive_programming",
+          "understanding_asynchronous_data_streams",
+          "getting_started_with_combine_framework",
+          "using_publishers_and_subscribers_in_combine",
+          "transforming_data_with_operators_in_combine",
+          "error_handling_in_combine",
+          "introduction_to_rxswift",
+          "working_with_observables_in_rxswift",
+          "operators_in_rxswift_transforming_streams",
+          "handling_errors_in_rxswift",
+          "combining_multiple_streams_in_reactive_programming",
+          "reactive_programming_with_swiftui",
+          "best_practices_for_reactive_programming",
+          "testing_reactive_code",
+          "performance_considerations_in_reactive_programming"
+        ]
+      },
+      {
+        "title" : "Networking in iOS Development",
+        "subModules" : [
+
+        ],
+        "description" : "Master networking concepts in iOS, including URLSession, RESTful API integration, error handling, and advanced techniques like Combine for networking.",
+        "lessons" : [
+          "introduction_to_networking_in_ios",
+          "understanding_urlsession",
+          "making_restful_api_requests",
+          "handling_api_responses_and_errors",
+          "advanced_urlsession_techniques",
+          "using_combine_for_networking",
+          "authentication_and_security_in_networking",
+          "testing_network_code_in_ios",
+          "networking_best_practices"
+        ]
+      },
+      {
+        "title" : "Persistence in iOS Applications",
+        "subModules" : [
+
+        ],
+        "description" : "Learn about data persistence techniques in iOS, including UserDefaults, Core Data, SQLite, and modern persistence strategies.",
+        "lessons" : [
+          "introduction_to_data_persistence_in_ios",
+          "understanding_userdefaults",
+          "core_data_fundamentals",
+          "core_data_relationships_and_fetching",
+          "sqlite_and_its_integration_with_ios",
+          "modern_persistence_techniques_with_swift",
+          "data_migration_strategies_in_core_data",
+          "performance_optimization_in_data_persistence",
+          "testing_data_persistence_in_ios_applications",
+          "security_considerations_for_data_persistence"
+        ]
+      },
+      {
+        "title" : "Core Data Essentials",
+        "subModules" : [
+
+        ],
+        "description" : "In-depth guide to Core Data, including data modeling, CRUD operations, relationships, and performance optimization.",
+        "lessons" : [
+          "introduction_to_core_data",
+          "core_data_stack_components",
+          "data_modeling_in_core_data",
+          "crud_operations_in_core_data",
+          "fetching_data_with_nsfetchrequest",
+          "managing_relationships_in_core_data",
+          "data_validation_and_constraints",
+          "core_data_migration_strategies",
+          "performance_optimization_in_core_data",
+          "concurrency_in_core_data",
+          "unit_testing_core_data_applications",
+          "integrating_core_data_with_swiftui",
+          "core_data_best_practices"
+        ]
+      },
+      {
+        "title" : "Memory Management and ARC in Swift",
+        "subModules" : [
+
+        ],
+        "description" : "Comprehensive understanding of memory management in Swift, including Automatic Reference Counting (ARC), strong vs. weak references, retain cycles, and debugging memory issues.",
+        "lessons" : [
+          "introduction_to_memory_management_in_swift",
+          "understanding_automatic_reference_counting_arc",
+          "strong_vs_weak_references",
+          "retain_cycles_and_their_prevention",
+          "using_unowned_references",
+          "memory_management_and_closures",
+          "debugging_memory_issues_in_swift",
+          "best_practices_for_memory_management_in_swift",
+          "advanced_arc_concepts_and_performance",
+          "memory_management_in_concurrency"
+        ]
+      },
+      {
+        "title" : "System Design for iOS Applications: Principles and Patterns",
+        "subModules" : [
+
+        ],
+        "description" : "High-level design principles for iOS applications, covering modularization, scaling, fault tolerance, and real-world implementation strategies.",
+        "lessons" : [
+          "introduction_to_system_design",
+          "modularization_in_ios_applications",
+          "architectural_patterns_overview",
+          "scaling_ios_applications",
+          "fault_tolerance_in_ios_applications",
+          "networking_and_apis_in_ios",
+          "data_persistence_strategies",
+          "dependency_injection_in_ios",
+          "testing_strategies_for_ios_applications",
+          "realworld_implementation_strategies",
+          "performance_optimization_techniques",
+          "user_experience_and_system_design",
+          "handling_concurrency_in_ios",
+          "security_best_practices_for_ios_applications",
+          "using_design_patterns_effectively"
+        ]
+      },
+      {
+        "title" : "Mobile System Design: Offline-First Applications",
+        "subModules" : [
+
+        ],
+        "description" : "Learn strategies for designing offline-first mobile applications, including data synchronization, conflict resolution, and local-first architecture patterns.",
+        "lessons" : [
+          "introduction_to_offlinefirst_design",
+          "local_data_storage_solutions",
+          "data_synchronization_strategies",
+          "conflict_resolution_techniques",
+          "localfirst_architecture_patterns",
+          "user_experience_in_offline_scenarios",
+          "testing_offline_functionality",
+          "handling_background_tasks_and_syncing",
+          "performance_optimization_for_offlinefirst_applications",
+          "realworld_case_studies_of_offlinefirst_applications",
+          "future_trends_in_offlinefirst_mobile_design"
+        ]
+      },
+      {
+        "title" : "Mobile System Design: Data Storage and Synchronization",
+        "subModules" : [
+
+        ],
+        "description" : "Strategies for designing scalable data storage, local databases, and real-time synchronization with backend servers for mobile applications.",
+        "lessons" : [
+          "introduction_to_mobile_data_storage",
+          "local_databases_sqlite_vs_core_data",
+          "designing_scalable_data_storage_solutions",
+          "implementing_realtime_data_synchronization",
+          "handling_data_conflicts_in_synchronization",
+          "offline_data_storage_strategies",
+          "choosing_the_right_data_storage_solution",
+          "performance_optimization_for_data_storage",
+          "security_considerations_in_data_storage",
+          "data_migration_strategies",
+          "user_experience_and_data_management"
         ]
       }
     ],
-    "description" : "An extensive overview of essential iOS development knowledge, designed to prepare you thoroughly for iOS interview success.",
+    "description" : "Comprehensive preparation course for Senior iOS Developer interviews, covering advanced Swift concepts, iOS architectures, design patterns, concurrency, testing, and key principles needed to excel in technical interviews at top-tier companies.",
     "lessons" : [
 
     ]
