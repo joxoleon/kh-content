@@ -36,6 +36,9 @@ struct GenerateLessonsFromTopics: ParsableCommand {
                 print("Failed to load topic breakdown output file: \(file)")
             }
         }
+
+        print("Topic breakdown outputs loaded successfully")
+        print("topic breakdown outputs count \(topicBreakdownOutputs.count)")
                 
         for topicBreakdownOutput in topicBreakdownOutputs {
             // Create a semaphore
@@ -57,7 +60,7 @@ struct GenerateLessonsFromTopics: ParsableCommand {
 
             // Wait for the async task to complete
             semaphore.wait()
-            printGreen("Lessons generated for \(topicBreakdownOutput.title)")
+            printGreen("Lessons generated for \(topicBreakdownOutput.title)\n\n")
         }
 
         printGreen("************************************************************************")

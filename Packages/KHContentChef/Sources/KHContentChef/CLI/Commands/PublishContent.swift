@@ -60,11 +60,12 @@ struct PublishContent: ParsableCommand {
         let metadata = lessons.map { $0.metadata }
         try CLIUtility.saveJSON(metadata, to: outputDirectory.appendingPathComponent("all_lesson_metadata.json"))
 
+        // This is no longer required as we are saving all lessons in a single file
         // Save individual lessons
-        let lessonDir = outputDirectory.appendingPathComponent("Lessons")
-        for lesson in lessons {
-            try CLIUtility.saveJSON(lesson, to: lessonDir.appendingPathComponent("\(lesson.metadata.id).json"))
-        }
+        // let lessonDir = outputDirectory.appendingPathComponent("Lessons")
+        // for lesson in lessons {
+        //     try CLIUtility.saveJSON(lesson, to: lessonDir.appendingPathComponent("\(lesson.metadata.id).json"))
+        // }
         print("Lessons saved successfully.")
     }
 
@@ -83,11 +84,12 @@ struct PublishContent: ParsableCommand {
         // Save all modules JSON
         try CLIUtility.saveJSON(modules, to: outputDirectory.appendingPathComponent("all_modules.json"))
 
+        // This is no longer required as we are saving all modules in a single file
         // Save individual modules
-        let moduleDir = outputDirectory.appendingPathComponent("Modules")
-        for module in modules {
-            try CLIUtility.saveJSON(module, to: moduleDir.appendingPathComponent("\(module.id).json"))
-        }
+        // let moduleDir = outputDirectory.appendingPathComponent("Modules")
+        // for module in modules {
+        //     try CLIUtility.saveJSON(module, to: moduleDir.appendingPathComponent("\(module.id).json"))
+        // }
         print("Modules saved successfully.")
     }
 
