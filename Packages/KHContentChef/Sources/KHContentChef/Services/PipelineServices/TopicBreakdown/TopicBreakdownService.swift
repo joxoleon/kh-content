@@ -3,7 +3,7 @@ import KHContentSource
 
 // MARK: - Constants
 enum TopicBreakdownConstants {
-    static let model = "gpt-4o-mini" // Yeah, I'M GOING BROKE!!!!
+    static let model = "gpt-4o-mini" // For some reason 4o keeps failing, so I'm using 4o-mini and it works every time!
     static let temperature = 0.7
     static let maxTokens = 4000
 }
