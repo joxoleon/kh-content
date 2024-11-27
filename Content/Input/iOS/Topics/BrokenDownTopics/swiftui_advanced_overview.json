@@ -1,0 +1,52 @@
+{
+  "batchLessonGenerationInput" : {
+    "lessons" : [
+      {
+        "title" : "Custom Views in SwiftUI",
+        "description" : "Explore the creation of reusable custom views in SwiftUI. Learn how to encapsulate functionality and styling, enabling you to build complex UIs more efficiently. Topics include view composition, modifiers, and best practices for structuring custom views."
+      },
+      {
+        "description" : "Dive deep into the animation capabilities of SwiftUI. Understand how to create smooth, dynamic transitions and interactive animations. This lesson covers implicit and explicit animations, gesture-driven animations, and performance considerations when animating views.",
+        "title" : "Advanced Animations in SwiftUI"
+      },
+      {
+        "title" : "State Management Techniques",
+        "description" : "Learn about advanced state management in SwiftUI, including the use of @State, @Binding, @ObservedObject, and @EnvironmentObject. This lesson focuses on when to use each state management technique and how to design effective data flows in your applications."
+      },
+      {
+        "description" : "Understand how to bridge SwiftUI and UIKit. This lesson covers methods for embedding SwiftUI views in UIKit applications and vice versa. Learn about UIViewControllerRepresentable and UIViewRepresentable, along with real-world use cases for integration.",
+        "title" : "Integrating SwiftUI with UIKit"
+      },
+      {
+        "description" : "Examine strategies for optimizing performance in SwiftUI applications. This lesson discusses rendering optimization, memory management, and efficient data handling. Learn how to use tools like Instruments for profiling your SwiftUI apps and identifying bottlenecks.",
+        "title" : "Performance Optimization in SwiftUI"
+      },
+      {
+        "description" : "Explore how to use Combine with SwiftUI for dynamic data handling. This lesson covers creating publishers, subscribers, and how to integrate Combine with state management in SwiftUI to respond to data changes reactively.",
+        "title" : "Dynamic Data Handling with Combine"
+      },
+      {
+        "description" : "Learn how to build adaptive layouts that respond to different device sizes and orientations in SwiftUI. This lesson includes the use of GeometryReader, dynamic type, and environment values to create responsive designs that enhance user experience.",
+        "title" : "Creating Adaptive Interfaces"
+      },
+      {
+        "description" : "Discover best practices for testing SwiftUI views, focusing on unit testing and UI testing strategies. This lesson covers the use of XCTest and how to write comprehensive tests for your SwiftUI components to ensure reliability and maintainability.",
+        "title" : "Testing SwiftUI Views"
+      },
+      {
+        "title" : "Building Complex Lists with SwiftUI",
+        "description" : "Dive into building complex list views using List in SwiftUI. Learn about custom row views, section headers, and dynamic content. This lesson emphasizes performance considerations and managing large datasets efficiently."
+      },
+      {
+        "title" : "Accessibility in SwiftUI",
+        "description" : "Understand how to implement accessibility features in your SwiftUI applications. This lesson covers the use of accessibility modifiers, voiceover support, and best practices to ensure your apps are inclusive and usable for all users."
+      },
+      {
+        "title" : "Handling Gestures in SwiftUI",
+        "description" : "Learn about gesture recognition in SwiftUI. This lesson covers the various gesture types such as tap, drag, and long press, and how to customize responses to user interactions to enhance app usability."
+      }
+    ]
+  },
+  "title" : "SwiftUI: Advanced Overview",
+  "description" : "Deep dive into advanced SwiftUI topics such as custom views, animations, advanced state management, integrating SwiftUI with UIKit, and optimizing performance."
+}

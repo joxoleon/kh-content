@@ -1,0 +1,48 @@
+{
+  "batchLessonGenerationInput" : {
+    "lessons" : [
+      {
+        "description" : "This lesson covers the fundamental concepts of data persistence in iOS applications. It explains why data persistence is essential, the various types of data that can be persisted, and an overview of the different persistence techniques available in iOS, setting the stage for deeper exploration in subsequent lessons.",
+        "title" : "Introduction to Data Persistence in iOS"
+      },
+      {
+        "description" : "Explore UserDefaults as a simple key-value storage solution for lightweight data in iOS applications. This lesson covers its use cases, best practices, and limitations, including data types that can be stored, how to read and write data, and when to avoid using UserDefaults.",
+        "title" : "Understanding UserDefaults"
+      },
+      {
+        "title" : "Core Data Fundamentals",
+        "description" : "Dive into Core Data, Apple's powerful framework for object graph management and data persistence. This lesson explores the Core Data stack, including managed objects, contexts, and persistent stores. Key concepts such as data modeling, relationships, and fetching data using fetch requests will also be discussed."
+      },
+      {
+        "title" : "Core Data Relationships and Fetching",
+        "description" : "Building on the previous lesson, this lesson delves deeper into managing relationships between Core Data entities. Learn how to create one-to-one, one-to-many, and many-to-many relationships. Additionally, it covers advanced fetching techniques, including batch fetching and using predicates for filtering data."
+      },
+      {
+        "description" : "This lesson introduces SQLite as a lightweight, disk-based database that can be embedded in iOS applications. It discusses how to interact with SQLite using SQL queries, the advantages and disadvantages of using SQLite compared to Core Data, and how to integrate SQLite into an iOS app using the FMDB library.",
+        "title" : "SQLite and Its Integration with iOS"
+      },
+      {
+        "title" : "Modern Persistence Techniques with Swift",
+        "description" : "Explore modern data persistence strategies in iOS using Swift. This lesson focuses on using Codable for serialization, combining it with UserDefaults and file storage to persist complex data structures. It also introduces new frameworks like Combine and how they can enhance data handling in conjunction with persistence."
+      },
+      {
+        "title" : "Data Migration Strategies in Core Data",
+        "description" : "Learn about data migration techniques in Core Data for handling schema changes. This lesson covers lightweight and heavyweight migration strategies, how to manage versioning of data models, and best practices for ensuring data integrity during migrations."
+      },
+      {
+        "description" : "This lesson focuses on optimizing data persistence in iOS applications. It discusses strategies for improving performance when using UserDefaults, Core Data, and SQLite, including indexing, caching, and batch processing techniques to enhance data retrieval and storage efficiency.",
+        "title" : "Performance Optimization in Data Persistence"
+      },
+      {
+        "title" : "Testing Data Persistence in iOS Applications",
+        "description" : "Understand how to effectively test data persistence mechanisms in iOS. This lesson covers unit testing for UserDefaults, Core Data, and SQLite, including best practices for mocking data stores, ensuring data integrity, and automating persistence tests as part of the CI\/CD pipeline."
+      },
+      {
+        "title" : "Security Considerations for Data Persistence",
+        "description" : "This lesson addresses security best practices for persisting sensitive information in iOS applications. It covers using Keychain for secure storage, encrypting data before writing to persistent stores, and understanding Apple's security frameworks to safeguard user data."
+      }
+    ]
+  },
+  "title" : "Persistence in iOS Applications",
+  "description" : "Learn about data persistence techniques in iOS, including UserDefaults, Core Data, SQLite, and modern persistence strategies."
+}

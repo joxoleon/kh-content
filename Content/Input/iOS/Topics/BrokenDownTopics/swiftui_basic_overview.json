@@ -1,0 +1,64 @@
+{
+  "batchLessonGenerationInput" : {
+    "lessons" : [
+      {
+        "title" : "Introduction to SwiftUI",
+        "description" : "Explore the fundamentals of SwiftUI, including its purpose and advantages over UIKit. Understand the declarative syntax and how it simplifies UI development in iOS applications."
+      },
+      {
+        "title" : "Creating Your First SwiftUI View",
+        "description" : "Learn how to create basic SwiftUI views, using Text, Image, and VStack. This lesson covers the essentials of view composition and layout in SwiftUI."
+      },
+      {
+        "description" : "Delve into the layout system of SwiftUI. This lesson covers the various layout containers like HStack, VStack, and ZStack, and how to effectively use them to arrange UI elements.",
+        "title" : "Understanding SwiftUI Layouts"
+      },
+      {
+        "description" : "Discover how to enhance views using modifiers in SwiftUI. This lesson covers the concept of view modifiers, their syntax, and common modifiers like padding, background, and font.",
+        "title" : "Modifiers in SwiftUI"
+      },
+      {
+        "title" : "State Management in SwiftUI",
+        "description" : "Understand the importance of state in SwiftUI applications. This lesson covers @State, @Binding, and @ObservedObject properties and how they are used to manage and update UI based on data changes."
+      },
+      {
+        "title" : "Building Complex Views with SwiftUI",
+        "description" : "Learn how to compose complex UI components by combining multiple views and leveraging SwiftUI’s built-in controls. This lesson emphasizes creating reusable components."
+      },
+      {
+        "title" : "Navigation and Data Flow in SwiftUI",
+        "description" : "Explore navigation in SwiftUI using NavigationView and NavigationLink. Understand how to pass data between views and maintain a clean data flow."
+      },
+      {
+        "description" : "Learn how to capture user input using TextField, Toggle, and Slider. This lesson covers binding user input to application state and updating the UI in response.",
+        "title" : "Handling User Input with SwiftUI"
+      },
+      {
+        "title" : "Animations in SwiftUI",
+        "description" : "Discover how to create engaging animations in SwiftUI. This lesson covers the basics of animating views and transitions, including implicit and explicit animations."
+      },
+      {
+        "description" : "Understand how to use the SwiftUI preview feature to visualize your UI designs in real-time. Learn how to create multiple previews for different states and devices.",
+        "title" : "Previews in SwiftUI"
+      },
+      {
+        "title" : "Integrating SwiftUI with UIKit",
+        "description" : "Learn how to integrate SwiftUI views within a UIKit application. This lesson covers the use of UIHostingController and the implications for legacy codebases."
+      },
+      {
+        "description" : "Explore strategies for testing SwiftUI views. This lesson discusses unit testing, UI testing, and best practices for ensuring your views work as intended.",
+        "title" : "Testing SwiftUI Views"
+      },
+      {
+        "description" : "Understand the importance of accessibility in app development. Learn how to make SwiftUI views accessible, covering modifiers and best practices for inclusive design.",
+        "title" : "Accessibility in SwiftUI"
+      },
+      {
+        "title" : "Best Practices and Common Pitfalls in SwiftUI",
+        "description" : "Examine best practices for developing with SwiftUI, including performance optimizations and common pitfalls to avoid. This lesson aims to enhance your efficiency and effectiveness as a developer."
+      }
+    ]
+  },
+  "description" : "A comprehensive guide to SwiftUI basics, including layout, view composition, declarative syntax, and state management for building iOS applications.",
+  "title" : "SwiftUI: Basic Overview"
+}

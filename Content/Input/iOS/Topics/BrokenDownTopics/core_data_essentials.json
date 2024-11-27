@@ -1,0 +1,60 @@
+{
+  "title" : "Core Data Essentials",
+  "description" : "In-depth guide to Core Data, including data modeling, CRUD operations, relationships, and performance optimization.",
+  "batchLessonGenerationInput" : {
+    "lessons" : [
+      {
+        "description" : "An overview of Core Data, its purpose, and its role in iOS application development. This lesson covers the basics of data persistence, the advantages of using Core Data over other storage solutions, and an introduction to its architecture.",
+        "title" : "Introduction to Core Data"
+      },
+      {
+        "description" : "Explore the essential components of the Core Data stack, including NSManagedObjectContext, NSManagedObjectModel, and NSPersistentStoreCoordinator. Understand how these components interact and the importance of each in managing data.",
+        "title" : "Core Data Stack Components"
+      },
+      {
+        "title" : "Data Modeling in Core Data",
+        "description" : "Learn how to create and manage data models in Core Data, including defining entities, attributes, and relationships. This lesson covers using the Xcode data model editor and best practices for designing efficient models."
+      },
+      {
+        "description" : "A comprehensive guide to performing Create, Read, Update, and Delete operations with Core Data. This lesson covers methods to insert new records, fetch existing data, update records, and delete entries, alongside best practices for each operation.",
+        "title" : "CRUD Operations in Core Data"
+      },
+      {
+        "title" : "Fetching Data with NSFetchRequest",
+        "description" : "Dive into NSFetchRequest, the primary way to retrieve data in Core Data. This lesson discusses how to construct fetch requests, use predicates for filtering, and sort results. Understand the impact of fetch limits and batch sizes on performance."
+      },
+      {
+        "title" : "Managing Relationships in Core Data",
+        "description" : "Examine how to define and manage relationships between entities in Core Data. This lesson covers one-to-one, one-to-many, and many-to-many relationships, including how to model them and the implications for data integrity and performance."
+      },
+      {
+        "description" : "Learn about data validation techniques in Core Data to ensure data integrity. This lesson discusses validation methods, including defining constraints in the data model, and implementing custom validation logic in managed objects.",
+        "title" : "Data Validation and Constraints"
+      },
+      {
+        "title" : "Core Data Migration Strategies",
+        "description" : "Understand the importance of data migration when your data model changes. This lesson covers lightweight migrations, versioning your data model, and strategies for handling complex migrations, ensuring smooth transitions in your application."
+      },
+      {
+        "description" : "Explore techniques for optimizing Core Data performance. This lesson discusses the use of background contexts, batching fetch requests, prefetching relationships, and optimizing the data model to improve application responsiveness.",
+        "title" : "Performance Optimization in Core Data"
+      },
+      {
+        "title" : "Concurrency in Core Data",
+        "description" : "Learn how to manage concurrency in Core Data to ensure thread safety. This lesson covers using multiple managed object contexts, the NSManagedObjectContext's concurrency types, and strategies for avoiding common pitfalls."
+      },
+      {
+        "description" : "Discover best practices for unit testing Core Data applications. This lesson covers setting up an in-memory persistent store for testing, writing test cases for CRUD operations, and ensuring data integrity through automated tests.",
+        "title" : "Unit Testing Core Data Applications"
+      },
+      {
+        "title" : "Integrating Core Data with SwiftUI",
+        "description" : "Understand how to integrate Core Data with SwiftUI for modern app development. This lesson discusses the use of @FetchRequest, managing data bindings, and presenting data in SwiftUI views while leveraging Core Data."
+      },
+      {
+        "title" : "Core Data Best Practices",
+        "description" : "A summary of best practices for using Core Data effectively in iOS applications. This lesson covers common pitfalls to avoid, tips for maintaining data integrity, and design patterns that enhance Core Data usage."
+      }
+    ]
+  }
+}

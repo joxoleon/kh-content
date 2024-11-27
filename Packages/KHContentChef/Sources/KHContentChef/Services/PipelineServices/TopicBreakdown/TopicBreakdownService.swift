@@ -3,8 +3,8 @@ import KHContentSource
 
 // MARK: - Constants
 enum TopicBreakdownConstants {
-    static let model = "gpt-4o" // Yeah, I'M GOING BROKE!!!!
-    static let temperature = 0.5
+    static let model = "gpt-4o-mini" // Yeah, I'M GOING BROKE!!!!
+    static let temperature = 0.7
     static let maxTokens = 4000
 }
 
@@ -125,6 +125,7 @@ final class TopicBreakdownService {
             .replacingOccurrences(of: "\n```", with: "")
         
         guard let data = cleanedResponseString.data(using: .utf8) else {
+            printRed("Failed to convert response string to data")
             throw TopicBreakdownError.apiError("Failed to convert response string to data")
         }
         
@@ -136,6 +137,12 @@ final class TopicBreakdownService {
                 batchLessonGenerationInput: batchLessonGenerationInput
             )
         } catch {
+            printRed("Failed to decode JSON response: \(error.localizedDescription)")
+
+            print("\n**** Failed for response string ****")
+            print("Response: \(cleanedResponseString)")
+            print("**** End of response string ****\n")
+
             throw TopicBreakdownError.apiError("Failed to decode JSON response: \(error.localizedDescription)")
         }
     }

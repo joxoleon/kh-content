@@ -1,0 +1,52 @@
+{
+  "description" : "Learn the principles of reactive programming with Combine, including publishers, subscribers, data streams, and advanced topics like custom publishers and scheduling.",
+  "batchLessonGenerationInput" : {
+    "lessons" : [
+      {
+        "description" : "Explore the fundamentals of Combine, Apple's framework for reactive programming. This lesson covers the basic concepts of reactive programming, the role of Combine in iOS development, and an overview of its core components, including publishers and subscribers.",
+        "title" : "Introduction to Combine"
+      },
+      {
+        "title" : "Understanding Publishers and Subscribers",
+        "description" : "Dive deep into the core building blocks of Combine: publishers and subscribers. Learn how to create and manage publishers, subscribe to data streams, and handle events emitted by publishers, including completion and error handling."
+      },
+      {
+        "description" : "Learn how to work with data streams in Combine, focusing on how to create and manipulate streams of data. This lesson covers the concept of value emission, transformation of data streams, and practical use cases in an iOS application.",
+        "title" : "Data Streams in Combine"
+      },
+      {
+        "description" : "Discover the various operators available in Combine that allow you to transform, filter, and combine data streams. Understand how to use operators like map, filter, merge, and combineLatest to manipulate your data streams effectively.",
+        "title" : "Operators in Combine"
+      },
+      {
+        "title" : "Handling Errors in Combine",
+        "description" : "Examine how to effectively handle errors in Combine. This lesson covers error propagation, different strategies for error handling, and how to recover from errors in your data streams without breaking the flow of your application."
+      },
+      {
+        "description" : "Gain insights into scheduling in Combine, learning how to control when and where your publishers emit values. This lesson covers the Scheduler protocol and practical examples of using main, immediate, and custom schedulers.",
+        "title" : "Scheduling in Combine"
+      },
+      {
+        "description" : "Learn how to create custom publishers in Combine. This lesson focuses on extending Combine's capabilities by building your own publisher types, covering the implementation details, and when to use custom publishers in your applications.",
+        "title" : "Creating Custom Publishers"
+      },
+      {
+        "title" : "Combining Multiple Publishers",
+        "description" : "Explore techniques for combining multiple publishers into a single stream of data. This lesson covers various methods such as zip, merge, and combineLatest, along with practical examples of when to use each method in your iOS applications."
+      },
+      {
+        "title" : "Combine with SwiftUI",
+        "description" : "Understand how to integrate Combine with SwiftUI to create reactive user interfaces. This lesson discusses the interplay between Combine and SwiftUI's state management, along with practical examples of binding data using Combine."
+      },
+      {
+        "title" : "Testing Combine Code",
+        "description" : "Learn best practices for testing Combine code in your applications. This lesson covers how to write unit tests for publishers and subscribers, mock dependencies, and ensure the reliability of your reactive code."
+      },
+      {
+        "description" : "Delve into advanced patterns and techniques in Combine, including the use of subjects, the concept of backpressure, and performance considerations. This lesson helps you to implement more complex reactive programming constructs in your applications.",
+        "title" : "Advanced Combine Patterns"
+      }
+    ]
+  },
+  "title" : "Combine in iOS Development"
+}

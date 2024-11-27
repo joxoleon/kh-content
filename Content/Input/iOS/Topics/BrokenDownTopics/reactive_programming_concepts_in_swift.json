@@ -1,0 +1,68 @@
+{
+  "batchLessonGenerationInput" : {
+    "lessons" : [
+      {
+        "title" : "Introduction to Reactive Programming",
+        "description" : "Explore the fundamentals of reactive programming, including its principles, benefits, and common terminology. Understand how reactive programming differs from imperative programming and its significance in modern software development."
+      },
+      {
+        "description" : "Learn about asynchronous data streams and how they are used in reactive programming. This lesson covers the concepts of observables, observers, and the flow of data in a reactive system.",
+        "title" : "Understanding Asynchronous Data Streams"
+      },
+      {
+        "title" : "Getting Started with Combine Framework",
+        "description" : "An introduction to the Combine framework in Swift. This lesson covers the basic components of Combine, including publishers, subscribers, and the concept of cancellation in reactive programming."
+      },
+      {
+        "description" : "Delve deeper into how publishers and subscribers work in Combine. Learn about different types of publishers, how to create custom publishers, and how to subscribe to them to receive updates.",
+        "title" : "Using Publishers and Subscribers in Combine"
+      },
+      {
+        "title" : "Transforming Data with Operators in Combine",
+        "description" : "Examine the various operators available in Combine that allow you to manipulate and transform data as it flows through your publishers. This lesson includes practical examples of operators like map, filter, and combineLatest."
+      },
+      {
+        "title" : "Error Handling in Combine",
+        "description" : "Understand how to handle errors in the Combine framework. Learn about the different strategies for error handling and how to use operators like catch and retry to manage failures in your asynchronous streams."
+      },
+      {
+        "title" : "Introduction to RxSwift",
+        "description" : "Get acquainted with RxSwift, a powerful reactive programming library for Swift. This lesson introduces the core concepts of RxSwift, including observables, observers, and the reactive extensions that enhance Swift programming."
+      },
+      {
+        "description" : "Explore how to create and manipulate observables in RxSwift. Learn about the different types of observables, their lifecycle, and how to subscribe to them for data consumption.",
+        "title" : "Working with Observables in RxSwift"
+      },
+      {
+        "description" : "Dive into the extensive library of operators available in RxSwift. This lesson covers how to use operators such as map, flatMap, and filter to transform and combine data streams effectively.",
+        "title" : "Operators in RxSwift: Transforming Streams"
+      },
+      {
+        "description" : "Learn how to deal with errors in RxSwift. This lesson discusses the error handling mechanisms available, including onError, catchError, and retry, to ensure robust data flow in your applications.",
+        "title" : "Handling Errors in RxSwift"
+      },
+      {
+        "description" : "Understand how to combine multiple data streams in both Combine and RxSwift. This lesson covers techniques like merge, zip, and combineLatest to handle complex data flows involving multiple sources.",
+        "title" : "Combining Multiple Streams in Reactive Programming"
+      },
+      {
+        "title" : "Reactive Programming with SwiftUI",
+        "description" : "Explore how reactive programming principles can be applied in SwiftUI applications. This lesson discusses how to integrate Combine or RxSwift with SwiftUI views for seamless data binding and state management."
+      },
+      {
+        "description" : "Learn best practices and design patterns for implementing reactive programming in Swift applications. This lesson covers topics like structuring code, managing memory with cancellables, and avoiding common pitfalls.",
+        "title" : "Best Practices for Reactive Programming"
+      },
+      {
+        "title" : "Testing Reactive Code",
+        "description" : "Understand how to test reactive code effectively. This lesson covers strategies for unit testing Combine and RxSwift components, including the use of test schedulers and mocking observables."
+      },
+      {
+        "title" : "Performance Considerations in Reactive Programming",
+        "description" : "Examine performance considerations when using reactive programming in Swift. This lesson discusses potential bottlenecks, memory management, and how to optimize reactive code for better performance."
+      }
+    ]
+  },
+  "description" : "Explore reactive programming principles using frameworks like Combine and RxSwift, focusing on handling asynchronous streams of data effectively.",
+  "title" : "Reactive Programming Concepts in Swift"
+}

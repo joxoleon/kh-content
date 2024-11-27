@@ -1,0 +1,52 @@
+{
+  "description" : "Learn strategies for designing offline-first mobile applications, including data synchronization, conflict resolution, and local-first architecture patterns.",
+  "title" : "Mobile System Design: Offline-First Applications",
+  "batchLessonGenerationInput" : {
+    "lessons" : [
+      {
+        "title" : "Introduction to Offline-First Design",
+        "description" : "Explore the principles of offline-first design in mobile applications, discussing its importance in user experience, reliability, and performance. Learn about the fundamental concepts that differentiate offline-first applications from traditional online-dependent models."
+      },
+      {
+        "title" : "Local Data Storage Solutions",
+        "description" : "Examine various local data storage options available for mobile applications, including SQLite, Core Data, and Realm. Understand their advantages, disadvantages, and best practices for implementing local storage in an offline-first architecture."
+      },
+      {
+        "description" : "Learn about different data synchronization strategies used in offline-first applications. Discuss techniques such as background synchronization, change tracking, and batch updates to ensure data consistency between local and remote sources.",
+        "title" : "Data Synchronization Strategies"
+      },
+      {
+        "title" : "Conflict Resolution Techniques",
+        "description" : "Understand the challenges of data conflicts in offline-first applications and explore various conflict resolution strategies. Topics include last-write-wins, merge strategies, and user-defined conflict resolution methods."
+      },
+      {
+        "title" : "Local-First Architecture Patterns",
+        "description" : "Delve into local-first architecture patterns that prioritize local data access and performance. Discuss patterns like CQRS (Command Query Responsibility Segregation) and Event Sourcing, highlighting their applicability in offline-first mobile applications."
+      },
+      {
+        "title" : "User Experience in Offline Scenarios",
+        "description" : "Examine how to design user interfaces that effectively communicate offline states and capabilities to users. Learn about best practices for informing users of data availability, sync status, and error handling in offline-first applications."
+      },
+      {
+        "description" : "Discover techniques for testing offline functionality in mobile applications. Explore tools and methodologies for simulating offline conditions, validating data synchronization, and ensuring application reliability under various network scenarios.",
+        "title" : "Testing Offline Functionality"
+      },
+      {
+        "description" : "Learn how to manage background tasks for data synchronization in offline-first mobile applications. Discuss iOS-specific APIs like Background Fetch and URLSession for performing tasks while the app is not in the foreground.",
+        "title" : "Handling Background Tasks and Syncing"
+      },
+      {
+        "title" : "Performance Optimization for Offline-First Applications",
+        "description" : "Understand the performance considerations when building offline-first applications. Explore techniques for optimizing local data access, reducing storage footprint, and enhancing the overall performance of mobile apps."
+      },
+      {
+        "title" : "Real-World Case Studies of Offline-First Applications",
+        "description" : "Analyze real-world examples of successful offline-first applications. Discuss the design choices made, the challenges faced, and the lessons learned from implementing offline-first strategies in various domains."
+      },
+      {
+        "title" : "Future Trends in Offline-First Mobile Design",
+        "description" : "Explore emerging trends and technologies in offline-first mobile application design. Discuss the impact of advancements in cloud computing, edge computing, and new frameworks that facilitate offline functionality."
+      }
+    ]
+  }
+}
