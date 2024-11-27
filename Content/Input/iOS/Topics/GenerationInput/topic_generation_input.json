@@ -83,6 +83,10 @@
         {
             "title": "Mobile System Design: Data Storage and Synchronization",
             "description": "Strategies for designing scalable data storage, local databases, and real-time synchronization with backend servers for mobile applications."
+        },
+        {
+            "title": "Database Modeling and Design in SQLite",
+            "description": "A practical guide to designing and modeling databases in SQLite, including schema design, normalization, relationships, indexing, and best practices for optimizing performance in mobile applications"
         }
     ]
 }

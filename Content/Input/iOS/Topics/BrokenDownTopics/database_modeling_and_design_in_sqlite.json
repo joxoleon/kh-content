@@ -1,0 +1,60 @@
+{
+  "description" : "A practical guide to designing and modeling databases in SQLite, including schema design, normalization, relationships, indexing, and best practices for optimizing performance in mobile applications",
+  "title" : "Database Modeling and Design in SQLite",
+  "batchLessonGenerationInput" : {
+    "lessons" : [
+      {
+        "title" : "Introduction to SQLite",
+        "description" : "Explore SQLite as a lightweight database engine ideal for mobile applications. Learn about its architecture, file-based storage, and the advantages it offers for iOS development."
+      },
+      {
+        "description" : "Learn how to design a database schema using SQLite. This lesson covers the elements of a schema, including tables, fields, data types, and constraints, and how they relate to modeling real-world data.",
+        "title" : "Understanding Database Schemas"
+      },
+      {
+        "description" : "Dive into the principles of database normalization. Understand the different normal forms, why normalization is essential for reducing redundancy, and how to apply these concepts in SQLite.",
+        "title" : "Normalization in Database Design"
+      },
+      {
+        "description" : "Examine how to establish relationships in SQLite databases. This lesson details one-to-one, one-to-many, and many-to-many relationships, and demonstrates how to implement foreign keys.",
+        "title" : "Defining Relationships Between Tables"
+      },
+      {
+        "description" : "Discover the role of indexing in improving query performance in SQLite. Learn about different types of indexes, how to create them, and best practices for when to use indexes in your database design.",
+        "title" : "Indexing for Performance Optimization"
+      },
+      {
+        "title" : "SQLite Data Types and Constraints",
+        "description" : "Understand the various data types supported by SQLite and how to use constraints to enforce data integrity. This lesson covers primary keys, foreign keys, unique constraints, and check constraints."
+      },
+      {
+        "title" : "Using Transactions in SQLite",
+        "description" : "Learn about transactional control in SQLite and how it ensures data integrity. This lesson covers the concepts of commit, rollback, and savepoints, alongside practical examples of their use."
+      },
+      {
+        "title" : "Querying SQLite Databases",
+        "description" : "Master the art of querying data in SQLite. This lesson covers the SQL syntax for SELECT statements, filtering with WHERE clauses, sorting results, and grouping data using aggregate functions."
+      },
+      {
+        "description" : "Explore advanced techniques for optimizing SQLite database performance. Learn about query optimization, caching strategies, and how to analyze and improve slow queries.",
+        "title" : "Optimizing SQLite Database Performance"
+      },
+      {
+        "description" : "Understand the importance of data backup and restoration in SQLite. This lesson discusses various strategies for backing up databases and restoring data safely in mobile applications.",
+        "title" : "Backup and Restore Strategies for SQLite"
+      },
+      {
+        "title" : "Implementing Security in SQLite Databases",
+        "description" : "Learn about securing SQLite databases in mobile applications. This lesson covers encryption, access control, and best practices for protecting sensitive user data stored in SQLite."
+      },
+      {
+        "description" : "Discover how to integrate SQLite into iOS applications using Swift. This lesson walks through setting up SQLite, performing CRUD operations, and using the SQLite.swift library for easier database management.",
+        "title" : "Integrating SQLite with iOS Applications"
+      },
+      {
+        "description" : "Identify and learn how to avoid common mistakes made during SQLite database design. This lesson covers issues such as improper normalization, neglecting indexing, and poor relationship mapping.",
+        "title" : "Common Pitfalls in SQLite Database Design"
+      }
+    ]
+  }
+}

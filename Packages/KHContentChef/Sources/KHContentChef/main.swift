@@ -13,7 +13,7 @@ struct ContentChef: ParsableCommand {
             GenerateLessons.self,
             BuildTopLevelModule.self
         ],
-        defaultSubcommand: BuildTopLevelModule.self
+        defaultSubcommand: TestRun.self
     )
 }
 
