@@ -9,9 +9,6 @@ public struct ContentMetadata: Codable {
 }
 
 public struct LessonMetadata: Codable {
-    public var id: String {
-        sanitizeString(title)
-    }
     public let title: String
     public let description: String
     public let tags: [String]
@@ -28,15 +25,18 @@ public struct LessonMetadata: Codable {
 }
 
 public struct Lesson: Codable {
+    public let id: String
     public var metadata: LessonMetadata
     public let sections: [LessionContentSection]
     public let questions: [Question]
 
     public init(
+        id: String,
         metadata: LessonMetadata,
         sections: [LessionContentSection],
         questions: [Question]
     ) {
+        self.id = id
         self.metadata = metadata
         self.sections = sections
         self.questions = questions
@@ -82,24 +82,24 @@ public struct Question: Codable {
 }
 
 public struct LearningModule: Codable {
-    public var id: String {
-        return title.replacingOccurrences(of: " ", with: "_").lowercased()
-    }
+    public let id: String
     public let title: String
     public let description: String
     public let subModules: [LearningModule]
     public let lessons: [String]
 
     enum CodingKeys: String, CodingKey {
-        case title, description, subModules, lessons
+        case title, description, subModules, lessons, id
     }
 
     public init(
+        id: String,
         title: String,
         description: String,
         subModules: [LearningModule] = [],
         lessons: [String] = []
     ) {
+        self.id = id
         self.title = title
         self.description = description
         self.subModules = subModules
@@ -108,6 +108,7 @@ public struct LearningModule: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
         title = try container.decode(String.self, forKey: .title)
         description = try container.decode(String.self, forKey: .description)
         subModules =

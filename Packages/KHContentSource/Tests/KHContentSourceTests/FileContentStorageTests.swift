@@ -35,7 +35,7 @@ final class FileContentStorageTests: XCTestCase {
     // MARK: - Lesson Tests
 
     func testSaveAndLoadLessons() {
-        let sampleLesson = Lesson(metadata: LessonMetadata(title: "Sample Lesson", description: "Test Description", tags: ["swift", "ios"]),
+        let sampleLesson = Lesson(id: "sample_lesson", metadata: LessonMetadata(title: "Sample Lesson", description: "Test Description", tags: ["swift", "ios"]),
                                   sections: [LessionContentSection(title: "Section 1", content: "Content")],
                                   questions: [Question(id: "q1", type: "MCQ", proficiency: "beginner", question: "Test question?", answers: ["A", "B", "C"], correctAnswerIndex: 0, explanation: "Explanation")])
         
@@ -43,13 +43,13 @@ final class FileContentStorageTests: XCTestCase {
         
         let loadedLessons = contentStorage.loadLessons()
         XCTAssertEqual(loadedLessons?.count, 1, "Lesson count mismatch after saving.")
-        XCTAssertEqual(loadedLessons?.first?.metadata.id, sampleLesson.metadata.id, "Failed to load saved lesson.")
+        XCTAssertEqual(loadedLessons?.first?.id, sampleLesson.id, "Failed to load saved lesson.")
     }
 
     // MARK: - Module Tests
 
     func testSaveAndLoadModules() {
-        let sampleModule = LearningModule(title: "Sample Module", description: "Test Description", lessons: ["lesson1"])
+        let sampleModule = LearningModule(id: "testId", title: "Sample Module", description: "Test Description", lessons: ["lesson1"])
         contentStorage.saveModules([sampleModule])
         
         let loadedModules = contentStorage.loadModules()

@@ -70,11 +70,13 @@ struct BuildTopLevelModule: ParsableCommand {
 
 enum TopLevelModuleSerialization {
     struct TopLevelModule: Codable {
+        let id: String
         let title: String
         let description: String
         let subModules: [SubModule]
 
         init(title: String, description: String, topicBreakdownOutputs: [TopicBreakdownOutput]) {
+            self.id = sanitizeString(title)
             self.title = title
             self.description = description
             self.subModules = topicBreakdownOutputs.map { SubModule(topicBreakdownOutput: $0) }
@@ -91,12 +93,14 @@ enum TopLevelModuleSerialization {
     }
 
     struct SubModule: Codable {
+        let id: String
         let title: String
         let description: String
         let lessons: [String]?
         let subModules: [SubModule]?
 
         init(topicBreakdownOutput: TopicBreakdownOutput) {
+            self.id = sanitizeString(topicBreakdownOutput.title)
             self.title = topicBreakdownOutput.title
             self.description = topicBreakdownOutput.description
             self.lessons = topicBreakdownOutput.batchLessonGenerationInput.lessons.map { $0.filename }

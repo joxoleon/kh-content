@@ -56,7 +56,7 @@ public class ContentRepository: ContentRepositoryProtocol {
     private func loadCachedData() {
         if let lessons = storage.loadLessons() {
             for lesson in lessons {
-                lessonsCache[lesson.metadata.id] = lesson
+                lessonsCache[lesson.id] = lesson
             }
         }
         if let modules = storage.loadModules() {
@@ -96,7 +96,7 @@ public class ContentRepository: ContentRepositoryProtocol {
             storage.saveModules(modules)
             
             for lesson in lessons {
-                lessonsCache[lesson.metadata.id] = lesson
+                lessonsCache[lesson.id] = lesson
             }
             
             for module in modules {

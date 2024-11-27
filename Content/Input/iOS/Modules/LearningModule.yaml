@@ -1,10 +1,12 @@
+id: ios_interview_preparation_course
 title: iOS Interview Preparation Course
 description: Comprehensive preparation course for Senior iOS Developer interviews,
   covering advanced Swift concepts, iOS architectures, design patterns, concurrency,
   testing, and key principles needed to excel in technical interviews at top-tier
   companies.
 subModules:
-- title: 'SwiftUI: Basic Overview'
+- id: swiftui_basic_overview
+  title: 'SwiftUI: Basic Overview'
   description: A comprehensive guide to SwiftUI basics, including layout, view composition,
     declarative syntax, and state management for building iOS applications.
   lessons:
@@ -22,7 +24,8 @@ subModules:
   - testing_swiftui_views
   - accessibility_in_swiftui
   - best_practices_and_common_pitfalls_in_swiftui
-- title: 'SwiftUI: Advanced Overview'
+- id: swiftui_advanced_overview
+  title: 'SwiftUI: Advanced Overview'
   description: Deep dive into advanced SwiftUI topics such as custom views, animations,
     advanced state management, integrating SwiftUI with UIKit, and optimizing performance.
   lessons:
@@ -37,7 +40,8 @@ subModules:
   - building_complex_lists_with_swiftui
   - accessibility_in_swiftui
   - handling_gestures_in_swiftui
-- title: Combine in iOS Development
+- id: combine_in_ios_development
+  title: Combine in iOS Development
   description: Learn the principles of reactive programming with Combine, including
     publishers, subscribers, data streams, and advanced topics like custom publishers
     and scheduling.
@@ -53,7 +57,8 @@ subModules:
   - combine_with_swiftui
   - testing_combine_code
   - advanced_combine_patterns
-- title: 'Swift Language: Intermediate Concepts'
+- id: swift_language_intermediate_concepts
+  title: 'Swift Language: Intermediate Concepts'
   description: Explore intermediate Swift language topics such as optionals, closures,
     structs vs. classes, extensions, and collection transformations.
   lessons:
@@ -66,7 +71,8 @@ subModules:
   - protocols_and_protocoloriented_programming
   - generics_in_swift
   - memory_management_and_arc
-- title: 'Swift Language: Advanced Concepts'
+- id: swift_language_advanced_concepts
+  title: 'Swift Language: Advanced Concepts'
   description: Master advanced Swift concepts, including generics, protocol-oriented
     programming, type erasure, property wrappers, and memory management.
   lessons:
@@ -85,7 +91,8 @@ subModules:
   - testing_in_swift
   - performance_optimization_techniques
   - future_of_swift_evolving_concepts
-- title: Concurrency in Swift
+- id: concurrency_in_swift
+  title: Concurrency in Swift
   description: Comprehensive guide to concurrency in Swift, covering async/await,
     Grand Central Dispatch (GCD), NSOperationQueue, structured concurrency, and best
     practices.
@@ -102,7 +109,8 @@ subModules:
   - testing_concurrency_in_swift
   - realworld_examples_of_concurrency
   - concurrency_debugging_techniques
-- title: 'iOS Architectures: MVC, MVVM, MVP, VIP, VIPER, Clean, TCA, UDF'
+- id: ios_architectures_mvc_mvvm_mvp_vip_viper_clean_tca_udf
+  title: 'iOS Architectures: MVC, MVVM, MVP, VIP, VIPER, Clean, TCA, UDF'
   description: In-depth exploration of iOS architectural patterns, including their
     principles, strengths, weaknesses, and practical use cases.
   lessons:
@@ -120,7 +128,8 @@ subModules:
   - testing_strategies_across_architectures
   - realworld_use_cases_of_ios_architectures
   - future_trends_in_ios_architectural_patterns
-- title: iOS Design Patterns
+- id: ios_design_patterns
+  title: iOS Design Patterns
   description: Detailed guide to common design patterns in iOS, such as delegation,
     factory, singleton, observer, and strategy, with examples and practical applications.
   lessons:
@@ -135,7 +144,8 @@ subModules:
   - realworld_applications_of_ios_design_patterns
   - testing_and_design_patterns_in_ios
   - common_mistakes_with_ios_design_patterns
-- title: Core iOS Concepts and Principles
+- id: core_ios_concepts_and_principles
+  title: Core iOS Concepts and Principles
   description: Overview of essential iOS concepts such as dependency injection, composition
     over inheritance, type erasure, SOLID principles, and other key software engineering
     concepts.
@@ -151,7 +161,8 @@ subModules:
   - unit_testing_and_testdriven_development
   - memory_management_in_swift
   - networking_best_practices_in_ios
-- title: Testing in iOS
+- id: testing_in_ios
+  title: Testing in iOS
   description: Comprehensive guide to testing in iOS, including unit testing, UI testing,
     test-driven development, and asynchronous testing using XCTest and other frameworks.
   lessons:
@@ -166,7 +177,8 @@ subModules:
   - code_coverage_and_analyzing_test_results
   - behaviordriven_development_bdd_in_ios
   - debugging_tests_and_common_pitfalls
-- title: Clean Architecture in iOS Development
+- id: clean_architecture_in_ios_development
+  title: Clean Architecture in iOS Development
   description: Detailed exploration of Clean Architecture principles applied to iOS,
     focusing on modularity, separation of concerns, and scalable application design.
   lessons:
@@ -185,7 +197,8 @@ subModules:
   - refactoring_legacy_code_to_clean_architecture
   - best_practices_for_clean_architecture_implementation
   - future_trends_in_ios_architecture
-- title: UIKit Overview
+- id: uikit_overview
+  title: UIKit Overview
   description: Comprehensive guide to UIKit, including view hierarchy, view controllers,
     navigation patterns, and managing user interfaces programmatically or with Storyboards.
   lessons:
@@ -200,7 +213,8 @@ subModules:
   - resizing_and_adapting_ui_for_different_devices
   - debugging_and_profiling_uikit_applications
   - best_practices_for_uikit_development
-- title: App Lifecycle and Events in UIKit and SwiftUI
+- id: app_lifecycle_and_events_in_uikit_and_swiftui
+  title: App Lifecycle and Events in UIKit and SwiftUI
   description: Learn about application lifecycles in UIKit and SwiftUI, including
     app states, view lifecycle events, and managing background tasks.
   lessons:
@@ -215,7 +229,8 @@ subModules:
   - error_handling_in_app_lifecycle
   - testing_app_lifecycle_events
   - best_practices_for_app_lifecycle_management
-- title: Reactive Programming Concepts in Swift
+- id: reactive_programming_concepts_in_swift
+  title: Reactive Programming Concepts in Swift
   description: Explore reactive programming principles using frameworks like Combine
     and RxSwift, focusing on handling asynchronous streams of data effectively.
   lessons:
@@ -234,7 +249,8 @@ subModules:
   - best_practices_for_reactive_programming
   - testing_reactive_code
   - performance_considerations_in_reactive_programming
-- title: Networking in iOS Development
+- id: networking_in_ios_development
+  title: Networking in iOS Development
   description: Master networking concepts in iOS, including URLSession, RESTful API
     integration, error handling, and advanced techniques like Combine for networking.
   lessons:
@@ -247,7 +263,8 @@ subModules:
   - authentication_and_security_in_networking
   - testing_network_code_in_ios
   - networking_best_practices
-- title: Persistence in iOS Applications
+- id: persistence_in_ios_applications
+  title: Persistence in iOS Applications
   description: Learn about data persistence techniques in iOS, including UserDefaults,
     Core Data, SQLite, and modern persistence strategies.
   lessons:
@@ -261,7 +278,8 @@ subModules:
   - performance_optimization_in_data_persistence
   - testing_data_persistence_in_ios_applications
   - security_considerations_for_data_persistence
-- title: Core Data Essentials
+- id: core_data_essentials
+  title: Core Data Essentials
   description: In-depth guide to Core Data, including data modeling, CRUD operations,
     relationships, and performance optimization.
   lessons:
@@ -278,7 +296,8 @@ subModules:
   - unit_testing_core_data_applications
   - integrating_core_data_with_swiftui
   - core_data_best_practices
-- title: Memory Management and ARC in Swift
+- id: memory_management_and_arc_in_swift
+  title: Memory Management and ARC in Swift
   description: Comprehensive understanding of memory management in Swift, including
     Automatic Reference Counting (ARC), strong vs. weak references, retain cycles,
     and debugging memory issues.
@@ -293,7 +312,8 @@ subModules:
   - best_practices_for_memory_management_in_swift
   - advanced_arc_concepts_and_performance
   - memory_management_in_concurrency
-- title: 'System Design for iOS Applications: Principles and Patterns'
+- id: system_design_for_ios_applications_principles_and_patterns
+  title: 'System Design for iOS Applications: Principles and Patterns'
   description: High-level design principles for iOS applications, covering modularization,
     scaling, fault tolerance, and real-world implementation strategies.
   lessons:
@@ -312,7 +332,8 @@ subModules:
   - handling_concurrency_in_ios
   - security_best_practices_for_ios_applications
   - using_design_patterns_effectively
-- title: 'Mobile System Design: Offline-First Applications'
+- id: mobile_system_design_offlinefirst_applications
+  title: 'Mobile System Design: Offline-First Applications'
   description: Learn strategies for designing offline-first mobile applications, including
     data synchronization, conflict resolution, and local-first architecture patterns.
   lessons:
@@ -327,7 +348,8 @@ subModules:
   - performance_optimization_for_offlinefirst_applications
   - realworld_case_studies_of_offlinefirst_applications
   - future_trends_in_offlinefirst_mobile_design
-- title: 'Mobile System Design: Data Storage and Synchronization'
+- id: mobile_system_design_data_storage_and_synchronization
+  title: 'Mobile System Design: Data Storage and Synchronization'
   description: Strategies for designing scalable data storage, local databases, and
     real-time synchronization with backend servers for mobile applications.
   lessons:
@@ -342,7 +364,8 @@ subModules:
   - security_considerations_in_data_storage
   - data_migration_strategies
   - user_experience_and_data_management
-- title: Database Modeling and Design in SQLite
+- id: database_modeling_and_design_in_sqlite
+  title: Database Modeling and Design in SQLite
   description: A practical guide to designing and modeling databases in SQLite, including
     schema design, normalization, relationships, indexing, and best practices for
     optimizing performance in mobile applications

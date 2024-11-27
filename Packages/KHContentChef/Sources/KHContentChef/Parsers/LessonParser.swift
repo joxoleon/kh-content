@@ -30,6 +30,7 @@ class LessonParser {
         let questions = try parseQuestions(from: content)
 
         return Lesson(
+            id: fileURL.lastPathComponent.replacingOccurrences(of: ".md", with: ""),
             metadata: lessonMetadata,
             sections: sections,
             questions: questions

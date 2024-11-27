@@ -1,8 +1,10 @@
 [
   {
+    "id" : "ios_interview_preparation_course",
     "title" : "iOS Interview Preparation Course",
     "subModules" : [
       {
+        "id" : "swiftui_basic_overview",
         "title" : "SwiftUI: Basic Overview",
         "subModules" : [
 
@@ -26,6 +28,7 @@
         ]
       },
       {
+        "id" : "swiftui_advanced_overview",
         "title" : "SwiftUI: Advanced Overview",
         "subModules" : [
 
@@ -46,6 +49,7 @@
         ]
       },
       {
+        "id" : "combine_in_ios_development",
         "title" : "Combine in iOS Development",
         "subModules" : [
 
@@ -66,6 +70,7 @@
         ]
       },
       {
+        "id" : "swift_language_intermediate_concepts",
         "title" : "Swift Language: Intermediate Concepts",
         "subModules" : [
 
@@ -84,6 +89,7 @@
         ]
       },
       {
+        "id" : "swift_language_advanced_concepts",
         "title" : "Swift Language: Advanced Concepts",
         "subModules" : [
 
@@ -108,6 +114,7 @@
         ]
       },
       {
+        "id" : "concurrency_in_swift",
         "title" : "Concurrency in Swift",
         "subModules" : [
 
@@ -129,6 +136,7 @@
         ]
       },
       {
+        "id" : "ios_architectures_mvc_mvvm_mvp_vip_viper_clean_tca_udf",
         "title" : "iOS Architectures: MVC, MVVM, MVP, VIP, VIPER, Clean, TCA, UDF",
         "subModules" : [
 
@@ -152,6 +160,7 @@
         ]
       },
       {
+        "id" : "ios_design_patterns",
         "title" : "iOS Design Patterns",
         "subModules" : [
 
@@ -172,6 +181,7 @@
         ]
       },
       {
+        "id" : "core_ios_concepts_and_principles",
         "title" : "Core iOS Concepts and Principles",
         "subModules" : [
 
@@ -192,6 +202,7 @@
         ]
       },
       {
+        "id" : "testing_in_ios",
         "title" : "Testing in iOS",
         "subModules" : [
 
@@ -212,6 +223,7 @@
         ]
       },
       {
+        "id" : "clean_architecture_in_ios_development",
         "title" : "Clean Architecture in iOS Development",
         "subModules" : [
 
@@ -236,6 +248,7 @@
         ]
       },
       {
+        "id" : "uikit_overview",
         "title" : "UIKit Overview",
         "subModules" : [
 
@@ -256,6 +269,7 @@
         ]
       },
       {
+        "id" : "app_lifecycle_and_events_in_uikit_and_swiftui",
         "title" : "App Lifecycle and Events in UIKit and SwiftUI",
         "subModules" : [
 
@@ -276,6 +290,7 @@
         ]
       },
       {
+        "id" : "reactive_programming_concepts_in_swift",
         "title" : "Reactive Programming Concepts in Swift",
         "subModules" : [
 
@@ -300,6 +315,7 @@
         ]
       },
       {
+        "id" : "networking_in_ios_development",
         "title" : "Networking in iOS Development",
         "subModules" : [
 
@@ -318,6 +334,7 @@
         ]
       },
       {
+        "id" : "persistence_in_ios_applications",
         "title" : "Persistence in iOS Applications",
         "subModules" : [
 
@@ -337,6 +354,7 @@
         ]
       },
       {
+        "id" : "core_data_essentials",
         "title" : "Core Data Essentials",
         "subModules" : [
 
@@ -359,6 +377,7 @@
         ]
       },
       {
+        "id" : "memory_management_and_arc_in_swift",
         "title" : "Memory Management and ARC in Swift",
         "subModules" : [
 
@@ -378,6 +397,7 @@
         ]
       },
       {
+        "id" : "system_design_for_ios_applications_principles_and_patterns",
         "title" : "System Design for iOS Applications: Principles and Patterns",
         "subModules" : [
 
@@ -402,6 +422,7 @@
         ]
       },
       {
+        "id" : "mobile_system_design_offlinefirst_applications",
         "title" : "Mobile System Design: Offline-First Applications",
         "subModules" : [
 
@@ -422,6 +443,7 @@
         ]
       },
       {
+        "id" : "mobile_system_design_data_storage_and_synchronization",
         "title" : "Mobile System Design: Data Storage and Synchronization",
         "subModules" : [
 
@@ -442,6 +464,7 @@
         ]
       },
       {
+        "id" : "database_modeling_and_design_in_sqlite",
         "title" : "Database Modeling and Design in SQLite",
         "subModules" : [
 

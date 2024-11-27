@@ -76,18 +76,18 @@ final class ContentRepositoryTests: XCTestCase {
     // MARK: - Test Methods
     
     func testFetchLessonById() {
-        let lesson = Lesson(metadata: LessonMetadata(title: "Sample Lesson", description: "Description", tags: ["swift"]),
+        let lesson = Lesson(id: "sample_lesson", metadata: LessonMetadata(title: "Sample Lesson", description: "Description", tags: ["swift"]),
                             sections: [], questions: [])
         storage.saveLessons([lesson])
         
         // Initialize repository after setting up storage
         let repository = ContentRepository(fetcher: fetcher, storage: storage)
         
-        XCTAssertEqual(repository.fetchLesson(by: "sample_lesson")?.metadata.id, "sample_lesson")
+        XCTAssertEqual(repository.fetchLesson(by: "sample_lesson")?.id, "sample_lesson")
     }
     
     func testFetchModuleById() {
-        let module = LearningModule(title: "Sample Module", description: "Description", subModules: [], lessons: [])
+        let module = LearningModule(id: "sample_module", title: "Sample Module", description: "Description", subModules: [], lessons: [])
         storage.saveModules([module])
         
         // Initialize repository after setting up storage
@@ -100,8 +100,8 @@ final class ContentRepositoryTests: XCTestCase {
         // Set stale metadata in storage and newer metadata in fetcher
         storage.saveMetadata(ContentMetadata(lastUpdatedTimestamp: 1000))
         fetcher.mockMetadata = ContentMetadata(lastUpdatedTimestamp: 2000)
-        fetcher.mockLessons = [Lesson(metadata: LessonMetadata(title: "New Lesson", description: "New Description", tags: ["swift"]), sections: [], questions: [])]
-        fetcher.mockModules = [LearningModule(title: "New Module", description: "New Description", subModules: [], lessons: [])]
+        fetcher.mockLessons = [Lesson(id: "new_lesson", metadata: LessonMetadata(title: "New Lesson", description: "New Description", tags: ["swift"]), sections: [], questions: [])]
+        fetcher.mockModules = [LearningModule(id: "new_module", title: "New Module", description: "New Description", subModules: [], lessons: [])]
         
         // Initialize repository after setting up storage and fetcher
         let repository = ContentRepository(fetcher: fetcher, storage: storage)
@@ -109,7 +109,7 @@ final class ContentRepositoryTests: XCTestCase {
         do {
             let updated = try await repository.updateDataIfNeeded()
             XCTAssertTrue(updated, "Expected data to be updated")
-            XCTAssertEqual(self.storage.loadLessons()?.first?.metadata.id, "new_lesson")
+            XCTAssertEqual(self.storage.loadLessons()?.first?.id, "new_lesson")
             XCTAssertEqual(self.storage.loadModules()?.first?.id, "new_module")
         } catch {
             XCTFail("Update data failed with error: \(error)")
